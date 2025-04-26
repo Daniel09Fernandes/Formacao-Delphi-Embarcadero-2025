@@ -1,0 +1,38 @@
+inherited Form2_LgXhdpiTb: TForm2_LgXhdpiTb
+  ClientHeight = 829
+  ClientWidth = 480
+  DesignerMasterStyle = 0
+  inherited Rectangle1: TRectangle
+    Size.Width = 480.000000000000000000
+    inherited SkLabel1: TSkLabel
+      Size.Width = 274.089996337890600000
+      Size.Height = 24.000000000000000000
+    end
+  end
+  inherited S: TRectangle
+    Size.Width = 480.000000000000000000
+    inherited EdtReal: TEdit
+      Size.Height = 32.000000000000000000
+    end
+    inherited EdtResultDolar: TEdit
+      Size.Height = 32.000000000000000000
+    end
+    inherited SkLabel3: TSkLabel
+      Size.Width = 137.479995727539100000
+      Size.Height = 24.000000000000000000
+    end
+  end
+  inherited Rectangle3: TRectangle
+    Size.Width = 480.000000000000000000
+    inherited EdtDolar: TEdit
+      Size.Height = 32.000000000000000000
+    end
+    inherited EdtRealResult: TEdit
+      Size.Height = 32.000000000000000000
+    end
+    inherited SkLabel2: TSkLabel
+      Size.Width = 137.479995727539100000
+      Size.Height = 24.000000000000000000
+    end
+  end
+end

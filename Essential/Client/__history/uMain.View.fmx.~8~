@@ -1,0 +1,130 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 379
+  ClientWidth = 581
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Rectangle1: TRectangle
+    Align = MostTop
+    Fill.Color = xFF72ACBF
+    Size.Width = 581.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object SkLabel1: TSkLabel
+      Align = Center
+      Size.Width = 269.500000000000000000
+      Size.Height = 27.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Style]
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = claWhitesmoke
+      Words = <
+        item
+          Text = 'Conversor de moedas - cliente'
+        end>
+    end
+  end
+  object RecRealDolar: TRectangle
+    Align = MostTop
+    Fill.Color = xFFD2D2D2
+    Margins.Top = 5.000000000000000000
+    Position.Y = 219.000000000000000000
+    Size.Width = 581.000000000000000000
+    Size.Height = 159.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object Edit3: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 1
+      Position.X = 26.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 169.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Edit4: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      Position.X = 201.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 361.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object SkLabel3: TSkLabel
+      Position.X = 7.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 134.589996337890600000
+      Size.Height = 27.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Style]
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = xFF363636
+      Words = <
+        item
+          Text = 'Real para Dolar'
+        end>
+    end
+    object Button2: TButton
+      Position.X = 482.000000000000000000
+      Position.Y = 132.000000000000000000
+      TabOrder = 3
+      Text = 'Converter'
+      TextSettings.Trimming = None
+    end
+  end
+  object Rectangle3: TRectangle
+    Align = MostTop
+    Fill.Color = xFFD2D2D2
+    Margins.Top = 5.000000000000000000
+    Position.Y = 55.000000000000000000
+    Size.Width = 581.000000000000000000
+    Size.Height = 159.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 1
+      Position.X = 26.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 169.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      Position.X = 203.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 359.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object SkLabel2: TSkLabel
+      Position.X = 10.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 134.589996337890600000
+      Size.Height = 27.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Style]
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = xFF363636
+      Words = <
+        item
+          Text = 'Dolar para Real'
+        end>
+    end
+    object Button1: TButton
+      Position.X = 482.000000000000000000
+      Position.Y = 133.000000000000000000
+      TabOrder = 3
+      Text = 'Converter'
+      TextSettings.Trimming = None
+    end
+  end
+end

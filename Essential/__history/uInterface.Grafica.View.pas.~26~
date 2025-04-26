@@ -1,0 +1,75 @@
+unit uInterface.Grafica.View;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  uConversor.Generics;
+  //uConversor;
+
+type
+  TForm1 = class(TForm)
+    Panel1: TPanel;
+    PnlDolar: TPanel;
+    PnlReal: TPanel;
+    EdtDolar: TEdit;
+    EdtReal: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    EdtRealResult: TEdit;
+    EdtDolarResult: TEdit;
+    procedure EdtDolarKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EdtRealKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.EdtDolarKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+//var
+//  lDolarConvert: TConversorMoedas;
+begin
+//  lDolarConvert := TConversorMoedas.Create;
+//  try
+//    lDolarConvert.PopulaDicionario;
+//    EdtRealResult.Text := lDolarConvert.ConverterDolarParaReal(EdtDolar.Text).ToString;
+//  finally
+//    lDolarConvert.Free;
+////    FreeAndNil(lDolarConvert);
+//  end;
+
+//  var lConversor :=  TConversorMoedaGenerico<Double>.Create;
+//  try
+//    EdtRealResult.Text := lConversor.ConverterDolarParaReal(string(EdtDolar.Text).ToDouble).ToString;
+//  finally
+//    lConversor.Free;
+//  end;
+
+  var lConversor :=  TConversorMoedaGenerico<string>.Create;
+  try
+    EdtRealResult.Text := lConversor.ConverterDolarParaReal(EdtDolar.Text);
+  finally
+    lConversor.Free;
+  end;
+end;
+
+procedure TForm1.EdtRealKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+//  var lConversor := TConversorMoedas.Create;
+//  try
+//    EdtDolarResult.Text := lConversor.ConverterRealParaDolar(string(EdtReal.Text).ToDouble).ToString;
+//  finally
+//    lConversor.Free;
+//  end;
+end;
+
+end.

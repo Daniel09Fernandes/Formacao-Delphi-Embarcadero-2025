@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/04/26 11:25:58.077,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/04/26 11:27:31.340,D:\Fontes\Projects\uInterface.Grafica.View.dfm=D:\Fontes\Projects\Unit1.dfm</Transaction>
+    <Transaction>2025/04/26 11:27:31.340,D:\Fontes\Projects\uInterface.Grafica.View.pas=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/04/26 11:35:57.753,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\ConversorMoedaInterfaceGrafica.dproj=D:\Fontes\Projects\Project1.dproj</Transaction>
+    <Transaction>2025/04/26 11:36:44.861,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\uInterface.Grafica.View.pas=D:\Fontes\Projects\uInterface.Grafica.View.pas</Transaction>
+    <Transaction>2025/04/26 11:36:44.861,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\uInterface.Grafica.View.dfm=D:\Fontes\Projects\uInterface.Grafica.View.dfm</Transaction>
+    <Transaction>2025/04/26 11:36:53.245,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Unit1.pas</Transaction>
+    <Transaction>2025/04/26 11:37:14.355,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\uConversor.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Unit1.pas</Transaction>
+    <Transaction>2025/04/26 14:24:14.053,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Unit1.pas</Transaction>
+    <Transaction>2025/04/26 14:24:44.512,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\uConversor.Generics.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

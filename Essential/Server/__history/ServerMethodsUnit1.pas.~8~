@@ -1,0 +1,65 @@
+unit ServerMethodsUnit1;
+
+interface
+
+uses System.SysUtils, System.Classes, Datasnap.DSServer, Datasnap.DSAuth,
+      uConversor.Generics;
+
+type
+{$METHODINFO ON}
+  TServerMethods1 = class(TComponent)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function EchoString(Value: string): string;
+    function ReverseString(Value: string): string;
+    function SayHello: string;
+
+    function ConverterDolarParaReal(ADolar: Double): Double;
+    function ConverterRealParaDolar(AReal: string): string;
+  end;
+{$METHODINFO OFF}
+
+implementation
+
+
+uses System.StrUtils;
+
+function TServerMethods1.ConverterDolarParaReal(ADolar: Double): Double;
+begin
+  var lConversor := TConversorMoedaGenerico<Double>.Create;
+  try
+    Result := lConversor.ConverterDolarParaReal(ADolar);
+  finally
+    lConversor.Free;
+  end;
+end;
+
+function TServerMethods1.ConverterRealParaDolar(AReal: string): string;
+begin
+  var lConversor := TConversorMoedaGenerico<string>.Create;
+  try
+    Result := lConversor.ConverterRealParaDolar(AReal);
+  finally
+
+  end;
+
+end;
+
+function TServerMethods1.EchoString(Value: string): string;
+begin
+  Result := Value;
+end;
+
+function TServerMethods1.ReverseString(Value: string): string;
+begin
+  Result := System.StrUtils.ReverseString(Value);
+end;
+function TServerMethods1.SayHello: string;
+begin
+  Result := 'Ola mundo2';
+end;
+
+end.
+

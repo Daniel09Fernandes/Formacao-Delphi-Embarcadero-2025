@@ -1,0 +1,41 @@
+unit uConversor.Generics;
+
+interface
+
+uses
+  System.SysUtils, System.Generics.Collections, uConversor;
+
+type
+  TConversorMoedaGenerico<T> = class
+  private
+
+  public
+    function ConverterDolarParaReal(ADolar: T): T;
+    function ConverterRealParaDolar(AReal: T): T;
+  end;
+
+implementation
+
+
+{ TConversorMoedaGenerico<T> }
+
+function TConversorMoedaGenerico<T>.ConverterDolarParaReal(ADolar: T): T;
+begin
+  var lConversor: TConversorMoedas.Create;
+  try
+    if  then
+
+
+  finally
+    lConversor.Free;
+  end;
+end;
+
+function GetType(AValue: T): TTypeKind;
+
+function TConversorMoedaGenerico<T>.ConverterRealParaDolar(AReal: T): T;
+begin
+
+end;
+
+end.

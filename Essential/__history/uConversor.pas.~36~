@@ -1,0 +1,116 @@
+unit uConversor;
+
+interface
+
+uses
+  System.SysUtils, system.Generics.Collections;
+
+type
+
+  TypeMoeda = (tmDolar, tmReal= 5);
+
+  TRecMoedas = record
+    TipoMoeda: TypeMoeda;
+    NomeMoeda: string;
+    Cotacao: double;
+  end;
+
+  TConversorMoedas = class
+  private const
+    COTACAO_DOLAR = 5.69;
+    function ValidarValores(AValor: string): double;
+  public
+    function ConverterDolarParaReal(ADolar: double): double; overload;
+    function ConverterDolarParaReal(ADolar: string): double; overload;
+
+    function ConverterRealParaDolar(AReal: double): double; overload;
+    function ConverterRealParaDolar(AReal: string): double; overload;
+
+
+    procedure PopulaDicionario;
+  end;
+
+implementation
+
+{ TConversorMoedas }
+
+function TConversorMoedas.ConverterDolarParaReal(ADolar: double): double;
+{$region '  Operacoes'}
+  function Operacao: double;
+  begin
+    Result := ADolar / COTACAO_DOLAR;
+  end;
+{$endregion}
+begin
+  Result := Operacao;
+end;
+
+function TConversorMoedas.ConverterDolarParaReal(ADolar: string): double;
+begin
+  Result := ConverterDolarParaReal(ValidarValores(ADolar));
+end;
+
+function TConversorMoedas.ConverterRealParaDolar(AReal: string): double;
+begin
+  Result := ConverterRealParaDolar(ValidarValores(AReal));
+end;
+
+procedure TConversorMoedas.PopulaDicionario;
+begin
+
+  var Dicionario := TDictionary<TypeMoeda, TRecMoedas>.Create;
+  try
+    var lRecDolar: TRecMoedas;
+
+    lRecDolar.TipoMoeda := tmDolar;
+    lRecDolar.NomeMoeda := 'Dolar';
+    lRecDolar.Cotacao := 5.62;
+
+    Dicionario.Add(tmDolar, lRecDolar);
+
+    var lRecReal: TRecMoedas;
+
+    lRecReal.TipoMoeda := tmReal;
+    lRecReal.NomeMoeda := 'Real';
+    lRecReal.Cotacao := 0.18;
+
+  //   Dicionario.AddOrSetValue(tmDolar, lRecReal); Atualiza o valor
+    Dicionario.add(tmReal, lRecReal);
+
+    var lRecOut: TRecMoedas;
+    Dicionario.TryGetValue(tmDolar, lRecOut);
+
+    for var i := 0 to  Pred(Dicionario.Count) do
+    begin
+      var lValue := Dicionario.Items[TypeMoeda(i)];
+    end;
+
+    for var Key in Dicionario.Keys do
+    begin
+      var lValue := Dicionario.Items[Key];
+    end;
+
+
+  finally
+    Dicionario.Clear;
+    Dicionario.Free
+  end;
+end;
+
+function TConversorMoedas.ValidarValores(AValor: string): double;
+begin
+  var
+    output: double;
+
+  if not((AValor.Trim.IsEmpty) and TryStrToFloat(AValor, output)) then
+    Exit(0);
+
+  Result := output;
+end;
+
+function TConversorMoedas.ConverterRealParaDolar(AReal: double): double;
+begin
+  Result := AReal * COTACAO_DOLAR;
+end;
+
+end.

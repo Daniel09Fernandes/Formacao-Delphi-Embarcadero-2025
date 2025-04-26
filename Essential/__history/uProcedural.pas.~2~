@@ -1,0 +1,10 @@
+unit uProcedural;
+
+interface
+
+const
+  COTACAO_DOLAR = 5.69;
+
+implementation
+
+end.

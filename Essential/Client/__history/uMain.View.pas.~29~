@@ -1,0 +1,76 @@
+unit uMain.View;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, System.Skia, FMX.Controls.Presentation, FMX.Edit, FMX.Skia, FMX.Objects, FMX.StdCtrls, REST.Types,
+  Data.Bind.Components, Data.Bind.ObjectScope, REST.Client;
+
+type
+  TForm2 = class(TForm)
+    Rectangle1: TRectangle;
+    SkLabel1: TSkLabel;
+    S: TRectangle;
+    Rectangle3: TRectangle;
+    EdtDolar: TEdit;
+    EdtRealResult: TEdit;
+    EdtReal: TEdit;
+    EdtResultDolar: TEdit;
+    SkLabel2: TSkLabel;
+    SkLabel3: TSkLabel;
+    BtnConvertDolar: TButton;
+    BtnConvertReal: TButton;
+    procedure BtnConvertDolarClick(Sender: TObject);
+    procedure BtnConvertRealClick(Sender: TObject);
+  private
+   const
+     URL_API = 'http://localhost:8080/datasnap/rest/TServerMethods1';
+     CALL_API_DOLAR_REAL = '/ConverterDolarParaReal';
+     CALL_API_REAL_DOLAR = '/ConverterRealParaDolar';
+
+   function ConsultaApi(AUri: string; AValue: string): string;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.fmx}
+
+uses
+  System.JSON;
+
+procedure TForm2.BtnConvertDolarClick(Sender: TObject);
+begin
+  EdtRealResult.Text := ConsultaApi(CALL_API_DOLAR_REAL, EdtDolar.Text);
+end;
+
+procedure TForm2.BtnConvertRealClick(Sender: TObject);
+begin
+  EdtResultDolar.Text := ConsultaApi(CALL_API_REAL_DOLAR, EdtReal.Text);
+end;
+
+function TForm2.ConsultaApi(AUri, AValue: string): string;
+begin
+  var lRest := TRESTClient.Create(URL_API+ AUri +'/'+AValue);
+  var lRequest := TRESTRequest.Create(lRest);
+
+  lRequest.Client := lRest;
+  try
+    lRequest.Execute;
+
+    Result :=  lRequest.Response.JSONValue
+                                      .GetValue<TJSONArray>('result')
+                                      .Get(0)
+                                      .ToString
+                                      .Replace('"', '');
+  finally
+    lRest.Free;
+  end;
+end;
+
+end.
