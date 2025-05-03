@@ -1,0 +1,41 @@
+unit uBuscarPais.Api;
+
+interface
+
+uses
+  REst.Client, Rest.Json, REST.Types,
+  SysUtils, StrUtils, uBuscaPais.Model;
+
+type
+  TPaisApi = class
+  private const
+    URL_API = 'https://restcountries.com/v3.1/alpha/';
+  public
+    class function BuscarPais(ASigla: string):TPais;
+  end;
+
+implementation
+
+{ TPaisApi }
+
+class function TPaisApi.BuscarPais(ASigla: string): TPais;
+begin
+  var lRestClient := TRESTClient.Create(URL_API + ASigla);
+  var lRequest := TRESTRequest.Create(lRestClient);
+  try
+    lRestClient.Accept := '*/*';
+    lRestClient.ContentType := 'application/json';
+
+    lRequest.Client := lRestClient;
+    lRequest.Method := rmGET;
+
+    lRequest.Execute;
+
+    Result := TJson.JsonToObject<TPais>('{ "Items": '+ lRequest.Response.JSONValue.ToString + '}');
+  finally
+    lRequest.Free;
+    lRestClient.Free;
+  end;
+end;
+
+end.

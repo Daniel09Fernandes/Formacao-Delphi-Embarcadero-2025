@@ -1,0 +1,62 @@
+unit uGeradorQRCode.View;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Skia, Vcl.Skia, Vcl.ExtCtrls, Vcl.StdCtrls, System.ImageList, Vcl.ImgList, REST.Types, REST.Client, Data.Bind.Components,
+  Data.Bind.ObjectScope, vcl.Imaging.pngimage;
+
+type
+  TFrGeradorDeQrCode = class(TForm)
+    PnlTop: TPanel;
+    SkLabel1: TSkLabel;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    ImgQrCode: TImage;
+    Panel3: TPanel;
+    SkLabel2: TSkLabel;
+    EdtTextQrCode: TEdit;
+    BtnGerarQRCode: TButton;
+    ImageList1: TImageList;
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+    procedure BtnGerarQRCodeClick(Sender: TObject);
+  private
+    procedure RenderizarQrCode;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrGeradorDeQrCode.BtnGerarQRCodeClick(Sender: TObject);
+const URL_API = 'https://qrcode.tec-it.com/API/QRCode?data=[value]&backcolor=%23ffffff&size=small&quietzone=1&errorcorrection=H';
+begin
+  RESTClient1.BaseURL := URL_API.Replace('[value]', EdtTextQrCode.Text);
+  RESTRequest1.Execute;
+  var lRetorno := RESTRequest1.Response.RawBytes;
+end;
+
+
+procedure TFrGeradorDeQrCode.RenderizarQrCode;
+var
+  lBytes: Cardinal;
+  BUFFER_SIZE: LongInt;
+begin
+  BUFFER_SIZE := 1024*1024;
+  var
+    lImageStream := TMemoryStream.Create;
+
+   lImageStream.Read(RESTRequest1.Response.RawBytes,0, High(RESTRequest1.Response.RawBytes) );
+
+   var
+     lPng := TPngImage.create;
+     lImageStream.Position := 0;
+end;
+
+end.

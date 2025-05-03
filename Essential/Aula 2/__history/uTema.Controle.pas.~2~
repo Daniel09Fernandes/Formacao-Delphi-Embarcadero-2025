@@ -1,0 +1,18 @@
+unit uTema.Controle;
+
+interface
+
+uses
+  SysUtils, IniFiles;
+
+type
+  TTemaApp = class
+    private
+
+    public
+
+  end;
+
+implementation
+
+end.

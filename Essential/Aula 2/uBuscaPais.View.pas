@@ -1,0 +1,122 @@
+unit uBuscaPais.View;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Skia, Vcl.Skia, Vcl.ExtCtrls,
+  Vcl.StdCtrls, System.ImageList, Vcl.ImgList,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
+  FireDAC.Stan.StorageBin, Vcl.Imaging.pngimage;
+
+type
+  TFrBuscaPais = class(TForm)
+    PnlTop: TPanel;
+    SkLabel1: TSkLabel;
+    Panel1: TPanel;
+    Splitter1: TSplitter;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    SkLabel2: TSkLabel;
+    EdtSiglaPais: TEdit;
+    Button1: TButton;
+    ImageList1: TImageList;
+    MemPais: TFDMemTable;
+    DSMem: TDataSource;
+    DBGrid1: TDBGrid;
+    MemPaisPais: TStringField;
+    MemPaisBandeira: TStringField;
+    MemPaisPopulacao: TStringField;
+    FDStanStorageBinLink1: TFDStanStorageBinLink;
+    ImgPais: TImage;
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button1Click(Sender: TObject);
+    procedure MemPaisAfterScroll(DataSet: TDataSet);
+  private const
+    TEMP_PAIS_DB = 'tempPais.db';
+    procedure PegarBandeira(AUrl: string);
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  uBuscarPais.Api, Rest.Json;
+
+procedure TFrBuscaPais.Button1Click(Sender: TObject);
+begin
+  var
+  lModel := TPaisApi.BuscarPais(EdtSiglaPais.Text);
+  try
+    MemPais.DisableControls;
+    MemPais.LogChanges := False;
+
+    MemPais.Open;
+    MemPais.Append;
+
+    MemPaisPais.AsString := lModel.Items.First.Name.Common;
+    MemPaisBandeira.AsString := lModel.Items.First.Flags.Png;
+    MemPaisPopulacao.AsString := lModel.Items.First.Population.ToString;
+
+    // var lJson := TJson.ObjectToJsonString( lModel.Items.First);
+
+    MemPais.Post;
+    PegarBandeira(lModel.Items.First.Flags.Png);
+  finally
+    lModel.Free;
+    MemPais.EnableControls;
+  end;
+end;
+
+procedure TFrBuscaPais.PegarBandeira(AUrl: string);
+begin
+  var
+  lImgStream := TMemoryStream.Create;
+
+  TPaisApi.PegarImagemBandeira(AUrl, lImgStream);
+
+  if lImgStream.Size > 0 then
+  begin
+    var
+    lPng := TPngImage.Create;
+    lImgStream.Position := 0;
+    lPng.LoadFromStream(lImgStream);
+    ImgPais.Picture.Assign(lPng);
+  end;
+end;
+
+procedure TFrBuscaPais.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  MemPais.SaveToFile(TEMP_PAIS_DB);
+end;
+
+procedure TFrBuscaPais.FormShow(Sender: TObject);
+begin
+  if FileExists(TEMP_PAIS_DB) then
+    MemPais.LoadFromFile(TEMP_PAIS_DB);
+
+  // Off Topic
+  var
+  SQL := '''
+       select * from TAB_CLIENTE Where Nome like '%Daniel%'
+      ''';
+
+  var
+  sql1 := 'Select' + 'From' + 'Where';
+
+end;
+
+procedure TFrBuscaPais.MemPaisAfterScroll(DataSet: TDataSet);
+begin
+  PegarBandeira(MemPaisBandeira.AsString);
+end;
+
+end.

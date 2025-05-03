@@ -1,0 +1,80 @@
+object FrMain: TFrMain
+  Left = 0
+  Top = 0
+  Caption = 'FrMain'
+  ClientHeight = 178
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  PopupMenu = PopThema
+  OnCreate = FormCreate
+  TextHeight = 15
+  object PnlTop: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 5
+    Width = 618
+    Height = 52
+    Margins.Top = 5
+    Align = alTop
+    Color = clMediumslateblue
+    ParentBackground = False
+    TabOrder = 0
+    StyleElements = [seFont, seBorder]
+    object BtnGerarQrCode: TButton
+      AlignWithMargins = True
+      Left = 6
+      Top = 6
+      Width = 113
+      Height = 40
+      Margins.Left = 5
+      Margins.Top = 5
+      Margins.Bottom = 5
+      Align = alLeft
+      Caption = 'Gerar QRCode'
+      ImageIndex = 0
+      Images = FrGeradorDeQrCode.ImageList1
+      TabOrder = 0
+      OnClick = BtnGerarQrCodeClick
+      ExplicitLeft = 0
+      ExplicitTop = 7
+      ExplicitHeight = 64
+    end
+    object BtnBuscarPais: TButton
+      AlignWithMargins = True
+      Left = 127
+      Top = 6
+      Width = 130
+      Height = 40
+      Margins.Left = 5
+      Margins.Top = 5
+      Margins.Bottom = 5
+      Align = alLeft
+      Caption = 'Buscar Bandeiras'
+      ImageIndex = 0
+      Images = FrBuscaPais.ImageList1
+      TabOrder = 1
+      OnClick = BtnBuscarPaisClick
+      ExplicitHeight = 64
+    end
+  end
+  object PopThema: TPopupMenu
+    Left = 568
+    Top = 64
+    object ema1: TMenuItem
+      Caption = 'Tema'
+      object Dark1: TMenuItem
+        Caption = 'Dark'
+        OnClick = Dark1Click
+      end
+      object light1: TMenuItem
+        Caption = 'Light'
+        OnClick = light1Click
+      end
+    end
+  end
+end

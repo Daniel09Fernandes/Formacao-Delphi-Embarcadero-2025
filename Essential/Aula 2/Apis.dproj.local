@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/05/03 09:22:14.000.730,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/05/03 09:24:19.000.866,D:\Fontes\Projects\Unit1.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uMain.dfm</Transaction>
+    <Transaction>2025/05/03 09:24:19.000.866,D:\Fontes\Projects\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uMain.pas</Transaction>
+    <Transaction>2025/05/03 09:24:30.000.645,D:\Fontes\Projects\Project1.dproj=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Apis.dproj</Transaction>
+    <Transaction>2025/05/03 09:36:13.000.980,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas</Transaction>
+    <Transaction>2025/05/03 09:36:31.000.364,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uTema.Controle.pas</Transaction>
+    <Transaction>2025/05/03 11:11:35.000.976,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit2.pas</Transaction>
+    <Transaction>2025/05/03 11:13:28.000.614,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit2.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uGeradorQRCode.View.pas</Transaction>
+    <Transaction>2025/05/03 11:13:28.000.614,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit2.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uGeradorQRCode.View.dfm</Transaction>
+    <Transaction>2025/05/03 11:48:35.000.522,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas</Transaction>
+    <Transaction>2025/05/03 11:48:55.000.639,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uQrCode.Api.pas</Transaction>
+    <Transaction>2025/05/03 11:50:33.000.681,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas</Transaction>
+    <Transaction>2025/05/03 11:51:34.000.229,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uHttp.Byte.pas</Transaction>
+    <Transaction>2025/05/03 13:38:16.000.038,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas</Transaction>
+    <Transaction>2025/05/03 13:38:45.000.146,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uBuscaPais.View.dfm</Transaction>
+    <Transaction>2025/05/03 13:38:45.000.146,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uBuscaPais.View.pas</Transaction>
+    <Transaction>2025/05/03 14:04:19.000.779,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uQrCode.Api.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uBuscarPais.Api.pas</Transaction>
+    <Transaction>2025/05/03 14:18:35.000.670,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas</Transaction>
+    <Transaction>2025/05/03 14:18:51.000.501,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uBuscaPais.Model.pas</Transaction>
+    <Transaction>2025/05/03 16:17:37.000.170,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas</Transaction>
+    <Transaction>2025/05/03 16:18:08.000.531,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uPokemon.View.pas</Transaction>
+    <Transaction>2025/05/03 16:18:08.000.531,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uPokemon.View.dfm</Transaction>
+    <Transaction>2025/05/03 16:33:38.000.004,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas</Transaction>
+    <Transaction>2025/05/03 16:33:53.000.004,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uPokemon.Api.pas</Transaction>
+    <Transaction>2025/05/03 16:40:56.000.507,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas</Transaction>
+    <Transaction>2025/05/03 16:41:34.000.165,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Essential\Aula 2\uPokemon.Model.pas</Transaction>
+  </Transactions>
+</BorlandProject>

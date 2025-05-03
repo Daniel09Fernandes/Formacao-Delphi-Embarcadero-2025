@@ -1,0 +1,23 @@
+program Apis;
+
+uses
+  Vcl.Forms,
+  uMain in 'uMain.pas' {FrMain},
+  Vcl.Themes,
+  Vcl.Styles,
+  uTema.Controle in 'uTema.Controle.pas',
+  uGeradorQRCode.View in 'uGeradorQRCode.View.pas' {FrGeradorDeQrCode},
+  uBuscarPais.Api in 'uBuscarPais.Api.pas',
+  uHttp.Byte in 'uHttp.Byte.pas',
+  uBuscaPais.View in 'uBuscaPais.View.pas' {FrBuscaPais},
+  uBuscaPais.Model in 'uBuscaPais.Model.pas',
+  uPokemon.View in 'uPokemon.View.pas' {FrPokemon};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFrMain, FrMain);
+  Application.Run;
+end.

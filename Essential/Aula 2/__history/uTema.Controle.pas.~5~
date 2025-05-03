@@ -1,0 +1,39 @@
+unit uTema.Controle;
+
+interface
+
+uses
+  SysUtils, IniFiles, vcl.Forms;
+
+type
+  TTemaApp = class
+  private const
+    PATH_TEMA = '\Bin\TemaPadrao.ini';
+    SECTION = 'TEMA';
+    IDENT = 'padrao'
+  public
+    class procedure GravarTemaPadrao(AValue: string);
+    class function BuscarTemaPadrao: string;
+  end;
+
+implementation
+
+{ TTemaApp }
+
+class function TTemaApp.BuscarTemaPadrao: string;
+begin
+
+end;
+
+class procedure TTemaApp.GravarTemaPadrao(AValue: string);
+begin
+  var
+  Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + PATH_TEMA);
+  try
+    Ini.WriteString('TEMA','padrao', AValue);
+  finally
+    Ini.Free;
+  end;
+end;
+
+end.

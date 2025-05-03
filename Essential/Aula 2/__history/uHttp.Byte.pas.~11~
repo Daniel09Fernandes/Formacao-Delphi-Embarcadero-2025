@@ -1,0 +1,46 @@
+unit uHttp.Byte;
+
+interface
+
+uses
+  Classes, WinApi.WinInet;
+
+type
+  THttpBet = class
+  private
+
+  public
+    class procedure GetBytes(const AUrl: string; AImage: TStream);
+  end;
+
+implementation
+
+{ THttpBet }
+
+class procedure THttpBet.GetBytes(const AUrl: string; AImage: TStream);
+const
+  BUFFER_SIZE = 1024 * 1024;
+var
+  lBuffer, lNet, lUrlOpen: Pointer;
+  lBytesReaded: Cardinal;
+begin
+
+  lNet := InternetOpen('', INTERNET_OPEN_TYPE_PRECONFIG, nil, nil, 0);
+
+  if Assigned(lNet) then
+  begin
+    try
+      AImage.Position := 0;
+      GetMem(lBuffer, BUFFER_SIZE);
+      try
+
+      finally
+        FreeMem(lBuffer);
+      end;
+    finally
+      InternetCloseHandle(lNet);
+    end;
+  end;
+end;
+
+end.

@@ -1,0 +1,73 @@
+unit uPokemon.Api;
+
+interface
+
+uses
+  Rest.Client, Rest.Json, Rest.Types,
+  SysUtils, StrUtils, Classes,
+  uPokemon.Model;
+
+type
+  TPokemonApi = class
+  private const
+    URL_API = 'https://pokeapi.co/api/v2/pokemon/';
+  public
+    class function CapturarPokemon(APokemon: string): TPokemon;
+    class procedure BuscarFotos(AUrl: string; AImgStream: TStream);
+  end;
+
+implementation
+
+{ TPokemonApi }
+
+uses
+  uHttp.Byte;
+
+class procedure TPokemonApi.BuscarFotos(AUrl: string; AImgStream: TStream);
+begin
+//  THttpNet.GetBytes(AUrl, AImgStream);
+   var
+  lRestClient := TRESTClient.Create(AUrl);
+  var
+  lRequest := TRESTRequest.Create(lRestClient);
+  try
+    lRestClient.Accept := '*/*';
+    lRestClient.ContentType := 'application/json';
+
+    lRequest.Client := lRestClient;
+    lRequest.Method := rmGET;
+
+    lRequest.Execute;
+
+    AImgStream.WriteBuffer(lRequest.Response.RawBytes[0], Length(lRequest.Response.RawBytes));
+
+  finally
+  end;
+end;
+
+class function TPokemonApi.CapturarPokemon(APokemon: string): TPokemon;
+begin
+  if APokemon.Trim.IsEmpty then
+   raise Exception.Create('Informe um Pokemon para busca!');
+
+  var
+  lRestClient := TRESTClient.Create(URL_API + APokemon);
+  var
+  lRequest := TRESTRequest.Create(lRestClient);
+  try
+    lRestClient.Accept := '*/*';
+    lRestClient.ContentType := 'application/json';
+
+    lRequest.Client := lRestClient;
+    lRequest.Method := rmGET;
+
+    lRequest.Execute;
+
+    Result := TJson.JsonToObject<TPokemon>(lRequest.Response.JSONValue.ToString);
+  finally
+    lRequest.Free;
+    lRestClient.Free;
+  end;
+end;
+
+end.

@@ -1,0 +1,143 @@
+//{$DEFINE MinhaDiretiva}
+unit uMain;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, vcl.Themes, Vcl.Menus, System.ImageList, Vcl.ImgList;
+
+type
+  TThema = (tDark, tLight);
+
+  TThemaHelper = record helper for TThema
+    function ToString: string;
+  end;
+
+  TFrMain = class(TForm)
+    PopThema: TPopupMenu;
+    ema1: TMenuItem;
+    Dark1: TMenuItem;
+    light1: TMenuItem;
+    PnlTop: TPanel;
+    BtnGerarQrCode: TButton;
+    BtnBuscarPais: TButton;
+    ImageList1: TImageList;
+    Button1: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure Dark1Click(Sender: TObject);
+    procedure light1Click(Sender: TObject);
+    procedure BtnGerarQrCodeClick(Sender: TObject);
+    procedure BtnBuscarPaisClick(Sender: TObject);
+  private
+    procedure GravarEAplicarTema(ATema: TThema);
+    procedure AbrirTelaQRCode;
+    procedure AbrirBuscaPais;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+  TFormHelper = class helper for TForm
+    function SayMyName: string;
+  end;
+
+var
+  FrMain: TFrMain;
+
+implementation
+
+{$R *.dfm}
+uses
+  uTema.Controle,
+  uGeradorQRCode.View,
+  uBuscaPais.View;
+
+procedure TFrMain.GravarEAplicarTema(ATema: TThema);
+begin
+  TTemaApp.GravarTemaPadrao(ATema.ToString);
+  TStyleManager.TrySetStyle(TTemaApp.BuscarTemaPadrao);
+end;
+
+procedure TFrMain.light1Click(Sender: TObject);
+begin
+  GravarEAplicarTema(tLight);
+end;
+
+procedure TFrMain.AbrirTelaQRCode;
+begin
+  var
+    lTela := TFrGeradorDeQrCode.Create(Nil);
+  try
+    lTela.ShowModal;
+  finally
+    lTela.Free;
+  end;
+end;
+
+procedure TFrMain.BtnBuscarPaisClick(Sender: TObject);
+begin
+  AbrirBuscaPais;
+end;
+
+procedure TFrMain.AbrirBuscaPais;
+begin
+ var
+    lTela := TFrBuscaPais.Create(Nil);
+  try
+    lTela.ShowModal;
+  finally
+    lTela.Free;
+  end;
+end;
+
+procedure TFrMain.BtnGerarQrCodeClick(Sender: TObject);
+begin
+  AbrirTelaQRCode;
+end;
+
+procedure TFrMain.Dark1Click(Sender: TObject);
+begin
+  GravarEAplicarTema(tDark);
+end;
+
+procedure TFrMain.FormCreate(Sender: TObject);
+begin
+// =========== Sem Class Method =========
+//  var Tema := TTemaApp.Create;
+//  try
+//    var lRetorno := Tema.BuscarTemaPadrao;
+//  finally
+//    Tema.Free;
+//  end;
+
+//   {$ifndef Debug }
+   {$ifndef ProjetoAPI } //Diretiva criada em Project> Delphi Compilling > Conditional Defines
+     Self.SayMyName;
+   {$else}
+   {$endif}
+
+   {================ Com Class Method =================}
+   TStyleManager.TrySetStyle(TTemaApp.BuscarTemaPadrao);
+end;
+
+{ TFormHelper }
+
+function TFormHelper.SayMyName: string;
+begin
+   ShowMessage('Daniel');
+end;
+
+{ TThemaHelper }
+function TThemaHelper.ToString: string;
+const
+  THEMA_DARK = 'Obsidian';
+  THEMA_LIGHT = 'Luna';
+begin
+  case self of
+    tDark: Result := THEMA_DARK;
+    tLight: Result := THEMA_LIGHT;
+  end;
+end;
+
+end.

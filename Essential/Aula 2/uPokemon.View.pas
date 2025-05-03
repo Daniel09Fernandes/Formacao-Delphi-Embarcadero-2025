@@ -1,0 +1,141 @@
+unit uPokemon.View;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Skia, Vcl.Skia, Vcl.ExtCtrls, Vcl.StdCtrls, System.ImageList, Vcl.ImgList;
+
+type
+  TFrPokemon = class(TForm)
+    PnlTop: TPanel;
+    SkLabel1: TSkLabel;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    SkLabel2: TSkLabel;
+    EdtPokemon: TEdit;
+    Button1: TButton;
+    ImageList1: TImageList;
+    ImgPokemon: TImage;
+    Label1: TLabel;
+    LblNome: TLabel;
+    Label3: TLabel;
+    LblPeso: TLabel;
+    PnlHabilidadesPrincipal: TPanel;
+    Panel6: TPanel;
+    SkLabel3: TSkLabel;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    SkLabel4: TSkLabel;
+    SBMovimentos: TScrollBox;
+    PnlHabilidades: TPanel;
+    procedure Button1Click(Sender: TObject);
+    procedure OnMouseLeave(Sender: TObject);
+    procedure OnMouseEnter(Sender: TObject);
+  private
+    procedure CapturarPokemon;
+    procedure RenderizarFoto(AUrl: string);
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  uPokemon.Api,
+  vcl.Imaging.pngimage;
+
+procedure TFrPokemon.Button1Click(Sender: TObject);
+begin
+  CapturarPokemon;
+end;
+
+procedure TFrPokemon.CapturarPokemon;
+  procedure CriarLabels(AText: string; ATop: Integer; AOwner: TComponent);
+  begin
+    var
+      lbl := TLabel.Create(AOwner);
+      lbl.Parent := TWinControl(AOwner);
+      lbl.Font.Color := clWindowText;
+      lbl.Font.Style := [{TFontStyle.fsBold,TFontStyle.fsItalic}];
+      lbl.Font.Size := 9;
+      lbl.Caption := AText;
+      lbl.Left := 10;
+      lbl.Top := ATop;
+      lbl.Cursor := crHandPoint;
+      lbl.Name := 'lbl_'+AText.Replace('-','_');
+      lbl.OnMouseEnter := OnMouseEnter;
+      lbl.OnMouseLeave := OnMouseLeave;
+      lbl.StyleElements := [seFont, seBorder];
+  end;
+
+  procedure LimparInformacoes;
+  begin
+    while PnlHabilidades.ComponentCount > 0 do
+      PnlHabilidades.Components[0].Free;
+
+    while SBMovimentos.ComponentCount > 0 do
+      SBMovimentos.Components[0].Free;
+  end;
+begin
+  var lModel := TPokemonApi.CapturarPokemon(EdtPokemon.Text);
+  try
+    LimparInformacoes;
+
+    var lTopCount := 8;
+    for var I := 0 to lModel.Abilities.Count -1 do
+    begin
+      CriarLabels(lModel.Abilities[i].Ability.Name, lTopCount, PnlHabilidades);
+      lTopCount := lTopCount + 15;
+      Application.ProcessMessages;
+    end;
+
+    lTopCount := 8;
+    for var I := 0 to lModel.Moves.Count -1 do
+    begin
+      CriarLabels(lModel.Moves[i].Move.Name, lTopCount, SBMovimentos);
+      lTopCount := lTopCount + 15;
+      Application.ProcessMessages;
+    end;
+    LblNome.Caption := lModel.Forms.First.Name;
+    LblPeso.Caption := lModel.Weight.ToString;
+
+    RenderizarFoto(lModel.Sprites.FrontDefault);
+  finally
+    lModel.Free;
+  end;
+end;
+
+procedure TFrPokemon.OnMouseEnter(Sender: TObject);
+begin
+  if Sender is TLabel then
+    TLabel(Sender).Font.Color := clBlue;
+end;
+
+procedure TFrPokemon.OnMouseLeave(Sender: TObject);
+begin
+  if Sender is TLabel then
+    TLabel(Sender).Font.Color := clWindowText;
+end;
+
+procedure TFrPokemon.RenderizarFoto(AUrl: string);
+begin
+  var lStream := TMemoryStream.Create;
+  TPokemonApi.BuscarFotos(AUrl, lStream);
+
+  if lStream.Size > 0 then
+  begin
+    var
+      lPng := TPngImage.Create;
+
+    lStream.Position := 0;
+    lPng.LoadFromStream(lStream);
+    ImgPokemon.Picture.Assign(lPng);
+  end;
+end;
+
+end.

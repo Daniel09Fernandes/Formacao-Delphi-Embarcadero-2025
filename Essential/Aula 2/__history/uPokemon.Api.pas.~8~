@@ -1,0 +1,47 @@
+unit uPokemon.Api;
+
+interface
+
+uses
+  Rest.Client, Rest.Json, Rest.Types,
+  SysUtils, StrUtils, Classes;
+
+type
+  TPokemonApi = class
+  private const
+    URL_API = 'https://pokeapi.co/api/v2/pokemon/';
+  public
+    class function CapturarPokemon(APokemon: string): TObject;
+  end;
+
+implementation
+
+{ TPokemonApi }
+
+class function TPokemonApi.CapturarPokemon(APokemon: string): TObject;
+begin
+  if APokemon.Trim.IsEmpty then
+   raise Exception.Create('Informe um Pokemon para busca!');
+
+  var
+  lRestClient := TRESTClient.Create(URL_API + APokemon);
+  var
+  lRequest := TRESTRequest.Create(lRestClient);
+  try
+    lRestClient.Accept := '*/*';
+    lRestClient.ContentType := 'application/json';
+
+    lRequest.Client := lRestClient;
+    lRequest.Method := rmGET;
+
+    lRequest.Execute;
+
+    Result := TJson.JsonToObject<TObject>
+      ('{ "Items": ' + lRequest.Response.JSONValue.ToString + '}');
+  finally
+    lRequest.Free;
+    lRestClient.Free;
+  end;
+end;
+
+end.

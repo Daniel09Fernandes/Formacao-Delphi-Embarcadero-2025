@@ -1,0 +1,21 @@
+program Apis;
+
+uses
+  Vcl.Forms,
+  uMain in 'uMain.pas' {FrMain},
+  Vcl.Themes,
+  Vcl.Styles,
+  uTema.Controle in 'uTema.Controle.pas',
+  uGeradorQRCode.View in 'uGeradorQRCode.View.pas' {FrGeradorDeQrCode},
+  uQrCode.Api in 'uQrCode.Api.pas',
+  uHttp.Byte in 'uHttp.Byte.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Luna');
+  Application.CreateForm(TFrMain, FrMain);
+  Application.Run;
+end.

@@ -1,0 +1,33 @@
+unit uHttp.Byte;
+
+interface
+
+uses
+  Classes, WinApi.WinInet;
+
+type
+  THttpBet = class
+    private
+
+    public
+      class procedure GetBytes(const AUrl: string; AIgem: TStream);
+  end;
+
+implementation
+
+{ THttpBet }
+
+class procedure THttpBet.GetBytes(const AUrl: string; AIgem: TStream);
+const
+  BUFFER_SIZ = 1024*1024;
+var
+  lBuffer,
+  lNet,
+  lUrlOpen : Pointer;
+  lBytesReaded: Cardinal;
+begin
+
+  lNet := InternetOpen('', INTERNET_OPEN_TYPE_PRECONFIG, nil, nil, 0);
+end;
+
+end.
