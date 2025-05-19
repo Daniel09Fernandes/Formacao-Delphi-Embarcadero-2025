@@ -1,0 +1,145 @@
+unit uLog.Tela;
+
+interface
+
+uses
+  IniFiles, TimeSpan, SysUtils, ZIP;
+
+type
+  TInfosTela = record
+    Nome: string;
+    TempoAberto: TTimeSpan;
+    UltimaAbertura: TDateTime;
+  end;
+
+  TLogs = class(TIniFile)
+  private const
+    SECTION = 'TELA_';
+    ARQUIVO_ZIP = '\HistoricoControleTela.zip';
+
+    class var
+    FFilepath: string;
+
+    function GetSection(ATelaInfo: TInfosTela): string;
+    procedure WriteTime(const Section, Name: string; Value: TTimeSpan); overload;
+  public
+    procedure AddInfoTelaAbrirTela(ATelaInfo: TInfosTela);
+    procedure AddInfoTelaAoFechar(ATelaInfo: TInfosTela);
+
+    class procedure Ziplog;
+    class procedure unZiplog;
+
+    constructor create(AFile: string); overload;
+    destructor Destroy; override;
+  end;
+
+//var NuncaUsarVarGlobal: string;
+
+implementation
+
+{ TLogs }
+
+procedure TLogs.AddInfoTelaAbrirTela(ATelaInfo: TInfosTela);
+begin
+  var
+  Qtd := ReadInteger(GetSection(ATelaInfo), 'Quantidade', 0);
+  WriteInteger(GetSection(ATelaInfo), 'Quantidade', Qtd + 1);
+
+  WriteDateTime(GetSection(ATelaInfo), 'UltimaVezAberto', ATelaInfo.UltimaAbertura);
+end;
+
+function  TLogs.GetSection(ATelaInfo: TInfosTela): string;
+begin
+  Result := SECTION + ATelaInfo.Nome;
+end;
+
+class procedure TLogs.unZiplog;
+const
+  EXTRACT_PATH = '\ArquivosZip';
+begin
+  var
+  lZip := TZipFile.Create;
+  try
+    var lPath := GetCurrentDir + ARQUIVO_ZIP;
+    if FileExists(lPath) and (lZip.IsValid(lPath)) then
+    begin
+      lZip.Open(lPath, zmRead);
+
+      if lZip.FileCount > 0 then
+      begin
+        if not DirectoryExists(GetCurrentDir + EXTRACT_PATH) then
+          ForceDirectories(GetCurrentDir + EXTRACT_PATH);
+
+        lZip.ExtractZipFile(lPath, GetCurrentDir + EXTRACT_PATH);
+      end;
+    end;
+  finally
+   lZip.Free;
+  end;
+end;
+
+procedure TLogs.WriteTime(const Section, Name: string; Value: TTimeSpan);
+begin
+  if Section.Trim.IsEmpty then
+    raise Exception.Create('Obrigatorio informar a Section');
+
+  if Name.Trim.IsEmpty then
+   raise Exception.Create('Obrigatorio informar a Name');
+
+  if Value.TotalMilliseconds <= 0 then
+    raise Exception.Create('Obrigatorio informar a Value');
+
+  WriteString(Section, Name, Value.ToString);
+end;
+
+class procedure TLogs.Ziplog;
+var lZip: TZipFile;
+begin
+  lZip := TZipFile.Create;
+  try
+    var lPath := GetCurrentDir + ARQUIVO_ZIP;
+
+    if not FileExists(lPath) then
+      lZip.Open(lPath, zmWrite)//Cria o arquivo
+    else
+      lZip.Open(lPath, zmReadWrite); //Abre o existente
+
+    var
+    lNewName := ExtractFileName(FFilepath).
+      Replace('.ini','_') +
+      FormatDateTime('dd_MM_yyyy_hh_mm_ss_', now) +
+      TGUID
+        .NewGuid
+        .ToString
+        .Replace('{','')
+        .Replace('}','')
+        .Replace('-','')
+        .Replace('.','')+
+        '.ini';
+    //lNewName := FormatDateTime('hh_mm_ss', now) + lNewName; //Forma menos confiavel de gerar nomes unicos, pode falhar
+
+    lZip.Add(FFilepath);
+    lZip.Rename(ExtractFileName(FFilepath),lNewName);
+  finally
+    lZip.Free;
+  end;
+end;
+
+procedure TLogs.AddInfoTelaAoFechar(ATelaInfo: TInfosTela);
+begin
+  WriteTime(GetSection(ATelaInfo), 'TempoAberto', ATelaInfo.TempoAberto);
+end;
+
+constructor TLogs.create(AFile: string);
+begin
+  FFilepath := AFile;
+  inherited create(AFile);
+end;
+
+destructor TLogs.Destroy;
+begin
+
+  inherited;
+end;
+
+end.

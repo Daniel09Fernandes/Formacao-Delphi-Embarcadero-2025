@@ -1,0 +1,32 @@
+unit Warper.ShowMessage;
+
+interface
+
+uses
+  Windows;
+
+Type
+  TMessage = class
+    private
+
+    public
+      class procedure ShowMessage(AMsg: string);      class procedure SayMyName; 
+  end;  
+
+implementation
+
+{ TMessage }
+
+uses
+  VCl.Forms;
+
+class procedure TMessage.ShowMessage(AMsg: string);
+begin
+  Application.MessageBox(PChar(AMsg), 'Mensagem do sistema', MB_YESNOCANCEL);
+end;
+class procedure TMessage.SayMyName;
+begin
+  {$define SayMyName}
+  Showmessage('Daniel');
+end;
+end.

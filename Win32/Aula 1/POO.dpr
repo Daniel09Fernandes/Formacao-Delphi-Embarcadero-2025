@@ -14,7 +14,8 @@ uses
   uWhatsapp.Notification in 'Interface\Model\uWhatsapp.Notification.pas',
   uNotify.Controller in 'Interface\Controller\uNotify.Controller.pas',
   uNotify.View in 'Interface\View\uNotify.View.pas' {Form2},
-  Warper.ShowMessage in 'Warper.ShowMessage.pas';
+  Warper.ShowMessage in 'Warper.ShowMessage.pas',
+  uLog.Tela in 'uLog.Tela.pas';
 
 {$R *.res}
 

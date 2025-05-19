@@ -86,6 +86,41 @@ object Form1: TForm1
     TabOrder = 7
     OnClick = Button6Click
   end
+  object Button7: TButton
+    Left = 423
+    Top = 56
+    Width = 90
+    Height = 33
+    Caption = 'Stringlist'
+    TabOrder = 8
+    OnClick = Button7Click
+  end
+  object ComboBox1: TComboBox
+    Left = 391
+    Top = 95
+    Width = 145
+    Height = 23
+    TabOrder = 9
+    Text = 'ComboBox1'
+  end
+  object Button8: TButton
+    Left = 519
+    Top = 56
+    Width = 75
+    Height = 33
+    Caption = 'TList'
+    TabOrder = 10
+    OnClick = Button8Click
+  end
+  object Button9: TButton
+    Left = 600
+    Top = 56
+    Width = 75
+    Height = 30
+    Caption = 'Dicionarios'
+    TabOrder = 11
+    OnClick = Button9Click
+  end
   object DataSource1: TDataSource
     DataSet = ClientDataSet1
     Left = 672

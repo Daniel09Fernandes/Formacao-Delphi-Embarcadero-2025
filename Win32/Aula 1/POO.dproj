@@ -151,6 +151,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Warper.ShowMessage.pas"/>
+        <DCCReference Include="uLog.Tela.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

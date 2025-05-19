@@ -1,0 +1,37 @@
+unit uMain;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Memo1: TMemo;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.fmx}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+
+   for var i := 0 to 10 do
+   begin
+    Memo1.Lines.Add(' Se acertar o 5 ganha um pastel:  '+Random(100).ToString);
+    Application.ProcessMessagesç
+   end;
+end;
+
+end.

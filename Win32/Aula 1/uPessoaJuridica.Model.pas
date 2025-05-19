@@ -3,10 +3,20 @@ unit uPessoaJuridica.Model;
 interface
 
 uses
-  uPessoa.Model;
+  uPessoa.Model, Json;
 
 type
-  TPessoaJuridica = class(TPessoa)
+  TPessoaJuridica = class;
+
+
+  TPessoaJuricaBRL = class
+   private
+    FPessoaJuridica: TPessoaJuridica;
+   public
+     property PessoaJuridica: TPessoaJuridica read FPessoaJuridica write FPessoaJuridica;
+  end;
+
+  TPessoaJuridica = class sealed(TPessoa)
   private
     FCnpj: string;
     function AplicarMascaraNoIdentificador(AValue: string): string; override;
@@ -21,6 +31,20 @@ type
     function CalcularBonusSalario(ASalario, ABonus: Double): Double; overload;
     function CalcularBonusSalario(ASalario, ABonus: Extended): Extended; overload;
   end;
+
+ {Etas classes estão com erros, devido a TPessoaJuridica estar selada para não poder ter mais heranças a partir dela}
+//  TPessoaJuricaEUA = class(TPessoaJuridica)
+//
+//  end;
+//
+//  TPessoaJuricaCHL = class(TPessoaJuricaEUA)
+//
+//  end;
+//
+//  TPessoaJuricaARG = class(TPessoaJuricaCHL)
+//
+//  end;
+
 
 implementation
 

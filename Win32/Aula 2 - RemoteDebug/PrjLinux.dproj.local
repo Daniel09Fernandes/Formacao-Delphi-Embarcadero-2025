@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2025/05/17 14:40:23.649,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/05/17 14:41:18.241,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 2 - Linux\uMain.pas=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/05/17 14:41:18.241,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 2 - Linux\uMain.fmx=D:\Fontes\Projects\Unit1.fmx</Transaction>
+    <Transaction>2025/05/17 14:41:40.769,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 2 - Linux\PrjLinux.dproj=D:\Fontes\Projects\Project2.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

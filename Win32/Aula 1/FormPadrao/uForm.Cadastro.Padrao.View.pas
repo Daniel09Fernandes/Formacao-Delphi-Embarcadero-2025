@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Skia, Data.DB, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
-  FireDAC.Phys.Intf,
+  FireDAC.Phys.Intf, uLog.Tela, system.Diagnostics,
   FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Skia, Vcl.ExtCtrls;
 
@@ -35,10 +35,15 @@ type
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   protected
     procedure SetTitulo(AValue: string);
-
   private
+    FLog: TLogs;
+    FTempoTelaAberto: TStopwatch;
+    FRecInfosTela : TInfosTela;
     procedure AbrirDataSet;
     procedure ControleBotoes(Sender: TObject);
     { Private declarations }
@@ -115,7 +120,32 @@ end;
 
 procedure TFdCadPadrao.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  FRecInfosTela.TempoAberto := FTempoTelaAberto.Elapsed;
+  FLog.AddInfoTelaAoFechar(FRecInfosTela);
   Action := caFree;
+end;
+
+procedure TFdCadPadrao.FormCreate(Sender: TObject);
+ const
+   ARQUIVO_LOG = '\ControleTelaLog.ini';
+begin
+  TLogs.unZiplog;
+  FLog := TLogs.create(GetCurrentDir + ARQUIVO_LOG);
+end;
+
+procedure TFdCadPadrao.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(FLog);
+
+  TLogs.Ziplog;
+end;
+
+procedure TFdCadPadrao.FormShow(Sender: TObject);
+begin
+  FRecInfosTela.Nome := Self.ClassName;
+  FTempoTelaAberto := TStopwatch.StartNew;
+  FRecInfosTela.UltimaAbertura := Now;
+  FLog.AddInfoTelaAbrirTela(FRecInfosTela);
 end;
 
 procedure TFdCadPadrao.SetTitulo(AValue: string);

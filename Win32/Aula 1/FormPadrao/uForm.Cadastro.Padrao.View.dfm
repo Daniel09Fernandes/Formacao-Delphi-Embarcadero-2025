@@ -11,6 +11,9 @@ object FdCadPadrao: TFdCadPadrao
   Font.Name = 'Segoe UI'
   Font.Style = []
   OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
   TextHeight = 15
   object Panel2: TPanel
     Left = 0
@@ -21,10 +24,6 @@ object FdCadPadrao: TFdCadPadrao
     Color = 2562860
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -2
-    ExplicitTop = 3
-    ExplicitWidth = 618
-    ExplicitHeight = 62
     DesignSize = (
       624
       441)
@@ -38,7 +37,6 @@ object FdCadPadrao: TFdCadPadrao
       Color = 13245642
       ParentBackground = False
       TabOrder = 0
-      ExplicitTop = 383
       object Button1: TButton
         Left = 10
         Top = 8
