@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2025/05/24 11:30:43.441,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 11:39:08.495,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Main\view\uView.Main.fmx=D:\Fontes\Projects\Unit1.fmx</Transaction>
+    <Transaction>2025/05/24 11:39:08.495,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Main\view\uView.Main.pas=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 11:39:32.243,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Main\Cadastros.dproj=D:\Fontes\Projects\Project2.dproj</Transaction>
+    <Transaction>2025/05/24 11:39:53.040,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Main\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 11:40:15.466,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Login\controller\uController.Login.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Main\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 11:41:28.641,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Cadastros.dproj=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Main\Cadastros.dproj</Transaction>
+    <Transaction>2025/05/24 11:41:54.530,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit2.pas</Transaction>
+    <Transaction>2025/05/24 11:42:54.849,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Login\view\uView.Login.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit2.pas</Transaction>
+    <Transaction>2025/05/24 11:42:54.849,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Login\view\uView.Login.fmx=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit2.fmx</Transaction>
+    <Transaction>2025/05/24 12:24:52.177,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 12:25:18.152,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Main\Controller\uController.Main.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 13:51:36.652,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 13:53:13.120,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\FormsPadroes\uView.Base.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 13:53:13.120,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\FormsPadroes\uView.Base.fmx=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.fmx</Transaction>
+    <Transaction>2025/05/24 14:07:59.805,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 14:08:25.828,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Helpers\uView.Dialogs.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 14:08:25.828,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Helpers\uView.Dialogs.fmx=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.fmx</Transaction>
+    <Transaction>2025/05/24 14:38:28.256,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Dialogs\uView.Dialogs.fmx=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Helpers\uView.Dialogs.fmx</Transaction>
+    <Transaction>2025/05/24 14:38:28.256,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Dialogs\uView.Dialogs.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Helpers\uView.Dialogs.pas</Transaction>
+    <Transaction>2025/05/24 14:39:04.198,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 14:39:20.748,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Helpers\uHelper.Dialogs.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 15:49:59.690,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 15:53:57.955,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\DAO\uDao.Connection.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.dfm</Transaction>
+    <Transaction>2025/05/24 15:53:57.955,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\DAO\uDao.Connection.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 15:59:32.968,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 16:01:55.445,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Login\model\uModel.Login.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 16:02:05.173,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 16:02:48.650,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\DAO\RTTI\uDao.Attributes.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 16:18:09.800,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 16:18:43.332,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\DAO\RTTI\Dao.RTTI.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 17:25:26.144,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+    <Transaction>2025/05/24 17:26:04.885,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\DAO\controller\uDao.Controller.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroTemplete\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

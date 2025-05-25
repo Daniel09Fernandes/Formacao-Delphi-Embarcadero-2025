@@ -1,0 +1,100 @@
+object FrmFormBase: TFrmFormBase
+  Left = 0
+  Top = 0
+  BorderStyle = None
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Rectangle1: TRectangle
+    Align = Client
+    Fill.Color = xFF3E3E3E
+    Size.Width = 640.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object Rectangle3: TRectangle
+      Align = Top
+      Fill.Color = xFF4998AD
+      Size.Width = 640.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object Image3: TImage
+        MultiResBitmap.Height = 24
+        MultiResBitmap.Width = 24
+        MultiResBitmap = <
+          item
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C0864880000002549444154488963601805A3
+              60148C8251300A46011180118FDC7F6A98C544A221A380FA0000D6E40104689C
+              C4320000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\minimize_24dp_000000.png'
+          end>
+        Align = Right
+        Position.X = 512.000000000000000000
+        Size.Width = 36.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        OnClick = Image3Click
+      end
+      object Image4: TImage
+        MultiResBitmap.Height = 24
+        MultiResBitmap.Width = 24
+        MultiResBitmap = <
+          item
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C0864880000004E49444154488963601805C3
+              1E30E210FF4F845A62D4303091EA2252010B01795C3E4497C3E61B0606063AF8
+              80E6168C82C10BFE33E0497AA4A81FFAC994504E46F6363165110618CD68A380
+              720000EFE209126AFAAA450000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\fullscreen_24dp_000000.png'
+          end>
+        Align = Right
+        Position.X = 548.000000000000000000
+        Size.Width = 42.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        OnClick = Image4Click
+      end
+      object Image5: TImage
+        MultiResBitmap.Height = 24
+        MultiResBitmap.Width = 24
+        MultiResBitmap = <
+          item
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C086488000000554944415448896360180523
+              16703130307C2141FD17A81E9234FC27D21252D492AC916CC389318062C3F119
+              4435C3B1194875C3D12D21C970266ABB825C40D320A26924D33499D234A3D1BC
+              A8A07961370A8611000031F041ED8EB79A2A0000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\close_24dp_000000_FILL0_wght400_GRAD0_opsz2' +
+              '4.png'
+          end>
+        Align = Right
+        Position.X = 590.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        OnClick = Image5Click
+      end
+    end
+  end
+end

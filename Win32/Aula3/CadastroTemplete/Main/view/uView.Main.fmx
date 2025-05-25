@@ -1,0 +1,396 @@
+object FrMain: TFrMain
+  Left = 0
+  Top = 0
+  BorderStyle = None
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  Position = ScreenCenter
+  WindowState = wsMaximized
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object Rectangle1: TRectangle
+    Align = Client
+    Fill.Color = xFF3E3E3E
+    Size.Width = 640.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object MenuBar1: TMenuBar
+      Images = ImageList1
+      Position.Y = 25.000000000000000000
+      Size.Width = 640.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object MenuItem1: TMenuItem
+        Text = 'Cadastros'
+        ImageIndex = 0
+        object MenuItem3: TMenuItem
+          Locked = True
+          Text = 'Clientes'
+          ImageIndex = 1
+        end
+        object MenuItem4: TMenuItem
+          Locked = True
+          Text = 'Produtos'
+          ImageIndex = 3
+        end
+      end
+      object MenuItem2: TMenuItem
+        Text = 'Pedidos'
+        ImageIndex = 6
+        object MenuItem5: TMenuItem
+          Locked = True
+          Text = 'Criar Pedidos'
+          ImageIndex = 8
+        end
+      end
+    end
+    object Rectangle2: TRectangle
+      Align = Top
+      Fill.Color = xFF4998AD
+      Size.Width = 640.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object Z: TImage
+        MultiResBitmap.Height = 24
+        MultiResBitmap.Width = 24
+        MultiResBitmap = <
+          item
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C0864880000002549444154488963601805A3
+              60148C8251300A46011180118FDC7F6A98C544A221A380FA0000D6E40104689C
+              C4320000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\minimize_24dp_000000.png'
+          end>
+        Align = Right
+        Position.X = 512.000000000000000000
+        Size.Width = 36.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        OnClick = ZClick
+      end
+      object Image1: TImage
+        MultiResBitmap.Height = 24
+        MultiResBitmap.Width = 24
+        MultiResBitmap = <
+          item
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C0864880000004E49444154488963601805C3
+              1E30E210FF4F845A62D4303091EA2252010B01795C3E4497C3E61B0606063AF8
+              80E6168C82C10BFE33E0497AA4A81FFAC994504E46F6363165110618CD68A380
+              720000EFE209126AFAAA450000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\fullscreen_24dp_000000.png'
+          end>
+        Align = Right
+        Position.X = 548.000000000000000000
+        Size.Width = 42.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        OnClick = Image1Click
+      end
+      object Image2: TImage
+        MultiResBitmap.Height = 24
+        MultiResBitmap.Width = 24
+        MultiResBitmap = <
+          item
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C086488000000554944415448896360180523
+              16703130307C2141FD17A81E9234FC27D21252D492AC916CC389318062C3F119
+              4435C3B1194875C3D12D21C970266ABB825C40D320A26924D33499D234A3D1BC
+              A8A07961370A8611000031F041ED8EB79A2A0000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\close_24dp_000000_FILL0_wght400_GRAD0_opsz2' +
+              '4.png'
+          end>
+        Align = Right
+        Position.X = 590.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        OnClick = Image2Click
+      end
+    end
+  end
+  object RWait: TRectangle
+    Align = Client
+    Fill.Color = xC81C1C1C
+    Size.Width = 640.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    Visible = False
+  end
+  object ImageList1: TImageList
+    Source = <
+      item
+        MultiResBitmap = <
+          item
+            Scale = 1.500000000000000000
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C08648800000087494441544889ED90510A80
+              2010445F9D6C2FE86797E81242D0B9EC472116B5B632227CB01F3BCA8C0E74BE
+              8800218EDCD001183201A170C7AA033066029A233C58D13F111A5711D41CE909
+              17F5B545C0A4CEAA2182AD226D5EFAE12592F9A2CCDD93E653DCBDDA8B08F92A
+              6AE67AAF72A6CB00CC57CC2D013E8698CCE15C45FB0798CC3BEFB301C6EC5F1A
+              27CB7C6D0000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\DinosSys\assert\Icons\app_registration_24dp_000000_FIL' +
+              'L0_wght400_GRAD0_opsz24.png'
+          end>
+        Name = 'app_registration_24dp_000000_FILL0_wght400_GRAD0_opsz'
+      end
+      item
+        MultiResBitmap = <
+          item
+            Scale = 1.500000000000000000
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C086488000000BB494441544889ED945D0AC2
+              301084BF4A51E88D3C83DE453C8D82D0ABE8515AD03BF852E2835BE84FB6D9C4
+              8A3E7420244C763693EC1258F0EFB8034E469592209BD873099A11560A5FC97C
+              938499ACE17D2BCD9066CA1C3C95C4BBA7DD60366807D4325F3B5CBB7E7438C7
+              D8798FFBB4C8A1370F36444C9B46153905E6226F8033F0A4FF9E4EB813B04E71
+              B0051A4F526D34A231E138109740E1892B80CB20F66039A00DDE591D017B220A
+              9BDA01415DEE11CC8AAF7F150B7E8F176687484CFFC5C2600000000049454E44
+              AE426082}
+            FileName = 
+              'D:\Fontes\DinosSys\assert\Icons\person_add_24dp_000000_FILL0_wgh' +
+              't400_GRAD0_opsz24.png'
+          end>
+        Name = 'person_add_24dp_000000_FILL0_wght400_GRAD0_opsz'
+      end
+      item
+        MultiResBitmap = <
+          item
+            Scale = 1.500000000000000000
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C0864880000005D4944415448896360184440
+              808181E13D140BD0C2E0FF6898628BB0195C0BC5145984CDE0322CEACA48B508
+              9BC1C54438A8189F458C480AFF1361182980918181818189CA868E20008B304A
+              C5691F07A3168C000B863E182DEC46000000577B2AB96FC6C679000000004945
+              4E44AE426082}
+            FileName = 
+              'D:\Fontes\DinosSys\assert\Icons\account_balance_24dp_000000_FILL' +
+              '0_wght400_GRAD0_opsz24.png'
+          end>
+        Name = 'account_balance_24dp_000000_FILL0_wght400_GRAD0_opsz'
+      end
+      item
+        MultiResBitmap = <
+          item
+            Scale = 1.500000000000000000
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C086488000000CD49444154488963601864E0
+              3F14130D98D034FE676060A8A0A68B18912CC0268E0EFE1390C700301F3042F1
+              17283F16CD50F4A0C126862C1E84CB4209028661C330E08FC3520C0053E48047
+              0E9F3E59421668E3310897781F54FC3521C3D10D5222D202983807B116B84035
+              FC2642ED39A8DA93C41A8EEE2A213C6AB819888C586C208E017FEA41C6D3C9B1
+              8058C35FE1338405877834129BE85C4B0A80B94E9A5283089539149BC7844D15
+              0303831A99160C1EE0C080BF4C225A1DB17140B63A5C714073E0C040A5201AFA
+              00004BC85EE0930777040000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\add_shopping_cart_24dp_000000_FILL0_wght400' +
+              '_GRAD0_opsz24.png'
+          end>
+        Name = 'add_shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz'
+      end
+      item
+        MultiResBitmap = <
+          item
+            Scale = 1.500000000000000000
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C086488000000554944415448896360180523
+              16703130307C2141FD17A81E9234FC27D21252D492AC916CC389318062C3F119
+              4435C3B1194875C3D12D21C970266ABB825C40D320A26924D33499D234A3D1BC
+              A8A07961370A8611000031F041ED8EB79A2A0000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\close_24dp_000000_FILL0_wght400_GRAD0_opsz2' +
+              '4.png'
+          end>
+        Name = 'close_24dp_000000_FILL0_wght400_GRAD0_opsz'
+      end
+      item
+        MultiResBitmap = <
+          item
+            Scale = 1.500000000000000000
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C0864880000002549444154488963601805A3
+              60148C8251300A46011180118FDC7F6A98C544A221A380FA0000D6E40104689C
+              C4320000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\minimize_24dp_000000.png'
+          end>
+        Name = 'minimize_24dp'
+      end
+      item
+        MultiResBitmap = <
+          item
+            Scale = 1.500000000000000000
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C08648800000083494441544889636018CEA0
+              018926954D14F8CFC0C0B01F4A93CA8603460216900BE0E6B290A2980880E128
+              261234930588F1010303EEE0624492C3EAD341E3037CF180378E468388901CED
+              7D30F42D408F036CA985983209673C0C582A22B68023E83BBA47F24C28FD9F48
+              CC80A69E818181610D214B279360013A5E4482E7860800003ECA3844F86BEC34
+              0000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\receipt_long_24dp_000000_FILL0_wght400_GRAD' +
+              '0_opsz24.png'
+          end>
+        Name = 'receipt_long_24dp_000000_FILL0_wght400_GRAD0_opsz'
+      end
+      item
+        MultiResBitmap = <
+          item
+            Scale = 1.500000000000000000
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C0864880000004E49444154488963601805C3
+              1E30E210FF4F845A62D4303091EA2252010B01795C3E4497C3E61B0606063AF8
+              80E6168C82C10BFE33E0497AA4A81FFAC994504E46F6363165110618CD68A380
+              720000EFE209126AFAAA450000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\fullscreen_24dp_000000.png'
+          end>
+        Name = 'fullscreen_24dp'
+      end
+      item
+        MultiResBitmap.Height = 24
+        MultiResBitmap.Width = 24
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Width = 24
+            Height = 24
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+              F80000000473424954080808087C086488000000D3494441544889ED93BD0DC2
+              3010469F8105188386969459839282355058804D82E8291063D03340941A2934
+              3632C6FF38A2E193AC58E7BB7B77E718FE4A540D0C5FAE5A4F280CC050A8D057
+              DE59C821511F054E321345CBD501A48FCBDAF54F3BC8BD87378DDE810F10F3CF
+              EF8C1801EC7D40151802DC129A700262B4027A2DAE97B622801677876D0CC016
+              D8C8B3CA935CAD2A07A0D459EC27C3D685003EB9C073E0A1DB477F07A1CA4619
+              D1457332F75BE9177DC9530320808DFC5E2DFB357006EEC01258382671040E8E
+              B324253FB4E27A024C008A66142CF95B0000000049454E44AE426082}
+            FileName = 
+              'D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula3\CadastroT' +
+              'emplete\assets\Icons\order_play_24dp_000000_FILL0_wght400_GRAD0_' +
+              'opsz24.png'
+          end>
+        Name = 'order_play_24dp_000000_FILL0_wght400_GRAD0_opsz24'
+      end>
+    Destination = <
+      item
+        Layers = <
+          item
+            Name = 'app_registration_24dp_000000_FILL0_wght400_GRAD0_opsz'
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'person_add_24dp_000000_FILL0_wght400_GRAD0_opsz'
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'account_balance_24dp_000000_FILL0_wght400_GRAD0_opsz'
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'add_shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz'
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'close_24dp_000000_FILL0_wght400_GRAD0_opsz'
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'minimize_24dp'
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'receipt_long_24dp_000000_FILL0_wght400_GRAD0_opsz'
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'fullscreen_24dp'
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'order_play_24dp_000000_FILL0_wght400_GRAD0_opsz24'
+            SourceRect.Right = 24.000000000000000000
+            SourceRect.Bottom = 24.000000000000000000
+          end>
+      end>
+    Left = 480
+    Top = 160
+  end
+  object OnAfterLoad: TTimer
+    Enabled = False
+    Interval = 2
+    OnTimer = OnAfterLoadTimer
+    Left = 368
+    Top = 216
+  end
+end
