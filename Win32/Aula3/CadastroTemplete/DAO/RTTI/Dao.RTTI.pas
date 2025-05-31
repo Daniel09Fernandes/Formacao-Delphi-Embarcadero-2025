@@ -6,18 +6,26 @@ uses
   system.Generics.Collections, system.Rtti, System.Types;
 
 type
+  TParamsWhere = record
+    Key,
+    Operation,
+    Value: string
+  end;
+
+  TWhere = TList<TParamsWhere>;
+
   TDaoRtti<T: Class, constructor> = class
   public
-    function GetListObject: TObjectList<T>;
+    function GetListObject(AWhere: TWhere = nil): TObjectList<T>;
   end;
 
 implementation
 
 { TDaoRtti<T> }
 uses
-  UDao.Attributes, uDao.Connection;
+  UDao.Attributes, uDao.Connection, strUtils, sysUtils;
 
-function TDaoRtti<T>.GetListObject: TObjectList<T>;
+function TDaoRtti<T>.GetListObject(AWhere: TWhere = nil): TObjectList<T>;
 var
   //RTTI
   lCtx: TRttiContext;
@@ -34,7 +42,6 @@ var
 begin
   lRttiType := lCtx.GetType(TypeInfo(T)); // Pega class informada em T
   lField := ' 0';
-
   for lRttiProp in lRttiType.GetProperties do //Acessa todas as propertys da classe indentificada
   begin
     if Assigned(lRttiProp) then
@@ -57,7 +64,17 @@ begin
   Result := TObjectList<T>.Create;
   DmDAOConn.Qry.Close;
   DmDAOConn.Qry.SQL.Clear;
-  DmDAOConn.Qry.SQL.Add(' Select '+ lField + ' From '+ lTable);
+  DmDAOConn.Qry.SQL.Add(' Select '+ lField + ' From '+ lTable+' ');
+
+  if Assigned(AWhere) then
+  begin
+    DmDAOConn.Qry.SQL.Add(' where ');
+    for var lPair in AWhere do
+      DmDAOConn.Qry.SQL.Add( lPair.Key +' '+ lPair.Operation+ ' '+ lPair.Value.QuotedString + ' and ');
+
+    DmDAOConn.Qry.SQL.Add(' 1 = 1 ');
+  end;
+
   DmDAOConn.Qry.Open;
   DmDAOConn.Qry.First;
 

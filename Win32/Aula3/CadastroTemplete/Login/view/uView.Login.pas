@@ -33,14 +33,26 @@ implementation
 
 uses
   uController.Login,
-  uHelper.Dialogs;
+  uHelper.Dialogs,
+  System.Generics.Collections;
 
 procedure TFrmLogin.Button1Click(Sender: TObject);
+var lParam: TParamsWhere;
 begin
-  var lList := TControllerLogin.GetListLogin;
+  var lWhere := TList<TParamsWhere>.Create;
+  lParam.Key := 'Username';
+  lParam.Operation := '=';
+  lParam.Value := EdtUsername.Text;
+  lWhere.Add(lParam);
+
+  lParam.Key := 'Senha';
+  lParam.Operation := '=';
+  lParam.Value := EdtSenha.Text;
+  lWhere.Add(lParam);
+
+  var lList := TControllerLogin.GetListLogin(lWhere);
   try
-    if (lList.First.Username = EdtUsername.Text)
-      and (lList.First.Senha = EdtSenha.Text) then
+    if Assigned(lList) and (lList.Count > 0) then
     begin
       Close;
       ModalResult := mrOk;
@@ -49,6 +61,7 @@ begin
       ShowMessage('Usuário e(ou) senha informado errado!', TypeDlg.tdAlert);
   finally
     lList.Free;
+    lWhere.Free;
   end;
 end;
 

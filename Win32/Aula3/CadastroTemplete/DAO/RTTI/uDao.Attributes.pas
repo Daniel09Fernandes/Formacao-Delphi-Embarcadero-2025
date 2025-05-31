@@ -21,6 +21,15 @@ type
     constructor Create(AFieldName: string);
   end;
 
+  TDaoMappingWhere = class(TCustomAttribute)
+  private
+    FFieldName: string;
+
+  public
+    property FieldName: string read FFieldName write FFieldName;
+    constructor Create(AFieldName: string);
+  end;
+
 implementation
 
 { TDAOMappingTable }
@@ -33,6 +42,13 @@ end;
 { TDaoMappingField }
 
 constructor TDaoMappingField.Create(AFieldName: string);
+begin
+  FFieldName := AFieldName;
+end;
+
+{ TDaoMappingWhere }
+
+constructor TDaoMappingWhere.Create(AFieldName: string);
 begin
   FFieldName := AFieldName;
 end;

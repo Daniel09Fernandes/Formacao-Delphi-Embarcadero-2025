@@ -11,9 +11,12 @@ uses
   uDao.Controller,
   uModel.Login;
 type
+  TParamsWhere = TRecWhere;
+  TWhere = TDaoWhere;
+
   TControllerLogin = class
     class function AbrirLogin(AOwner, AParent: TComponent): boolean;
-    class function GetListLogin: TObjectList<TLogin>;
+    class function GetListLogin(AWhere: TWhere = nil): TObjectList<TLogin>;
   end;
 
 implementation
@@ -34,9 +37,9 @@ begin
   end;
 end;
 
-class function TControllerLogin.GetListLogin: TObjectList<TLogin>;
+class function TControllerLogin.GetListLogin(AWhere: TWhere): TObjectList<TLogin>;
 begin
-   Result := TControllerDao<TLogin>.GetListObject;
+   Result := TControllerDao<TLogin>.GetListObject(AWhere);
 end;
 
 end.
