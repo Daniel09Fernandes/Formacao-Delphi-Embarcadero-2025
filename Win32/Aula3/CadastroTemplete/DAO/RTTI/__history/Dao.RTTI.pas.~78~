@@ -1,0 +1,206 @@
+unit Dao.RTTI;
+
+interface
+
+uses
+  system.Generics.Collections, system.RTTI, system.Types, Datasnap.DBClient,
+  Data.DB;
+
+type
+  TParamsWhere = record
+    Key, Operation, Value: string end;
+
+    TWhere = TList<TParamsWhere>;
+
+    TDaoRtti<T: Class, constructor> = class public
+    function GetListObject(AWhere: TWhere = nil): TObjectList<T>;
+    function ObjectListToCds(ALIst: TObjectList<T>): TClientDataSet;
+  end;
+
+implementation
+
+{ TDaoRtti<T> }
+uses
+  UDao.Attributes, UDao.Connection, strUtils, sysUtils;
+
+function TDaoRtti<T>.GetListObject(AWhere: TWhere = nil): TObjectList<T>;
+var
+  // RTTI
+  lCtx: TRttiContext;
+  lRttiType: TRttiType;
+  lRttiProp: TRttiProperty;
+  lRttiAtrib: TArray<TCustomAttribute>;
+  Attributes: TCustomAttribute;
+  lValue: TValue;
+
+  // Geral
+  lItem: T;
+  lField: string;
+  lTable: string;
+begin
+  lRttiType := lCtx.GetType(TypeInfo(T)); // Pega class informada em T
+  lField := ' 0';
+  for lRttiProp in lRttiType.GetProperties do
+  // Acessa todas as propertys da classe indentificada
+  begin
+    if Assigned(lRttiProp) then
+    begin
+      lRttiAtrib := lRttiProp.GetAttributes;
+      // Acessa todos os TAtrributes da classe identificada, mapeada na property
+      if Length(lRttiAtrib) > 0 then
+      begin
+        for Attributes in lRttiAtrib do
+        begin
+          if Attributes is TDAOMappingTable then // Descobre o tipo do Atributo
+            lTable := TDAOMappingTable(Attributes).TableName;
+
+          if Attributes is TDaoMappingField then
+            lField := lField + ', ' + TDaoMappingField(Attributes).FieldName;
+        end;
+      end;
+    end;
+  end;
+
+  Result := TObjectList<T>.Create;
+  DmDAOConn.Qry.Close;
+  DmDAOConn.Qry.SQL.Clear;
+  DmDAOConn.Qry.SQL.Add(' Select ' + lField + ' From ' + lTable + ' ');
+
+  if Assigned(AWhere) then
+  begin
+    DmDAOConn.Qry.SQL.Add(' where ');
+    for var lPair in AWhere do
+      DmDAOConn.Qry.SQL.Add(lPair.Key + ' ' + lPair.Operation + ' ' +
+        lPair.Value.QuotedString + ' and ');
+
+    DmDAOConn.Qry.SQL.Add(' 1 = 1 ');
+  end;
+
+  DmDAOConn.Qry.Open;
+  DmDAOConn.Qry.First;
+
+  var
+  lQry := DmDAOConn.Qry;
+  while not lQry.EOF do
+  begin
+    lItem := T.Create;
+
+    for lRttiProp in lRttiType.GetProperties do
+    begin
+      lRttiAtrib := lRttiProp.GetAttributes;
+
+      if Length(lRttiAtrib) > 0 then
+      begin
+        for Attributes in lRttiAtrib do
+        begin
+          if Attributes is TDaoMappingField then
+          begin
+            case lRttiProp.PropertyType.TypeKind of
+              // Encontra o tipo do valor da property(Int,Float,Boolean)
+              tkInteger, tkInt64:
+                lValue := TValue
+                // Faz o cast de TValue para  um valor Explicito
+                  .From<Integer>(lQry.FieldByName(TDaoMappingField(Attributes)
+                  .FieldName).AsInteger);
+              // Pela field mapeada na class, utiliza para passar o nome na query e buscar o valor
+              tkFloat:
+                begin
+                  if lRttiProp.PropertyType.Handle = TypeInfo(TDateTime) then
+                    lValue := TValue.From<TDateTime>
+                      (lQry.FieldByName(TDaoMappingField(Attributes).FieldName)
+                      .AsDateTime)
+                  else
+                    lValue := TValue.From<Double>
+                      (lQry.FieldByName(TDaoMappingField(Attributes)
+                      .FieldName).AsFloat)
+                end;
+              tkString, tkLString, tkWString, tkUString:
+                lValue := TValue.From<string>
+                  (lQry.FieldByName(TDaoMappingField(Attributes).FieldName)
+                  .AsString);
+            else
+              lValue := TValue.From<variant>
+                (lQry.FieldByName(TDaoMappingField(Attributes).FieldName)
+                .AsVariant);
+            end;
+            // Pela property em execução no for, passa o valor para uma instancia de
+            // classe que tenha a property encontrada e o valor encontrado do tipo correto a cima
+            // Ex a property encontrada é ID, lItem, é uma inscancia criada que possui o ID
+            // ID é do tipo inteiro, retornou do banco o valor 1 para LValue que foi gravado como inteiro
+            // o SetValue, escreve o Value na property identificada pelo for na instancia lItem
+            lRttiProp.SetValue(TObject(lItem), lValue);
+          end;
+        end;
+      end;
+    end;
+    Result.Add(lItem);
+    lQry.Next;
+  end;
+end;
+
+function TDaoRtti<T>.ObjectListToCds(ALIst: TObjectList<T>): TClientDataSet;
+var
+  lCtx: TRttiContext;
+  lRttiType: TRttiType;
+  lRttiProp: TRttiProperty;
+  lRttiAtrib: TArray<TCustomAttribute>;
+  Attributes: TCustomAttribute;
+  IdxField: Integer;
+  FirstObj: T;
+  lFieldName: array of string;
+  lLengthField: Integer;
+begin
+  Result := TClientDataSet.Create(nil);
+  IdxField := 0;
+  FirstObj := ALIst[0];
+
+  lRttiType := lCtx.GetType(FirstObj.CLassInfo);
+
+  SetLength(lFieldName, Length(lRttiType.GetProperties));
+  for lRttiProp in lRttiType.GetProperties do
+  begin
+    lRttiAtrib := lRttiProp.GetAttributes;
+    if Length(lRttiAtrib) > 0 then // Fields do CDS
+    begin
+      for Attributes in lRttiAtrib do
+      begin
+        if Attributes is TDaoMappingField then
+        begin
+          lFieldName[IdxField] := TDaoMappingField(Attributes).FieldName;
+        end;
+
+        if Attributes is TDaoMappingDisplayGrid then
+        begin
+          lFieldName[IdxField] := TDaoMappingDisplayGrid(Attributes)
+            .FieldDisplay;
+        end;
+
+        if Attributes is TDaoMappingField then
+          lLengthField := TDaoMappingField(Attributes).FieldLength;
+      end;
+
+      Result.FieldDefs.Add(lFieldName[IdxField], ftString, lLengthField);
+      inc(IdxField);
+    end;
+  end;
+
+  Result.CreateDataSet;
+
+  for var lPair in ALIst do
+  begin
+    lRttiType := lCtx.GetType(lPair.CLassInfo);
+    Result.Append;
+
+    for lRttiProp in lRttiType.GetProperties do
+    begin
+      for var I := 0 to Length(lFieldName)-1 do
+      begin
+        Result.FieldByName(lFieldName[i]).AsString :=
+          lRttiProp.GetValue(TObject(lPair)).ToString;
+      end;
+    end;
+    Result.Post;
+  end;
+end;
+
+end.

@@ -1,0 +1,45 @@
+unit uHelper.ClientDataSet;
+
+interface
+
+uses
+  Datasnap.DBClient,
+  Data.DB,
+  uDao.Controller,
+  System.Generics.Collections, FireDAC.Comp.Client,
+  System.Bindings.Helper, FMX.Bind.DBEngExt, FMX.Bind.Editors,
+  Data.Bind.Components,
+  Data.Bind.DBScope, Data.Bind.EngExt, FMX.Controls, FMX.Edit, FMX.StdCtrls,
+  Winapi.Windows, FMX.ListBox, System.SysUtils;
+
+type
+  TCdsObject<T: class, CONSTRUCTOR> = class(TClientDataSet)
+  public
+    procedure FromObject(AList: TObjectList<T>);
+  end;
+
+  TClientDataSetHelper = class helper for TClientDataSet
+  private
+    procedure ConectarEditAoCDS(CDS: TClientDataSet; AEdit: TEdit;
+      const ACampo: string);
+    function CreateBindSource(Owner: TControl): TBindSourceDB;
+  public
+    procedure BindToCheckBox(ACheckBox: TCheckBox; const AFieldName: string);
+    procedure BindToComboBox(ACombo: TComboBox;
+      const AFieldName, AListField: string);
+    procedure BindToEdit(AControl: TControl; const AFieldName: string);
+    procedure AjustarDisplay;
+
+    procedure ClearAllBindings;
+  end;
+
+implementation
+
+{ TCds<T> }
+
+procedure TCdsObject<T>.FromObject(AList: TObjectList<T>);
+begin
+  Self.Data := TControllerDao<T>.ObjectListToCds(AList).Data;
+end;
+
+end.

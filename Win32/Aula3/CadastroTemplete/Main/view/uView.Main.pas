@@ -22,11 +22,13 @@ type
     Z: TImage;
     Image1: TImage;
     Image2: TImage;
+    RecMain: TRectangle;
     procedure OnAfterLoadTimer(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Image1Click(Sender: TObject);
     procedure ZClick(Sender: TObject);
     procedure Image2Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,7 +44,8 @@ implementation
 
 uses
   uController.Main,
-  uHelper.Dialogs;
+  uHelper.Dialogs,
+  uController.Clientes;
 
 procedure TFrMain.FormShow(Sender: TObject);
 begin
@@ -60,6 +63,11 @@ end;
 procedure TFrMain.Image2Click(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure TFrMain.MenuItem3Click(Sender: TObject);
+begin
+  TControllerClientes.AbrirClientes(self, RecMain);
 end;
 
 procedure TFrMain.OnAfterLoadTimer(Sender: TObject);

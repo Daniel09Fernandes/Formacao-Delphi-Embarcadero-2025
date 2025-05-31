@@ -7,14 +7,18 @@ uses
   uController.Login in 'Login\controller\uController.Login.pas',
   uView.Login in 'Login\view\uView.Login.pas' {FrmLogin},
   uController.Main in 'Main\Controller\uController.Main.pas',
-  uView.Base in 'FormsPadroes\uView.Base.pas' {FrmFormBase},
+  uView.Base.cadastro in 'FormsPadroes\uView.Base.cadastro.pas' {FrmFormBase},
   uView.Dialogs in 'Dialogs\uView.Dialogs.pas' {FrDialogs},
   uHelper.Dialogs in 'Helpers\uHelper.Dialogs.pas',
   uDao.Connection in 'DAO\uDao.Connection.pas' {DmDAOConn: TDataModule},
   uModel.Login in 'Login\model\uModel.Login.pas',
   uDao.Attributes in 'DAO\RTTI\uDao.Attributes.pas',
   Dao.RTTI in 'DAO\RTTI\Dao.RTTI.pas',
-  uDao.Controller in 'DAO\controller\uDao.Controller.pas';
+  uDao.Controller in 'DAO\controller\uDao.Controller.pas',
+  uView.Cadastro.Cliente in 'Clientes\View\uView.Cadastro.Cliente.pas' {FrmClientes},
+  uHelper.ClientDataSet in 'Helpers\uHelper.ClientDataSet.pas',
+  uModel.Clientes in 'Clientes\Model\uModel.Clientes.pas',
+  uController.Clientes in 'Clientes\Controller\uController.Clientes.pas';
 
 {$R *.res}
 
@@ -22,5 +26,6 @@ begin
   Application.Initialize;
   Application.CreateForm(TFrMain, FrMain);
   Application.CreateForm(TDmDAOConn, DmDAOConn);
+  Application.CreateForm(TFrmClientes, FrmClientes);
   Application.Run;
 end.

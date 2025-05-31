@@ -1,0 +1,16 @@
+unit uController.Clientes;
+
+interface
+
+uses
+  uModel.clientes;
+
+type
+  TControllerClientes = class
+    class function AbrirClientes(AOwner, AParent: TComponent): boolean;
+    class function GetListClientes(AWhere: TWhere = nil): TObjectList<TCliente>;
+  end;
+
+implementation
+
+end.

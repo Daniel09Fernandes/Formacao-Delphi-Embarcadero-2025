@@ -3,27 +3,41 @@ unit uDao.Controller;
 interface
 
 uses
- Dao.RTTI, System.Generics.Collections;
+  Dao.RTTI, System.Generics.Collections, Datasnap.DBClient;
 
 type
   TRecWhere = TParamsWhere;
   TDaoWhere = TWhere;
 
   TControllerDao<T: class, constructor> = class
-    public
-      class function GetListObject(AWhere: TWhere = nil): TObjectList<T>;
+  public
+    class function GetListObject(AWhere: TWhere = nil): TObjectList<T>;
+    class function ObjectListToCds(ALIst: TObjectList<T>): TClientDataSet;
   end;
 implementation
 
 { TControllerDao<T> }
 
-class function TControllerDao<T>.GetListObject(AWhere: TWhere = nil): TObjectList<T>;
+class function TControllerDao<T>.GetListObject(AWhere: TWhere = nil)
+  : TObjectList<T>;
 var
   lRtti: TDaoRtti<T>;
 begin
   lRtti := TDaoRtti<T>.Create;
   try
     Result := lRtti.GetListObject(AWhere);
+  finally
+    lRtti.Free;
+  end;
+end;
+
+class function TControllerDao<T>.ObjectListToCds(ALIst: TObjectList<T>): TClientDataSet;
+var
+  lRtti: TDaoRtti<T>;
+begin
+  lRtti := TDaoRtti<T>.Create;
+  try
+    Result := lRtti.ObjectListToCds(ALIst);
   finally
     lRtti.Free;
   end;

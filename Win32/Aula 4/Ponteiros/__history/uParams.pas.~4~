@@ -1,0 +1,27 @@
+unit uParams;
+
+interface
+
+type
+  TEnum=(o1, o2, o3);
+
+  TMeuEnum = TEnum;
+
+
+  TObj = class
+  private
+    FId: Integer;
+
+  public
+    property ID: Integer read FId write FId;
+  end;
+
+  pMeuRec = ^TMeuRec;
+
+  TMeuRec = record
+    ID: Integer;
+  end;
+
+implementation
+
+end.

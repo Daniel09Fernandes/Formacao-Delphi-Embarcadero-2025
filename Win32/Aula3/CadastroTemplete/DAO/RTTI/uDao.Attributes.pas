@@ -15,19 +15,20 @@ type
   TDaoMappingField = class(TCustomAttribute)
   private
     FFieldName: string;
+    FFieldLength: Integer;
 
   public
+    property FieldLength: Integer read FFieldLength write FFieldLength;
     property FieldName: string read FFieldName write FFieldName;
-    constructor Create(AFieldName: string);
+    constructor Create(AFieldName: string; AFieldLength: Integer = 20);
   end;
 
-  TDaoMappingWhere = class(TCustomAttribute)
+  TDaoMappingDisplayGrid = class(TCustomAttribute)
   private
-    FFieldName: string;
-
+    FFieldDisplay: string;
   public
-    property FieldName: string read FFieldName write FFieldName;
-    constructor Create(AFieldName: string);
+    property FieldDisplay: string read FFieldDisplay write FFieldDisplay;
+    constructor Create(AFieldDisplay: string);
   end;
 
 implementation
@@ -41,16 +42,17 @@ end;
 
 { TDaoMappingField }
 
-constructor TDaoMappingField.Create(AFieldName: string);
+constructor TDaoMappingField.Create(AFieldName: string; AFieldLength: Integer);
 begin
   FFieldName := AFieldName;
+  FFieldLength := AFieldLength;
 end;
 
 { TDaoMappingWhere }
 
-constructor TDaoMappingWhere.Create(AFieldName: string);
+constructor TDaoMappingDisplayGrid.Create(AFieldDisplay: string);
 begin
-  FFieldName := AFieldName;
+  FFieldDisplay := AFieldDisplay;
 end;
 
 end.

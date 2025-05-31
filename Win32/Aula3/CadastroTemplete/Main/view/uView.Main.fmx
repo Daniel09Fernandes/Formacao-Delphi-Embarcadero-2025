@@ -33,6 +33,7 @@ object FrMain: TFrMain
           Locked = True
           Text = 'Clientes'
           ImageIndex = 1
+          OnClick = MenuItem3Click
         end
         object MenuItem4: TMenuItem
           Locked = True
@@ -130,6 +131,14 @@ object FrMain: TFrMain
         OnClick = Image2Click
       end
     end
+    object RecMain: TRectangle
+      Align = Client
+      Fill.Color = xFF3E3E3E
+      Size.Width = 640.000000000000000000
+      Size.Height = 414.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
   end
   object RWait: TRectangle
     Align = Client
@@ -139,6 +148,13 @@ object FrMain: TFrMain
     Size.PlatformDefault = False
     Stroke.Kind = None
     Visible = False
+  end
+  object OnAfterLoad: TTimer
+    Enabled = False
+    Interval = 2
+    OnTimer = OnAfterLoadTimer
+    Left = 368
+    Top = 216
   end
   object ImageList1: TImageList
     Source = <
@@ -385,12 +401,5 @@ object FrMain: TFrMain
       end>
     Left = 480
     Top = 160
-  end
-  object OnAfterLoad: TTimer
-    Enabled = False
-    Interval = 2
-    OnTimer = OnAfterLoadTimer
-    Left = 368
-    Top = 216
   end
 end

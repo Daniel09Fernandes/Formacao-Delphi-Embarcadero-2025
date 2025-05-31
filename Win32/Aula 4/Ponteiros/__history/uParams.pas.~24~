@@ -1,0 +1,174 @@
+unit uParams;
+
+interface
+
+type
+  TEnum = (o1, o2, o3);
+
+  TMeuEnum = TEnum;
+
+  TMeuObj = class
+  private
+    FId: Integer;
+
+  public
+    property ID: Integer read FId write FId;
+  end;
+
+  pMeuRec = ^TMeuRec;
+
+  TMeuRec = record
+    ID: Integer;
+  end;
+
+  TParametros = class
+    class procedure ExecutarAlgo(num: Integer; b: Byte; c: Cardinal;
+      Bool: Boolean; str: string; ch: char; Fl: Double; dt: TDateTime;
+      sVariant: Variant; p: Pointer; meuObj: TMeuObj);
+
+    class procedure ExecutarAlgoConst(const num: Integer; const b: Byte;
+      const c: Cardinal; const Bool: Boolean; const str: string; const ch: char;
+      const Fl: Double; const dt: TDateTime; const sVariant: Variant;
+      const p: Pointer; const meuObj: TMeuObj);
+
+    class procedure ExecutarAlgoVar(var num: Integer; var b: Byte;
+      var c: Cardinal; var Bool: Boolean; var str: string; var ch: char;
+      // CHar é um tipo texto que aceita apenas um caracter
+      var Fl: Double; var dt: TDateTime; var sVariant: Variant; var p: Pointer;
+      var meuObj: TMeuObj);
+
+    class procedure ExecutarAlgoOut(out num: Integer; out b: Byte;
+      out c: Cardinal; out Bool: Boolean; out str: string; out ch: char;
+      // CHar é um tipo texto que aceita apenas um caracter
+      out Fl: Double; out dt: TDateTime; out sVariant: Variant; out p: Pointer;
+      out meuObj: TMeuObj);
+  end;
+
+implementation
+
+{ TParametros }
+uses
+  SysUtils;
+
+class procedure TParametros.ExecutarAlgo(num: Integer; b: Byte; c: Cardinal;
+  Bool: Boolean; str: string; ch: char; Fl: Double; dt: TDateTime;
+  sVariant: Variant; p: Pointer; meuObj: TMeuObj);
+begin
+  num := 123;
+  b := 0;
+  c := 1;
+  Bool := False;
+  str := 'ola mundao veio';
+  ch := 'D'; // CHar é um tipo texto que aceita apenas um caracter
+  Fl := 15.2;
+  dt := IncMonth(Now, 2);
+  sVariant := 2;
+  p := Pointer($FFFF);
+
+  Writeln('Valores dentro do metodo: ');
+  Writeln(format('  $%p  pNum: %d      ', [@num, num]));
+  Writeln(format('  $%p  pByte: %s     ', [@b, b.ToString]));
+  Writeln(format('  $%p  pCardinal: %u ', [@c, c]));
+  Writeln(format('  $%p  pBool: %s     ', [@Bool, Bool.ToString]));
+  Writeln(format('  $%p  pStr: %s      ', [@str, str]));
+  Writeln(format('  $%p  pCh: %s       ', [@ch, ch]));
+  Writeln(format('  $%p  pFloat: %n    ', [@Fl, Fl]));
+  Writeln(format('  $%p  pDt: %n       ', [@dt, dt]));
+  Writeln(format('  $%p  sVariant: %s  ', [@sVariant, sVariant]));
+  Writeln(format('  $%p  pPointer: %p  ', [@p, p]));
+  Writeln(format('  $%p  pObject: %d   ', [@meuObj, meuObj.ID]));
+end;
+
+class procedure TParametros.ExecutarAlgoConst(const num: Integer; const b: Byte;
+  const c: Cardinal; const Bool: Boolean; const str: string; const ch: char;
+  const Fl: Double; const dt: TDateTime; const sVariant: Variant;
+  const p: Pointer; const meuObj: TMeuObj);
+begin
+
+  // Valores de const não podem ser alterados!
+  // num := 123;
+  // b := 0;
+  // c := 1;
+  // Bool := False;
+  // str := 'ola mundao veio';
+  // ch := 'D'; // CHar é um tipo texto que aceita apenas um caracter
+  // Fl := 15.2;
+  // dt := IncMonth(Now,2);
+  // sVariant := 2;
+  // p := Pointer($FFFF);
+
+  Writeln('Valores dentro do metodo: ');
+  Writeln(format('  $%p  pNum: %d      ', [@num, num]));
+  Writeln(format('  $%p  pByte: %b     ', [@b, b]));
+  Writeln(format('  $%p  pCardinal: %d ', [@c, c]));
+  Writeln(format('  $%p  pBool: %d     ', [@Bool, Bool]));
+  Writeln(format('  $%p  pStr: %s      ', [@str, str]));
+  Writeln(format('  $%p  pCh: %s       ', [@ch, ch]));
+  Writeln(format('  $%p  pFloat: %n    ', [@Fl, Fl]));
+  Writeln(format('  $%p  pDt: %n       ', [@dt, dt]));
+  Writeln(format('  $%p  sVariant: %s  ', [@sVariant, sVariant]));
+  Writeln(format('  $%p  pPointer: %p  ', [@p, p]));
+  Writeln(format('  $%p  pObject: %d   ', [@meuObj, meuObj.ID]));
+end;
+
+class procedure TParametros.ExecutarAlgoOut(out num: Integer; out b: Byte;
+  out c: Cardinal; out Bool: Boolean; out str: string; out ch: char;
+  out Fl: Double; out dt: TDateTime; out sVariant: Variant; out p: Pointer;
+  out meuObj: TMeuObj);
+begin
+  num := 123;
+  b := 0;
+  c := 1;
+  Bool := False;
+  str := 'ola mundao veio';
+  ch := 'D'; // CHar é um tipo texto que aceita apenas um caracter
+  Fl := 15.2;
+  dt := IncMonth(Now, 2);
+  sVariant := 2;
+  p := Pointer($FFFF);
+
+  Writeln('Valores dentro do metodo: ');
+  Writeln(format('  $%p  pNum: %d      ', [@num, num]));
+  Writeln(format('  $%p  pByte: %b     ', [@b, b]));
+  Writeln(format('  $%p  pCardinal: %d ', [@c, c]));
+  Writeln(format('  $%p  pBool: %d     ', [@Bool, Bool]));
+  Writeln(format('  $%p  pStr: %s      ', [@str, str]));
+  Writeln(format('  $%p  pCh: %s       ', [@ch, ch]));
+  Writeln(format('  $%p  pFloat: %n    ', [@Fl, Fl]));
+  Writeln(format('  $%p  pDt: %n       ', [@dt, dt]));
+  Writeln(format('  $%p  sVariant: %s  ', [@sVariant, sVariant]));
+  Writeln(format('  $%p  pPointer: %p  ', [@p, p]));
+  Writeln(format('  $%p  pObject: %d   ', [@meuObj, meuObj.ID]));
+end;
+
+class procedure TParametros.ExecutarAlgoVar(var num: Integer; var b: Byte;
+  var c: Cardinal; var Bool: Boolean; var str: string; var ch: char;
+  var Fl: Double; var dt: TDateTime; var sVariant: Variant; var p: Pointer;
+  var meuObj: TMeuObj);
+begin
+  num := 123;
+  b := 0;
+  c := 1;
+  Bool := False;
+  str := 'ola mundao veio';
+  ch := 'D'; // CHar é um tipo texto que aceita apenas um caracter
+  Fl := 15.2;
+  dt := IncMonth(Now, 2);
+  sVariant := 2;
+  p := Pointer($FFFF);
+
+  Writeln('Valores dentro do metodo: ');
+  Writeln(format('  $%p  pNum: %d      ', [@num, num]));
+  Writeln(format('  $%p  pByte: %b     ', [@b, b]));
+  Writeln(format('  $%p  pCardinal: %d ', [@c, c]));
+  Writeln(format('  $%p  pBool: %d     ', [@Bool, Bool]));
+  Writeln(format('  $%p  pStr: %s      ', [@str, str]));
+  Writeln(format('  $%p  pCh: %s       ', [@ch, ch]));
+  Writeln(format('  $%p  pFloat: %n    ', [@Fl, Fl]));
+  Writeln(format('  $%p  pDt: %n       ', [@dt, dt]));
+  Writeln(format('  $%p  sVariant: %s  ', [@sVariant, sVariant]));
+  Writeln(format('  $%p  pPointer: %p  ', [@p, p]));
+  Writeln(format('  $%p  pObject: %d   ', [@meuObj, meuObj.ID]));
+end;
+
+end.

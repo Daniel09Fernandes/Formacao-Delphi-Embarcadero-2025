@@ -316,7 +316,7 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Main\Controller\uController.Main.pas"/>
-        <DCCReference Include="FormsPadroes\uView.Base.pas">
+        <DCCReference Include="FormsPadroes\uView.Base.cadastro.pas">
             <Form>FrmFormBase</Form>
             <FormType>fmx</FormType>
         </DCCReference>
@@ -334,6 +334,13 @@
         <DCCReference Include="DAO\RTTI\uDao.Attributes.pas"/>
         <DCCReference Include="DAO\RTTI\Dao.RTTI.pas"/>
         <DCCReference Include="DAO\controller\uDao.Controller.pas"/>
+        <DCCReference Include="Clientes\View\uView.Cadastro.Cliente.pas">
+            <Form>FrmClientes</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Helpers\uHelper.ClientDataSet.pas"/>
+        <DCCReference Include="Clientes\Model\uModel.Clientes.pas"/>
+        <DCCReference Include="Clientes\Controller\uController.Clientes.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -1331,11 +1338,9 @@
             <Platforms>
                 <Platform value="Android">True</Platform>
                 <Platform value="Android64">True</Platform>
-                <Platform value="iOSDevice32">False</Platform>
                 <Platform value="iOSDevice64">True</Platform>
                 <Platform value="iOSSimARM64">True</Platform>
                 <Platform value="Linux64">True</Platform>
-                <Platform value="OSX32">False</Platform>
                 <Platform value="OSX64">True</Platform>
                 <Platform value="OSXARM64">True</Platform>
                 <Platform value="Win32">True</Platform>

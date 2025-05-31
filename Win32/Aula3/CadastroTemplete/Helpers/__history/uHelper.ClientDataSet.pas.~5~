@@ -1,0 +1,26 @@
+unit uHelper.ClientDataSet;
+
+interface
+
+uses
+   Datasnap.DBClient,
+   Data.DB,
+   uDao.Controller,
+   System.Generics.Collections;
+
+type
+  TCds<T: class, constructor> = class(TClientDataSet)
+  public
+    procedure FromObject(AList: TObjectList<T>);
+  end;
+
+implementation
+
+{ TCds<T> }
+
+procedure TCds<T>.FromObject(AList: TObjectList<T>);
+begin
+   Self.Data := TControllerDao<T>.ObjectListToCds(AList).Data;
+end;
+
+end.
