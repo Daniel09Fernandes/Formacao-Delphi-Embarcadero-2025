@@ -1,0 +1,2 @@
+inherited DmDAOConn1: TDmDAOConn1
+end

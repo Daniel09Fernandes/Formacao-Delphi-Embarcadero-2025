@@ -1,0 +1,179 @@
+unit uView.Base.cadastro;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects, FMX.TabControl, System.ImageList, FMX.ImgList, System.Rtti, FMX.Grid.Style, System.Skia, FMX.Skia,
+  FMX.Controls.Presentation, FMX.ScrollBox, FMX.Grid, FMX.StdCtrls, Data.DB, Datasnap.DBClient, FMX.Edit, Fmx.Bind.Grid, System.Bindings.Outputs, Fmx.Bind.Editors,
+  Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.Grid, Data.Bind.DBScope, uHelper.ClientDataSet;
+
+type
+  TFrmFormBase = class(TForm)
+    Rectangle1: TRectangle;
+    Rectangle3: TRectangle;
+    Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    TbControlMain: TTabControl;
+    TbCadastro: TTabItem;
+    S: TTabItem;
+    Rectangle2: TRectangle;
+    Rectangle4: TRectangle;
+    ImageList1: TImageList;
+    Rectangle5: TRectangle;
+    Rectangle6: TRectangle;
+    GrdDados: TGrid;
+    SkLabel1: TSkLabel;
+    LbTitulo: TSkLabel;
+    DsDados: TDataSource;
+    CdsDados: TClientDataSet;
+    SkLabel2: TSkLabel;
+    Rectangle7: TRectangle;
+    BtFirst: TButton;
+    BtnPrior: TButton;
+    BtnNext: TButton;
+    BtnLast: TButton;
+    EdtPesquisa: TEdit;
+    BtnPesquisar: TButton;
+    BindSourceDB1: TBindSourceDB;
+    LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
+    BindingsList1: TBindingsList;
+    Rectangle8: TRectangle;
+    Rectangle9: TRectangle;
+    BtnNovo: TButton;
+    BtnAlterar: TButton;
+    BtnSalvar: TButton;
+    BtnDeletar: TButton;
+    BtnCancelar: TButton;
+    procedure Image3Click(Sender: TObject);
+    procedure Image4Click(Sender: TObject);
+    procedure Image5Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure BtFirstClick(Sender: TObject);
+    procedure BtnPriorClick(Sender: TObject);
+    procedure BtnNextClick(Sender: TObject);
+    procedure BtnLastClick(Sender: TObject);
+    procedure BtnPesquisarClick(Sender: TObject);
+    procedure BtnNovoClick(Sender: TObject);
+    procedure BtnAlterarClick(Sender: TObject);
+    procedure BtnSalvarClick(Sender: TObject);
+    procedure BtnDeletarClick(Sender: TObject);
+    procedure BtnCancelarClick(Sender: TObject);
+    procedure GrdDadosCellDblClick(const Column: TColumn; const Row: Integer);
+  private
+     FIsDeleted: Boolean;
+  protected
+      property Deleted: Boolean read FIsDeleted;
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmFormBase: TFrmFormBase;
+
+implementation
+
+{$R *.fmx}
+
+procedure TFrmFormBase.BtFirstClick(Sender: TObject);
+begin
+  CdsDados.First;
+  FIsDeleted := False;
+end;
+
+procedure TFrmFormBase.BtnAlterarClick(Sender: TObject);
+begin
+  CdsDados.Edit;
+  FIsDeleted := False;
+end;
+
+procedure TFrmFormBase.BtnCancelarClick(Sender: TObject);
+begin
+  CdsDados.Cancel;
+  FIsDeleted := False;
+end;
+
+procedure TFrmFormBase.BtnDeletarClick(Sender: TObject);
+begin
+  CdsDados.Delete;
+  FIsDeleted := True;
+end;
+
+procedure TFrmFormBase.BtnLastClick(Sender: TObject);
+begin
+  CdsDados.Last;
+  FIsDeleted := False;
+end;
+
+procedure TFrmFormBase.BtnNextClick(Sender: TObject);
+begin
+  CdsDados.Next;
+  FIsDeleted := False;
+end;
+
+procedure TFrmFormBase.BtnNovoClick(Sender: TObject);
+begin
+  CdsDados.Append;
+  FIsDeleted := False;
+end;
+
+procedure TFrmFormBase.BtnPesquisarClick(Sender: TObject);
+begin
+  FIsDeleted := False;
+  CdsDados.Filtered := False;
+  CdsDados.Filter := '1 = 1';
+
+  for var I := 0 to CdsDados.FieldCount -1 do
+  begin
+   if  CdsDados.Fields[i].DataType = ftString then
+     CdsDados.Filter := CdsDados.Filter + ' or ('+
+        CdsDados.Fields[I].FieldName + ' LIKE '+ QuotedStr(EdtPesquisa.Text + '%')+' )';
+  end;
+
+  CdsDados.Filtered := True;
+end;
+
+procedure TFrmFormBase.BtnPriorClick(Sender: TObject);
+begin
+  CdsDados.Prior;
+  FIsDeleted := False;
+end;
+
+procedure TFrmFormBase.BtnSalvarClick(Sender: TObject);
+begin
+  CdsDados.Post;
+  FIsDeleted := False;
+end;
+
+procedure TFrmFormBase.FormCreate(Sender: TObject);
+begin
+  TbControlMain.TabIndex := 0;
+  FIsDeleted := False;
+end;
+
+procedure TFrmFormBase.GrdDadosCellDblClick(const Column: TColumn; const Row: Integer);
+begin
+  TbControlMain.TabIndex := 1;
+  FIsDeleted := False;
+end;
+
+procedure TFrmFormBase.Image3Click(Sender: TObject);
+begin
+  WindowState := TWindowState.wsMinimized;
+end;
+
+procedure TFrmFormBase.Image4Click(Sender: TObject);
+begin
+  if WindowState = TWindowState.wsMaximized then
+    WindowState := TWindowState.wsNormal
+  else
+    WindowState := TWindowState.wsMaximized;
+end;
+
+procedure TFrmFormBase.Image5Click(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

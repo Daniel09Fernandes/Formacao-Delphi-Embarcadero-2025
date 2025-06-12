@@ -1,0 +1,34 @@
+unit uController.Produtos;
+
+interface
+
+uses
+  Classes,
+  SysUtils,
+  Generics.Collections,
+  uModel.Produtos,
+  uDao.Controller;
+
+type
+  TParamsWhere = TRecWhere;
+  TWhere = TDaoWhere;
+//  TDaoParam = TAction;
+//  TTypeOperation = TOperation;
+
+  TControllerProduto = class
+    class function GetProduto(AWhere: TWhere = nil): TProdutosList;
+    class function AbrirProdutos(AOwner, AParent: TComponent): boolean;
+  end;
+
+implementation
+
+{ TControllerProduto }
+uses
+  uView.Produtos;
+
+class function TControllerProduto.GetProduto(AWhere: TWhere): TProdutosList;
+begin
+  Result := TControllerDao<TModelProduto>.GetListObject(AWhere);
+end;
+
+end.

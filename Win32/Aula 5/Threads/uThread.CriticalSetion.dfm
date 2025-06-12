@@ -1,0 +1,49 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Form3'
+  ClientHeight = 441
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  TextHeight = 15
+  object Memo1: TMemo
+    Left = 8
+    Top = 72
+    Width = 601
+    Height = 305
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 8
+    Top = 24
+    Width = 75
+    Height = 25
+    Caption = 'Execute'
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 96
+    Top = 24
+    Width = 75
+    Height = 25
+    Caption = 'Button2'
+    TabOrder = 2
+    OnClick = Button2Click
+  end
+  object Timer1: TTimer
+    Enabled = False
+    OnTimer = Timer1Timer
+    Left = 544
+    Top = 24
+  end
+end

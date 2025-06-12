@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2025/06/07 16:21:31.299,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/06/07 16:24:54.380,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\uThread.Main.pas=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/06/07 16:24:54.380,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\uThread.Main.dfm=D:\Fontes\Projects\Unit1.dfm</Transaction>
+    <Transaction>2025/06/07 17:12:18.707,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\Threads.dproj=D:\Fontes\Projects\Project2.dproj</Transaction>
+    <Transaction>2025/06/07 17:12:26.291,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\Unit2.pas</Transaction>
+    <Transaction>2025/06/07 17:12:44.880,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\Thread.Excptions.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\Unit2.dfm</Transaction>
+    <Transaction>2025/06/07 17:12:44.880,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\Thread.Excptions.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\Unit2.pas</Transaction>
+    <Transaction>2025/06/07 17:38:35.517,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\Unit3.pas</Transaction>
+    <Transaction>2025/06/07 17:39:11.312,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\uThread.CriticalSetion.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\Unit3.dfm</Transaction>
+    <Transaction>2025/06/07 17:39:11.312,D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\uThread.CriticalSetion.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\Win32\Aula 5\Threads\Unit3.pas</Transaction>
+  </Transactions>
+</BorlandProject>

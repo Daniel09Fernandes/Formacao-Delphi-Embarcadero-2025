@@ -29,6 +29,7 @@ type
     procedure ZClick(Sender: TObject);
     procedure Image2Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
+    procedure MenuItem4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,7 +46,8 @@ implementation
 uses
   uController.Main,
   uHelper.Dialogs,
-  uController.Clientes;
+  uController.Clientes,
+  uController.Produtos;
 
 procedure TFrMain.FormShow(Sender: TObject);
 begin
@@ -70,18 +72,24 @@ begin
   TControllerClientes.AbrirClientes(self, RecMain);
 end;
 
+procedure TFrMain.MenuItem4Click(Sender: TObject);
+begin
+  TControllerProduto.AbrirProdutos(Self, RecMain);
+end;
+
 procedure TFrMain.OnAfterLoadTimer(Sender: TObject);
 begin
   OnAfterLoad.Enabled := False;
   RWait.Visible := True;
 
   try
+    {$ifdef Release}
     if not TControllerMain.AbrirLogin(Self, RWait) then
     begin
       ShowMessage('Aplicação encerrada pelo usuário!', TypeDlg.tdAlert);
       Application.Terminate;
     end;
-
+    {$endif}
   finally
     RWait.Visible := False;
   end;

@@ -1,0 +1,25 @@
+inherited DaoProdutos: TDaoProdutos
+  Height = 193
+  Width = 237
+  inherited Qry: TFDQuery
+    SQL.Strings = (
+      'Select * From tab_produtos where id = :id')
+    ParamData = <
+      item
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+  end
+  object dspProdutos: TDataSetProvider
+    DataSet = Qry
+    Left = 168
+    Top = 32
+  end
+  object CdsProdutos: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspProdutos'
+    Left = 120
+    Top = 112
+  end
+end

@@ -3,11 +3,13 @@ unit uDao.Controller;
 interface
 
 uses
-  Dao.RTTI, System.Generics.Collections, Datasnap.DBClient;
+  Dao.RTTI, System.Generics.Collections, Datasnap.DBClient, uDao.Connection;
 
 type
   TRecWhere = TParamsWhere;
   TDaoWhere = TWhere;
+  TDaoParam = TParamAction;
+  TTypeOperation = TypeOperation;
 
   TControllerDao<T: class, constructor> = class
   public

@@ -1,0 +1,62 @@
+unit uDao.Clientes;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, uDao.Connection, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs, FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.FMXUI.Wait,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Datasnap.Provider, Datasnap.DBClient;
+
+type
+  TOperation = TypeOperation;
+  TAction = TParamAction;
+
+  TDmCliente = class(TDmDAOConn)
+    dspCliente: TDataSetProvider;
+    CdsCliente: TClientDataSet;
+    QryID: TIntegerField;
+    QryNome: TWideMemoField;
+    QryIdade: TIntegerField;
+    QryCPF_CNPJ: TWideMemoField;
+    QryFISJUR: TWideMemoField;
+    QryEndereco: TWideMemoField;
+    QryBairro: TWideMemoField;
+    QryCidade: TWideMemoField;
+    CdsClienteID: TIntegerField;
+    CdsClienteNome: TWideMemoField;
+    CdsClienteIdade: TIntegerField;
+    CdsClienteCPF_CNPJ: TWideMemoField;
+    CdsClienteFISJUR: TWideMemoField;
+    CdsClienteEndereco: TWideMemoField;
+    CdsClienteBairro: TWideMemoField;
+    CdsClienteCidade: TWideMemoField;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    procedure Executar(AParam: TParamAction);
+  end;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TDmCliente }
+
+procedure TDmCliente.DataModuleCreate(Sender: TObject);
+begin
+  inherited;
+  CdsCliente.IndexDefs.Add('PK','ID', [ixPrimary]);
+  CdsCliente.IndexName := 'PK';
+end;
+
+
+procedure TDmCliente.Executar(AParam: TParamAction);
+begin
+  AParam.QryBase := Qry;
+  AParam.CdsPersistencia := CdsCliente;
+end;
+
+end.

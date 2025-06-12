@@ -1,0 +1,15 @@
+unit uModel.Produtos;
+
+interface
+
+uses
+  uDao.Attributes;
+
+type
+  TModelProduto = class
+
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,70 @@
+unit uView.Produtos;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, uView.Base.cadastro, System.Skia, System.Rtti, FMX.Grid.Style, Data.Bind.EngExt, Fmx.Bind.DBEngExt,
+  Fmx.Bind.Grid, System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.Grid, Data.Bind.DBScope, Data.DB, Datasnap.DBClient, System.ImageList, FMX.ImgList,
+  FMX.ScrollBox, FMX.Grid, FMX.Controls.Presentation,
+  FMX.Edit, FMX.TabControl, FMX.Skia, FMX.Objects,
+  uModel.Produtos,
+  uController.Produtos;
+
+type
+  TFrProdutos = class(TFrmFormBase)
+    SkLabel3: TSkLabel;
+    EdtId: TEdit;
+    EdtDesc: TEdit;
+    SkLabel4: TSkLabel;
+    EdtValor: TEdit;
+    SkLabel5: TSkLabel;
+    procedure FormShow(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure BtnSalvarClick(Sender: TObject);
+    procedure BtnDeletarClick(Sender: TObject);
+  private
+    FListaProdutos: TProdutosList;
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.fmx}
+
+uses
+  uHelper.ClientDataSet;
+
+procedure TFrProdutos.BtnDeletarClick(Sender: TObject);
+begin
+  Deleted := True;
+  TControllerProduto.Persistir(GerarParams);
+  inherited;
+end;
+
+procedure TFrProdutos.BtnSalvarClick(Sender: TObject);
+begin
+  TControllerProduto.Persistir(GerarParams);
+  inherited;
+end;
+
+procedure TFrProdutos.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  CdsDados.ClearAllBindings;
+  FreeAndNil(FListaProdutos);
+end;
+
+procedure TFrProdutos.FormShow(Sender: TObject);
+begin
+  inherited;
+  FListaProdutos := TControllerProduto.GetProduto;
+  TCdsObject<TModelProduto>(CdsDados).FromObject(FListaProdutos);
+
+  CdsDados.BindToEdit(EdtId, 'Cód');
+  CdsDados.BindToEdit(EdtDesc, 'Descrição');
+  CdsDados.BindToEdit(EdtValor, 'R$');
+end;
+
+end.

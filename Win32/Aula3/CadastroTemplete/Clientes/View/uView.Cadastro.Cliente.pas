@@ -14,6 +14,7 @@ uses
   FMX.ScrollBox, FMX.Grid, FMX.Controls.Presentation, FMX.Edit,
   FMX.TabControl, FMX.Skia, FMX.Objects,
   uModel.Clientes,
+  uController.Clientes,
   uHelper.ClientDataSet;
 
 type
@@ -35,6 +36,10 @@ type
     SkLabel9: TSkLabel;
     SkLabel10: TSkLabel;
     procedure FormShow(Sender: TObject);
+    procedure BtnSalvarClick(Sender: TObject);
+    procedure BtnDeletarClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure BtnPesquisarClick(Sender: TObject);
   private
     FListClientes: TListClientes;
   public
@@ -48,8 +53,49 @@ implementation
 
 {$R *.fmx}
 
-uses
-  uController.Clientes;
+
+procedure TFrmClientes.BtnDeletarClick(Sender: TObject);
+begin
+  Deleted := True;
+  TControllerClientes.Persistir(GerarParams);
+  inherited;
+end;
+
+procedure TFrmClientes.BtnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  var Where := TWhere.Create;
+  try
+   var AWhereParam: TParamsWhere;
+    AWhereParam.Key := 'Nome';
+    AWhereParam.Operation := 'LIKE';
+    AWhereParam.Value := EdtPesquisa.Text + '%';
+    Where.Add(AWhereParam);
+
+    if Assigned(FListClientes) then
+      FreeAndNil(FListClientes);
+
+    CdsDados.EmptyDataSet;
+
+    FListClientes := TControllerClientes.GetListClientes(Where);
+    TCdsObject<TClientes>(CdsDados).FromObject(FListClientes);
+  finally
+    Where.Free;
+  end;
+end;
+
+procedure TFrmClientes.BtnSalvarClick(Sender: TObject);
+begin
+  TControllerClientes.Persistir(GerarParams);
+  inherited;
+end;
+
+procedure TFrmClientes.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  CdsDados.ClearAllBindings;
+  FreeAndNil(FListClientes);
+end;
 
 procedure TFrmClientes.FormShow(Sender: TObject);
 begin

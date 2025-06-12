@@ -1,0 +1,118 @@
+unit uThread.CriticalSetion;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  System.SyncObjs, System.Threading;
+
+type
+  TForm3 = class(TForm)
+    Memo1: TMemo;
+    Button1: TButton;
+    Timer1: TTimer;
+    Button2: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    FStl : TStringList;
+    FCriticalSection: TCriticalSection;
+  public
+    procedure GetClientes;
+    procedure GetFornecedores;
+    procedure GetProdutos;
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  System.Diagnostics;
+
+procedure TForm3.Button1Click(Sender: TObject);
+begin
+ for var I := 0 to 10 do
+ begin
+   TThread.CreateAnonymousThread(
+   procedure
+   begin
+     for var I := 0 to 10 do
+     begin
+       FCriticalSection.Acquire;
+       try
+         FStl.Add( Random(1000).ToString + Random(1000).ToString  +Random(1000).ToString  + Random(1000).ToString  );
+       finally
+         FCriticalSection.Leave;
+       end;
+     end;
+   end
+   ).Start;
+ end;
+
+end;
+
+procedure TForm3.Button2Click(Sender: TObject);
+var  Tasks: array [0..2] of ITask;
+var FTempo: TStopwatch;
+begin
+  FTempo := TStopwatch.StartNew;
+
+  Tasks[0] := TTask.Create(GetClientes);
+  Tasks[0].Start;
+
+  Tasks[1] := TTask.Create(GetFornecedores);
+  Tasks[1].Start;
+
+  Tasks[2] := TTask.Create(GetProdutos);
+  Tasks[2].Start;
+
+  FTempo.Stop;
+
+  TTask.WaitForAll(Tasks);
+end;
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+  FStl := TStringList.Create;
+  FCriticalSection := TCriticalSection.Create;
+end;
+
+procedure TForm3.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(FCriticalSection);
+end;
+
+procedure TForm3.GetClientes;
+begin
+  Sleep(1000);
+end;
+
+procedure TForm3.GetFornecedores;
+begin
+  Sleep(1000);
+end;
+
+procedure TForm3.GetProdutos;
+begin
+  Sleep(3000);
+end;
+
+procedure TForm3.Timer1Timer(Sender: TObject);
+begin
+  if FStl.Count <> Memo1.Lines.Count then
+  begin
+    Memo1.Lines.Clear;
+    Memo1.Lines.AddStrings(FStl);
+  end;
+
+end;
+
+end.

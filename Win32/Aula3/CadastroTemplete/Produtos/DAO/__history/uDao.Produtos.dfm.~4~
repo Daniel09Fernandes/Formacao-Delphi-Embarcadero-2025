@@ -1,0 +1,11 @@
+inherited DmProdutos: TDmProdutos
+  inherited Qry: TFDQuery
+    SQL.Strings = (
+      'Select * From tab_produtos where id = :id')
+    ParamData = <
+      item
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+  end
+end

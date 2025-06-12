@@ -1,0 +1,36 @@
+unit uModel.Produtos;
+
+interface
+{$M+}
+uses
+  uDao.Attributes,
+  system.Generics.Collections;
+
+type
+  TModelProduto = class
+  private
+    FId: Integer;
+    FDescricao: string;
+    FValor: Double;
+
+  public
+    [TDAOMappingTable('tab_produtos')]
+
+    [TDaoMappingField('ID', 5)]
+    [TDaoMappingDisplayGrid('Cód')]
+    property ID: Integer read FId write FId;
+
+    [TDaoMappingDisplayGrid('Descrição')]
+    [TDaoMappingField('Descricao', 70)]
+    property Descricao: string read FDescricao write FDescricao;
+
+    [TDaoMappingDisplayGrid('R$')]
+    [TDaoMappingField('Valor', 15)]
+    property Valor: Double read FValor write FValor;
+  end;
+
+  TProdutosList = TObjectList<TModelProduto>;
+
+implementation
+
+end.

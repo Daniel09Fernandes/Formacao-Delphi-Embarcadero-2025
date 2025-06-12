@@ -1,0 +1,44 @@
+inherited FrProdutos: TFrProdutos
+  Caption = ''
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  inherited Rectangle1: TRectangle
+    inherited Rectangle3: TRectangle
+      inherited Image3: TImage
+        MultiResBitmap.Height = 24
+        MultiResBitmap.Width = 24
+      end
+      inherited Image4: TImage
+        MultiResBitmap.Height = 24
+        MultiResBitmap.Width = 24
+      end
+      inherited Image5: TImage
+        MultiResBitmap.Height = 24
+        MultiResBitmap.Width = 24
+      end
+    end
+    inherited TbControlMain: TTabControl
+      Sizes = (
+        640s
+        455s
+        640s
+        455s)
+      inherited S: TTabItem
+        ExplicitSize.cx = 81.000000000000000000
+        ExplicitSize.cy = 26.000000000000000000
+        inherited Rectangle2: TRectangle
+          inherited Rectangle6: TRectangle
+            inherited GrdDados: TGrid
+              Viewport.Width = 608.000000000000000000
+              Viewport.Height = 267.000000000000000000
+            end
+          end
+        end
+      end
+      inherited TbCadastro: TTabItem
+        ExplicitSize.cx = 80.000000000000000000
+        ExplicitSize.cy = 26.000000000000000000
+      end
+    end
+  end
+end

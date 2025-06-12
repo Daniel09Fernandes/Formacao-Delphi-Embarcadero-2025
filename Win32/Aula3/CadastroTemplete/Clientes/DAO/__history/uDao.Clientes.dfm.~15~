@@ -1,0 +1,136 @@
+inherited DmCliente: TDmCliente
+  Height = 216
+  Width = 239
+  inherited Qry: TFDQuery
+    SQL.Strings = (
+      'Select * from tab_cliente where 1=2')
+    object QryID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object QryNome: TWideMemoField
+      FieldName = 'Nome'
+      Origin = 'Nome'
+      Required = True
+      BlobType = ftWideMemo
+    end
+    object QryIdade: TIntegerField
+      FieldName = 'Idade'
+      Origin = 'Idade'
+    end
+    object QryCPF_CNPJ: TWideMemoField
+      FieldName = 'CPF_CNPJ'
+      Origin = 'CPF_CNPJ'
+      BlobType = ftWideMemo
+    end
+    object QryFISJUR: TWideMemoField
+      FieldName = 'FISJUR'
+      Origin = 'FISJUR'
+      BlobType = ftWideMemo
+    end
+    object QryEndereco: TWideMemoField
+      FieldName = 'Endereco'
+      Origin = 'Endereco'
+      BlobType = ftWideMemo
+    end
+    object QryBairro: TWideMemoField
+      FieldName = 'Bairro'
+      Origin = 'Bairro'
+      BlobType = ftWideMemo
+    end
+    object QryCidade: TWideMemoField
+      FieldName = 'Cidade'
+      Origin = 'Cidade'
+      BlobType = ftWideMemo
+    end
+  end
+  object dspCliente: TDataSetProvider
+    DataSet = Qry
+    UpdateMode = upWhereKeyOnly
+    Left = 152
+    Top = 32
+  end
+  object CdsCliente: TClientDataSet
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'ID'
+        Attributes = [faRequired]
+        DataType = ftInteger
+      end
+      item
+        Name = 'Nome'
+        Attributes = [faRequired]
+        DataType = ftWideMemo
+      end
+      item
+        Name = 'Idade'
+        DataType = ftInteger
+      end
+      item
+        Name = 'CPF_CNPJ'
+        DataType = ftWideMemo
+      end
+      item
+        Name = 'FISJUR'
+        DataType = ftWideMemo
+      end
+      item
+        Name = 'Endereco'
+        DataType = ftWideMemo
+      end
+      item
+        Name = 'Bairro'
+        DataType = ftWideMemo
+      end
+      item
+        Name = 'Cidade'
+        DataType = ftWideMemo
+      end>
+    IndexDefs = <
+      item
+        Name = 'CdsIndxID'
+        Fields = 'ID'
+        Options = [ixPrimary]
+      end>
+    Params = <>
+    ProviderName = 'dspCliente'
+    StoreDefs = True
+    Left = 104
+    Top = 96
+    object CdsClienteID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object CdsClienteNome: TWideMemoField
+      FieldName = 'Nome'
+      Required = True
+      BlobType = ftWideMemo
+    end
+    object CdsClienteIdade: TIntegerField
+      FieldName = 'Idade'
+    end
+    object CdsClienteCPF_CNPJ: TWideMemoField
+      FieldName = 'CPF_CNPJ'
+      BlobType = ftWideMemo
+    end
+    object CdsClienteFISJUR: TWideMemoField
+      FieldName = 'FISJUR'
+      BlobType = ftWideMemo
+    end
+    object CdsClienteEndereco: TWideMemoField
+      FieldName = 'Endereco'
+      BlobType = ftWideMemo
+    end
+    object CdsClienteBairro: TWideMemoField
+      FieldName = 'Bairro'
+      BlobType = ftWideMemo
+    end
+    object CdsClienteCidade: TWideMemoField
+      FieldName = 'Cidade'
+      BlobType = ftWideMemo
+    end
+  end
+end

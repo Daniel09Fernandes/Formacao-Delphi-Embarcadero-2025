@@ -1,0 +1,12 @@
+unit uCalculadora;
+
+interface
+
+type
+  TCalculadora = class
+
+  end;
+
+implementation
+
+end.

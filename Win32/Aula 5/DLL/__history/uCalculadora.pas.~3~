@@ -1,0 +1,19 @@
+unit uCalculadora;
+
+interface
+
+type
+  TCalculadora = class
+    function Multiplicacao(A, B: Double): Double;
+  end;
+
+implementation
+
+{ TCalculadora }
+
+function TCalculadora.Multiplicacao(A, B: Double): Double;
+begin
+  Result := A* B;
+end;
+
+end.

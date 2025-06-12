@@ -1,0 +1,58 @@
+unit uController.Produtos;
+
+interface
+
+uses
+  Classes,
+  SysUtils,
+  Generics.Collections,
+  uModel.Produtos,
+  uDao.Controller,
+  uDao.Produtos,
+  FMX.Types, System.UITypes;
+
+type
+  TParamsWhere = TRecWhere;
+  TWhere = TDaoWhere;
+  TDaoParam = TAction;
+  TTypeOperation = TOperation;
+
+  TControllerProduto = class
+    class function GetProduto(AWhere: TWhere = nil): TProdutosList;
+    class procedure Persistir(AParam: TDaoParam);
+    class function AbrirProdutos(AOwner, AParent: TComponent): boolean;
+  end;
+
+implementation
+
+{ TControllerProduto }
+uses
+  uView.Produtos;
+
+class function TControllerProduto.AbrirProdutos(AOwner, AParent: TComponent): boolean;
+begin
+  var lView := TFrProdutos.Create(AOwner);
+  try
+    lView.Parent := TFmxObject(AParent);
+    Result := (lView.ShowModal = mrOk);
+  finally
+    lView.Free;
+  end;
+end;
+
+class function TControllerProduto.GetProduto(AWhere: TWhere): TProdutosList;
+begin
+  Result := TControllerDao<TModelProduto>.GetListObject(AWhere);
+end;
+
+class procedure TControllerProduto.Persistir(AParam: TDaoParam);
+begin
+  lDao := TDaoProdutos.Create(nil);
+  try
+    lDao.Execute(AParam);
+  finally
+    lDao.Free;
+  end;
+end;
+
+end.

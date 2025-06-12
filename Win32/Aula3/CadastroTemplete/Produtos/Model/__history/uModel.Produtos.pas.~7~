@@ -1,0 +1,28 @@
+unit uModel.Produtos;
+
+interface
+{$M+}
+uses
+  uDao.Attributes;
+
+type
+  TModelProduto = class
+  private
+    FId: Integer;
+    FDescricao: string;
+    FValor: Double;
+
+  public
+    [TDAOMappingTable('tab_produtos')]
+
+    [TDaoMappingField('ID')]
+    property ID: Integer read FId write FId;
+    [TDaoMappingField('Descricao')]
+    property Descricao: string read FDescricao write FDescricao;
+    [TDaoMappingField('Valor')]
+    property Valor: Double read FValor write FValor;
+  end;
+
+implementation
+
+end.

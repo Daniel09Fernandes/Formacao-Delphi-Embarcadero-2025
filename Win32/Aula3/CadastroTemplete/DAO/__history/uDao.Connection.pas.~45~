@@ -1,0 +1,111 @@
+unit uDao.Connection;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef,
+  FireDAC.Stan.ExprFuncs, FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.FMXUI.Wait,
+  FireDAC.Stan.Param,
+  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Datasnap.DBClient, System.Variants;
+
+type
+  TypeOperation = (toEdit, toInsert, toDelete);
+
+  TParamAction = record
+    QryBase: TFDQuery;
+    CdsDados: TCLientDataset;
+    CdsPersistencia: TCLientDataset;
+    ATypeOperation: TypeOperation;
+    Table: string;
+    FieldID: string;
+  end;
+
+  TDmDAOConn = class(TDataModule)
+    Conn: TFDConnection;
+    Qry: TFDQuery;
+    procedure DataModuleDestroy(Sender: TObject);
+    procedure QryAfterClose(DataSet: TDataSet);
+  protected
+    procedure Executar(AParam: TParamAction); virtual;
+    function GetNextID(ATable, AField: string): Integer;
+  public
+    { Public declarations }
+  end;
+
+var
+  DmDAOConn: TDmDAOConn;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+{$R *.dfm}
+
+procedure TDmDAOConn.DataModuleDestroy(Sender: TObject);
+begin
+  Conn.Connected := False;
+end;
+
+procedure TDmDAOConn.QryAfterClose(DataSet: TDataSet);
+begin
+  Conn.Connected := False;
+end;
+
+procedure TDmDAOConn.Executar(AParam: TParamAction);
+begin
+ if not VarIsNull(AParam.CdsDados.Fields[0].Value) then
+   AParam.QryBase.ParamByName(AParam.FieldID).AsInteger := AParam.CdsDados.Fields[0].Value
+ else
+ begin
+   AParam.QryBase.ParamByName(AParam.FieldID).AsInteger := -1;
+   AParam.ATypeOperation := toInsert;
+ end;
+
+  AParam.CdsPersistencia.Open;
+
+  case AParam.ATypeOperation of
+    toEdit:
+      AParam.CdsPersistencia.Edit;
+    toInsert:
+      AParam.CdsPersistencia.Append;
+    toDelete:
+      begin
+        AParam.CdsPersistencia.Delete;
+        AParam.CdsPersistencia.ApplyUpdates(-1);
+        Exit;
+      end;
+  end;
+
+  try
+    for var i := 0 to AParam.CdsDados.Fields.Count - 1 do
+    begin
+      if (AParam.ATypeOperation = toInsert) and (i = 0) then
+        AParam.CdsPersistencia.Fields[i].Value := GetNextID(AParam.Table, AParam.FieldID);
+
+      AParam.CdsPersistencia.Fields[i].Value := AParam.CdsDados.Fields[i].Value;
+    end;
+
+    AParam.CdsPersistencia.Post;
+  finally
+    AParam.CdsPersistencia.ApplyUpdates(-1);
+    AParam.QryBase.Close;
+  end;
+end;
+
+function TDmDAOConn.GetNextID(ATable, AField: string): Integer;
+begin
+  var lQuery := TFDQuery.Create(nil);
+  try
+    lQuery.Connection := Conn;
+    lQuery.SQL.Add(' SELECT Max('+ AField +') + 1 as ID from '+ ATable);
+    lQuery.Open();
+    Result := lQuery.FieldByName('ID').AsInteger;
+  finally
+    lQuery.Free;
+  end;
+end;
+
+end.

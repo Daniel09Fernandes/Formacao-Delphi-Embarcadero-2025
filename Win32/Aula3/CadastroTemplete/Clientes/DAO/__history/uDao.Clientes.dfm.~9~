@@ -1,0 +1,13 @@
+inherited DmCliente: TDmCliente
+  Height = 216
+  Width = 239
+  inherited Qry: TFDQuery
+    SQL.Strings = (
+      'Select * from tab_cliente')
+  end
+  object dspCliente: TDataSetProvider
+    DataSet = Qry
+    Left = 96
+    Top = 104
+  end
+end

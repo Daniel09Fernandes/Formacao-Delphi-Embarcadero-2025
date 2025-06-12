@@ -1,0 +1,23 @@
+unit uModel.Produtos;
+
+interface
+
+uses
+  uDao.Attributes;
+
+type
+  TModelProduto = class
+  private
+    FId: Integer;
+    FDescricao: string;
+    FValor: Double;
+
+  public
+    property ID: Integer read FId write FId;
+    property Descricao: string read FDescricao write FDescricao;
+    property Valor: Double read FValor write FValor;
+  end;
+
+implementation
+
+end.

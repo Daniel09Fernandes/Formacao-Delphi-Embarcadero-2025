@@ -1,14 +1,16 @@
 object FrmFormBase: TFrmFormBase
   Left = 0
-  Top = 0
+  Top = 25
   BorderStyle = None
   Caption = 'Form1'
   ClientHeight = 521
   ClientWidth = 640
+  Position = Designed
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
+  Top = 25
   DesignerMasterStyle = 0
   object Rectangle1: TRectangle
     Align = Client
@@ -178,6 +180,7 @@ object FrmFormBase: TFrmFormBase
               Size.Width = 362.000000000000000000
               Size.Height = 26.000000000000000000
               Size.PlatformDefault = False
+              OnKeyDown = EdtPesquisaKeyDown
             end
             object BtnPesquisar: TButton
               Images = ImageList1
@@ -214,8 +217,8 @@ object FrmFormBase: TFrmFormBase
               TabOrder = 0
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               OnCellDblClick = GrdDadosCellDblClick
-              Viewport.Width = 604.000000000000000000
-              Viewport.Height = 242.000000000000000000
+              Viewport.Width = 608.000000000000000000
+              Viewport.Height = 267.000000000000000000
             end
             object SkLabel2: TSkLabel
               Position.X = 9.000000000000000000

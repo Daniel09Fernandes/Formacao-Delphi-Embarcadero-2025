@@ -341,6 +341,22 @@
         <DCCReference Include="Helpers\uHelper.ClientDataSet.pas"/>
         <DCCReference Include="Clientes\Model\uModel.Clientes.pas"/>
         <DCCReference Include="Clientes\Controller\uController.Clientes.pas"/>
+        <DCCReference Include="Clientes\DAO\uDao.Clientes.pas">
+            <Form>DmCliente</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Produtos\Model\uModel.Produtos.pas"/>
+        <DCCReference Include="Produtos\Controller\uController.Produtos.pas"/>
+        <DCCReference Include="Produtos\View\uView.Produtos.pas">
+            <Form>FrProdutos</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Produtos\DAO\uDao.Produtos.pas">
+            <Form>DaoProdutos</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

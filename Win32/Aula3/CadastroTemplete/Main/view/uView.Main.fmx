@@ -39,6 +39,7 @@ object FrMain: TFrMain
           Locked = True
           Text = 'Produtos'
           ImageIndex = 3
+          OnClick = MenuItem4Click
         end
       end
       object MenuItem2: TMenuItem
