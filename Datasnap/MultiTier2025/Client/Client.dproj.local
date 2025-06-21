@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/11/10 09:35:14.000.713,=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/11/16 11:09:41.000.756,=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/11/16 11:10:06.000.768,=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/04/18 18:05:44.000.965,=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/06/12 16:46:36.000.127,=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/06/12 16:46:36.000.108,=emsserverapi.dcp</Transaction>
+    <Transaction>2024/07/06 16:52:30.000.779,=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/07/06 16:52:58.000.724,=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/07/27 08:21:47.000.565,=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/04 14:59:18.000.622,=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/06/14 09:44:17.000.023,=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/06/14 09:44:52.000.267,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Client\FormPrincipalClient.pas=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/06/14 09:44:52.000.267,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Client\FormPrincipalClient.dfm=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2025/06/14 09:45:04.000.864,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Client\Client.dproj=C:\Users\Gustavo Mena Barreto\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2025/06/14 09:50:28.000.993,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Client\ClientClassesUnit1.pas</Transaction>
+    <Transaction>2025/06/14 09:50:29.000.675,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Client\ClientModuleUnit1.pas</Transaction>
+    <Transaction>2025/06/14 10:08:18.000.632,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\ClassePessoa.pas</Transaction>
+    <Transaction>2025/06/14 13:05:32.000.634,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Client\Pkg.Json.DTO.pas</Transaction>
+    <Transaction>2025/06/14 13:05:32.000.653,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Client\RootUnit.pas</Transaction>
+  </Transactions>
+</BorlandProject>
