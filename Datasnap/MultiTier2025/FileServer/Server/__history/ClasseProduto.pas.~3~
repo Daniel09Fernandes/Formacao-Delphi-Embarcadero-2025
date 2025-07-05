@@ -1,0 +1,25 @@
+unit ClasseProduto;
+
+interface
+
+uses
+  System.Generics.Collections;
+
+type
+  TProduto = class
+  private
+    FID: Integer;
+  end;
+
+{
+ID,
+    NOME,
+    DESCRICAO,
+    PRECO,
+    ESTOQUE,
+    CATEGORIA
+}
+
+implementation
+
+end.

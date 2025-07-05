@@ -9,6 +9,11 @@ uses
   uNotify.Interfaces;
 
 type
+  TFormHelper = class helper for TForm
+    function GetNotification: INotificaion;
+  end;
+
+
   TForm2 = class(TForm)
     Button1: TButton;
     Button2: TButton;
@@ -32,8 +37,9 @@ begin
   //INotify := TNotiFyController.New(tnSMS);
   TNotiFyController
      .New(tnSMS)
-     .SendNotify('Estou enviando esse SMS pra voce!')
-     .ReciveNotify('SMS Recebido');
+       .SendNotify('Estou enviando esse SMS pra voce!')
+       .ReciveNotify('SMS Recebido');
+
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
@@ -43,6 +49,16 @@ begin
   INotify
      .SendNotify('Estou enviando esse WhatsApp pra voce!')
      .ReciveNotify('WhatsApp Recebido');
+end;
+
+{ TFormHelper }
+
+function TFormHelper.GetNotification: INotificaion;
+begin
+  Result := TNotiFyController
+              .New(tnSMS)
+                 .SendNotify('Estou enviando esse SMS pra voce!')
+                 .ReciveNotify('SMS Recebido');
 end;
 
 end.

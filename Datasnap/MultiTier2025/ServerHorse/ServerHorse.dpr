@@ -1,0 +1,93 @@
+program ServerHorse;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses Horse,
+     Horse.BasicAuthentication,
+     Horse.Jhonson,
+     Horse.OctetStream,
+     Horse.HandleException,
+     Horse.Logger,
+     Horse.Logger.Provider.LogFile,
+     Horse.Compression,
+     System.JSON,
+     System.Classes,
+     System.SysUtils;
+
+begin
+  // Here you will define the provider that will be used.
+  THorseLoggerManager.RegisterProvider(THorseLoggerProviderLogFile.New());
+
+  // It's necessary to add the middleware in the Horse:
+  THorse.Use(THorseLoggerManager.HorseCallback);
+
+  THorse.Use(HorseBasicAuthentication(
+    function(const AUsername, APassword: string): Boolean
+    begin
+      // Here inside you can access your database and validate if username and password are valid
+      Result := AUsername.Equals('user') and APassword.Equals('password');
+    end));
+
+  THorse.Get('/ping',
+    procedure(Req: THorseRequest; Res: THorseResponse)
+    begin
+      Res.Send('pong');
+    end);
+
+  // It's necessary to add the middleware in the Horse:
+  THorse
+    .Use(Compression()) // Must come before Jhonson middleware
+    .Use(Jhonson);
+
+  // You can specify the charset when adding middleware to the Horse:
+  // THorse.Use(Jhonson('UTF-8'));
+
+  THorse.Post('/ping',
+    procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
+    var
+      LBody: TJSONObject;
+    begin
+      // Req.Body gives access to the content of the request in string format.
+      // Using jhonson middleware, we can get the content of the request in JSON format.
+
+      LBody := Req.Body<TJSONObject>;
+      Res.Send<TJSONObject>(LBody);
+    end);
+
+  // It's necessary to add the middleware in the Horse:
+  THorse.Use(OctetStream);
+
+  THorse.Get('/stream',
+    procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
+    var
+      LStream: TFileStream;
+    begin
+      // Now you can send your stream:
+      LStream := TFileStream.Create('C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Imagens\Breaking_Bad_logo.svg.png', fmOpenRead);
+      Res.Send<TStream>(LStream);
+    end);
+
+    THorse.Post('/except',
+    procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
+    begin
+      // Manage your exceptions:
+      raise EHorseException.New.Error('My Error!');
+    end);
+
+  THorse.Get('/compression',
+    procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
+    var
+      I: Integer;
+      LPong: TJSONArray;
+    begin
+      LPong := TJSONArray.Create;
+      for I := 0 to 1000 do
+        LPong.Add(TJSONObject.Create(TJSONPair.Create('ping', 'pong')));
+      Res.Send(LPong);
+    end);
+
+
+  THorse.Listen(9000);
+end.

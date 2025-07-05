@@ -1,0 +1,265 @@
+unit FormPrincipalClient;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
+  IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, System.Json, Rest.Json,
+  Vcl.ExtCtrls, REST.Client, REST.Authenticator.Basic, Vcl.ExtDlgs, REST.Types,
+  Data.Bind.Components, Data.Bind.ObjectScope;
+
+type
+  TResult = class
+  private
+    FResult: TArray<UInt64>;
+    public
+      property Result: TArray<UInt64> read FResult write FResult;
+  end;
+
+  TResultStr = class
+  private
+    FResult: TArray<string>;
+    public
+      property Result: TArray<string> read FResult write FResult;
+  end;
+
+
+  TFormClientPrincipal = class(TForm)
+    PageControl1: TPageControl;
+    TabDatas: TTabSheet;
+    ButtonDataAtual: TButton;
+    ButtonConvertDateTime: TButton;
+    ButtonUnixDate: TButton;
+    ButtonISO8601: TButton;
+    EditDatas: TEdit;
+    IdHTTP1: TIdHTTP;
+    TabProdutos: TTabSheet;
+    ButtonTestarProduto: TButton;
+    ButtonGetProduto: TButton;
+    LabelQtdExecutando: TLabel;
+    LabelQtdErro: TLabel;
+    LabelQtdConcluidos: TLabel;
+    TimerThreads: TTimer;
+    TabImagem: TTabSheet;
+    Panel1: TPanel;
+    ButtonBaixarImagem: TButton;
+    ButtonEnviarImagem: TButton;
+    ImagemPrincipal: TImage;
+    OpenPictureDialog1: TOpenPictureDialog;
+    TabBlockChain: TTabSheet;
+    Panel2: TPanel;
+    ButtonAcessarBlockChain: TButton;
+    ButtonCriarClasseBlockChain: TButton;
+    MemoBlockChain: TMemo;
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+    procedure ButtonConvertDateTimeClick(Sender: TObject);
+    procedure ButtonDataAtualClick(Sender: TObject);
+    procedure ButtonUnixDateClick(Sender: TObject);
+    procedure ButtonISO8601Click(Sender: TObject);
+    procedure TimerThreadsTimer(Sender: TObject);
+    procedure ButtonGetProdutoClick(Sender: TObject);
+    procedure ButtonTestarProdutoClick(Sender: TObject);
+    procedure ButtonBaixarImagemClick(Sender: TObject);
+    procedure ButtonEnviarImagemClick(Sender: TObject);
+    procedure ButtonAcessarBlockChainClick(Sender: TObject);
+    procedure ButtonCriarClasseBlockChainClick(Sender: TObject);
+  private
+    { Private declarations }
+    class var
+      FQtdThreadsExecutando: Integer;
+      FQtdThreadsErro: Integer;
+      FQtdThreadsConcluido: Integer;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormClientPrincipal: TFormClientPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses ClientModuleUnit3, System.DateUtils, Vcl.Imaging.pngimage,
+  Classe.BlockChain;
+
+procedure TFormClientPrincipal.ButtonAcessarBlockChainClick(Sender: TObject);
+begin
+  RESTRequest1.Execute;
+  MemoBlockChain.Text := RESTResponse1.Content;
+end;
+
+procedure TFormClientPrincipal.ButtonBaixarImagemClick(Sender: TObject);
+begin
+  var tamanho: Cardinal := 0;
+  var stm: TBytesStream := ClientModule3.SMFilesCLient.GetFile('ARQUIVO_TESTE',tamanho) as TBytesStream;
+
+  var png: TPngImage := TPngImage.Create;
+  png.LoadFromStream(stm);
+
+  ImagemPrincipal.Stretch := True;
+  ImagemPrincipal.Proportional := True;
+  ImagemPrincipal.Picture.Assign(png);
+
+  png.Free;
+end;
+
+procedure TFormClientPrincipal.ButtonConvertDateTimeClick(Sender: TObject);
+begin
+  //Erro de conversao
+  //EditDatas.Text := '2025-06-21 13:11:10.345';
+
+  EditDatas.Text := '21/06/2025 13:11:10.345';
+
+  Showmessage(DateTimeToStr(StrToDateTime(EditDatas.Text)));
+end;
+
+procedure TFormClientPrincipal.ButtonCriarClasseBlockChainClick(
+  Sender: TObject);
+begin
+  var BlockChain: string := ClientModule3.SMBlockChainClient.GetBlockChainInfoDS;
+
+  var bc: TBlock := Tjson.JsonToObject<TBlock>(BlockChain);
+
+  MemoBlockChain.Text := BlockChain;
+
+  MemoBlockChain.Lines.Insert(0, sLineBreak);
+  MemoBlockChain.Lines.Insert(0, 'Prev_block-'+bc.prev_block);
+  MemoBlockChain.Lines.Insert(0, 'mrkl_root-'+bc.mrkl_root);
+  MemoBlockChain.Lines.Insert(0, 'Ver-'+bc.ver.ToString);
+
+  bc.Free;
+end;
+
+procedure TFormClientPrincipal.ButtonDataAtualClick(Sender: TObject);
+begin
+  EditDatas.Text :=
+    TimeToStr(ClientModule3.SMGeralClient.GetDataAtual())
+    + ' - '+ClientModule3.SMGeralClient.GetVersaoServer().ToString
+    + ' - '+ClientModule3.SMGeralClient.GetTickAtual().ToString;
+end;
+
+procedure TFormClientPrincipal.ButtonEnviarImagemClick(Sender: TObject);
+begin
+  OpenPictureDialog1.InitialDir := ExtractFilePath(ParamStr(0));
+  if OpenPictureDialog1.Execute then
+  begin
+    var strStm: TStringStream := TStringStream.Create;
+    strStm.LoadFromFile(OpenPictureDialog1.FileName);
+
+    ClientModule3.SMFilesCLient.SetFile('ARQUIVO_TESTE', strStm);
+  end;
+end;
+
+procedure TFormClientPrincipal.ButtonGetProdutoClick(Sender: TObject);
+begin
+  var RestClient: TRestClient := TRESTClient.Create(nil);
+  RestClient.BaseURL := 'http://localhost:8080/datasnap/rest/TSMProduto/GetProdutos';
+
+  var RestResponse: TRESTResponse := TRESTResponse.Create(nil);
+  Var RestRequest: TRestRequest := TRESTRequest.Create(nil);
+
+  //Se tivesse autenticacao
+
+  {
+  var Auth: THTTPBasicAuthenticator := THTTPBasicAuthenticator.Create(nil);
+  Auth.Username := 'admin';
+  Auth.Password := '1234';
+  RestClient.Authenticator := Auth;
+}
+
+  RestRequest.Client := RestClient;
+  RestRequest.Response := RestResponse;
+
+  RestRequest.Execute;
+
+  RestClient.Free;
+  RestRequest.Free;
+  RestResponse.Free;
+end;
+
+procedure TFormClientPrincipal.ButtonISO8601Click(Sender: TObject);
+begin
+  var stm: TStringStream := TStringStream.Create;
+  IdHTTP1.Get('http://localhost:8080/datasnap/rest/TSMGeral/GetDataAtualISO8601',stm);
+
+  var res: TResultStr := TJson.JsonToObject<TResultStr>(stm.DataString);
+
+  EditDatas.Text := DateToStr(ISO8601ToDate(res.Result[0]));
+
+  res.Free;
+  stm.Free;
+
+end;
+
+procedure TFormClientPrincipal.ButtonTestarProdutoClick(Sender: TObject);
+begin
+  var qtdThreads: Integer := 30;
+
+  FQtdThreadsExecutando := 0;
+  FQtdThreadsErro := 0;
+  FQtdThreadsConcluido := 0;
+
+  TimerThreads.Enabled := True;
+
+  for var I: Integer := 0 to qtdThreads -1 do
+  begin
+    TThread.CreateAnonymousThread(
+      procedure
+      begin
+        InterlockedIncrement(FQtdThreadsExecutando);
+        try
+          Sleep(Random(5000));
+          var RestClient: TRESTClient := TRESTClient.Create(nil);
+          RestClient.BaseURL := 'http://localhost:8080/datasnap/rest/TSMProduto/GetProdutos';
+
+          var RestResponse: TRESTResponse := TRestresponse.Create(nil);
+          Var RestRequest: TRESTRequest := TRESTRequest.Create(nil);
+
+          try
+            RestRequest.Client := RestClient;
+            RestRequest.Response := RestResponse;
+
+            RestRequest.Execute;
+
+            InterlockedIncrement(FQtdThreadsConcluido);
+
+          except
+            InterlockedIncrement(FQtdThreadsErro);
+          end;
+        
+        finally
+          InterlockedDecrement(FQtdThreadsExecutando);
+        end;
+      end
+    ).Start;
+  end;
+    
+end;
+
+procedure TFormClientPrincipal.ButtonUnixDateClick(Sender: TObject);
+begin
+  var stmStr: TStringStream := TStringStream.Create;
+  IdHTTP1.Get('http://localhost:8080/datasnap/rest/TSMGeral/GetDataAtualUnix',stmStr);
+
+  var res: TResult := TJson.JsonToObject<TResult>(stmStr.DataString);
+
+  EditDatas.Text := DateToStr(UnixToDateTime(res.Result[0]));
+
+  res.Free;
+  stmStr.Free;
+end;
+
+procedure TFormClientPrincipal.TimerThreadsTimer(Sender: TObject);
+begin
+  LabelQtdExecutando.Caption := 'Exec-'+FormatFloat('0.,', FQtdThreadsExecutando);
+  LabelQtdErro.Caption := 'Erro-'+FormatFloat('0.,', FQtdThreadsErro);
+  LabelQtdConcluidos.Caption := 'Concluidos OK-'+FormatFloat('0.,', FQtdThreadsConcluido);
+
+  TimerThreads.Enabled := FQtdThreadsExecutando > 0;
+end;
+
+end.

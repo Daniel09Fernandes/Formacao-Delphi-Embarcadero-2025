@@ -1,0 +1,65 @@
+unit ServerMethodsGeral;
+
+interface
+
+uses System.SysUtils, System.Classes, System.Json,
+    DataSnap.DSProviderDataModuleAdapter,
+    Datasnap.DSServer, Datasnap.DSAuth, System.Classes.TThread;
+
+type
+  TSMGeral = class(TDSServerModule)
+    procedure DSServerModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+    FTickAtual: UInt64;
+  public
+    { Public declarations }
+    function EchoString(Value: string): string;
+    function ReverseString(Value: string): string;
+
+    //Datas
+    function GetDataAtual: TDateTime;
+    function GetVersaoServer: UInt64;
+    function GetTickAtual: UInt64;
+  end;
+
+implementation
+
+
+{$R *.dfm}
+
+
+uses System.StrUtils;
+
+procedure TSMGeral.DSServerModuleCreate(Sender: TObject);
+begin
+  FTickAtual := TThread.GetTickCount64;
+end;
+
+function TSMGeral.EchoString(Value: string): string;
+begin
+  Result := Value;
+end;
+
+function TSMGeral.GetDataAtual: TDateTime;
+begin
+  Result := Now;
+end;
+
+function TSMGeral.GetTickAtual: UInt64;
+begin
+
+end;
+
+function TSMGeral.GetVersaoServer: UInt64;
+begin
+  Result := FTickAtual;
+end;
+
+function TSMGeral.ReverseString(Value: string): string;
+begin
+  Result := System.StrUtils.ReverseString(Value);
+end;
+
+end.
+

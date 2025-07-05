@@ -1,0 +1,99 @@
+object FrTextInteraction: TFrTextInteraction
+  Left = 0
+  Top = 0
+  Caption = 'IA Chat'
+  ClientHeight = 470
+  ClientWidth = 658
+  Color = 1447446
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = 5855577
+  Font.Height = 18
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OnClose = FormClose
+  TextHeight = 17
+  object Panel2: TPanel
+    Left = 8
+    Top = 335
+    Width = 642
+    Height = 131
+    Caption = 'Panel2'
+    Color = 2302755
+    ParentBackground = False
+    ShowCaption = False
+    TabOrder = 0
+    object Label2: TLabel
+      Left = 13
+      Top = 8
+      Width = 120
+      Height = 15
+      Caption = 'Enviar sua menssagem'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object TextMe: TRichEdit
+      Left = 13
+      Top = 28
+      Width = 615
+      Height = 97
+      Color = 12040051
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = 20
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnKeyDown = TextMeKeyDown
+    end
+  end
+  object Panel3: TPanel
+    Left = 8
+    Top = 8
+    Width = 642
+    Height = 321
+    Caption = 'Panel2'
+    Color = 6316128
+    ParentBackground = False
+    ShowCaption = False
+    TabOrder = 1
+    DesignSize = (
+      642
+      321)
+    object Label1: TLabel
+      Left = 13
+      Top = 8
+      Width = 50
+      Height = 15
+      Caption = 'Chat GPT'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      OnClick = Button2Click
+    end
+    object MmoGPT: TRichEdit
+      Left = 13
+      Top = 29
+      Width = 615
+      Height = 276
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Color = 14671577
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 5855577
+      Font.Height = 18
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      HideScrollBars = False
+      ParentFont = False
+      ScrollBars = ssVertical
+      TabOrder = 0
+    end
+  end
+end

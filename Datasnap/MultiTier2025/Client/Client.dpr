@@ -7,7 +7,8 @@ uses
   ClientModuleUnit1 in 'ClientModuleUnit1.pas' {ClientModule1: TDataModule},
   ClassePessoa in '..\Server\ClassePessoa.pas',
   Pkg.Json.DTO in 'Pkg.Json.DTO.pas',
-  RootUnit in 'RootUnit.pas';
+  RootUnit in 'RootUnit.pas',
+  ClasseHelperZipFile in 'ClasseHelperZipFile.pas';
 
 {$R *.res}
 

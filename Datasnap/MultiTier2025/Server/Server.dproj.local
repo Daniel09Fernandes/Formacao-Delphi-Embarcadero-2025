@@ -3,30 +3,30 @@
 	<Transactions>
     <Transaction>2025/06/14 09:30:24.000.214,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\FormUnit1.pas</Transaction>
     <Transaction>2025/06/14 09:30:25.000.944,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\ServerMethodsUnit1.pas</Transaction>
-    <Transaction>2025/06/14 09:30:26.000.816,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\json2-min.js</Transaction>
     <Transaction>2025/06/14 09:30:26.000.110,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\ServerContainerUnit1.pas</Transaction>
     <Transaction>2025/06/14 09:30:26.000.756,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\base64-min.js</Transaction>
-    <Transaction>2025/06/14 09:30:26.000.479,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\base64.js</Transaction>
-    <Transaction>2025/06/14 09:30:26.000.304,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\WebModuleUnit1.pas</Transaction>
-    <Transaction>2025/06/14 09:30:26.000.584,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\json2.js</Transaction>
     <Transaction>2025/06/14 09:30:26.000.964,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\callbackframework-min.js</Transaction>
+    <Transaction>2025/06/14 09:30:26.000.816,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\json2-min.js</Transaction>
+    <Transaction>2025/06/14 09:30:26.000.304,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\WebModuleUnit1.pas</Transaction>
+    <Transaction>2025/06/14 09:30:26.000.479,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\base64.js</Transaction>
+    <Transaction>2025/06/14 09:30:26.000.584,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\json2.js</Transaction>
     <Transaction>2025/06/14 09:30:26.000.532,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\serverfunctionexecutor.js</Transaction>
     <Transaction>2025/06/14 09:30:26.000.624,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\callbackframework.js</Transaction>
     <Transaction>2025/06/14 09:30:26.000.689,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\serverfunctions.js</Transaction>
     <Transaction>2025/06/14 09:30:26.000.911,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\serverfunctionexecutor-min.js</Transaction>
+    <Transaction>2025/06/14 09:30:27.000.364,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\templates\reversestring.html</Transaction>
+    <Transaction>2025/06/14 09:30:27.000.224,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\css\main.css</Transaction>
     <Transaction>2025/06/14 09:30:27.000.116,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\serverfunctioninvoker.js</Transaction>
     <Transaction>2025/06/14 09:30:27.000.464,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\templates\serverfunctioninvoker.html</Transaction>
-    <Transaction>2025/06/14 09:30:27.000.028,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\connection.js</Transaction>
     <Transaction>2025/06/14 09:30:27.000.664,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\images\expand.png</Transaction>
-    <Transaction>2025/06/14 09:30:27.000.224,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\css\main.css</Transaction>
-    <Transaction>2025/06/14 09:30:27.000.364,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\templates\reversestring.html</Transaction>
-    <Transaction>2025/06/14 09:30:27.000.284,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\css\serverfunctioninvoker.css</Transaction>
     <Transaction>2025/06/14 09:30:27.000.604,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\images\collapse.png</Transaction>
-    <Transaction>2025/06/14 09:31:17.000.369,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\FormPrincipalServidor.dfm=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\FormUnit1.dfm</Transaction>
-    <Transaction>2025/06/14 09:31:17.000.369,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\FormPrincipalServidor.pas=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\FormUnit1.pas</Transaction>
+    <Transaction>2025/06/14 09:30:27.000.284,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\css\serverfunctioninvoker.css</Transaction>
+    <Transaction>2025/06/14 09:30:27.000.028,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\js\connection.js</Transaction>
+    <Transaction>2025/06/14 09:31:17.000.369,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\FormUnit1.pas=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\FormPrincipalServidor.pas</Transaction>
+    <Transaction>2025/06/14 09:31:17.000.369,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\FormUnit1.dfm=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\FormPrincipalServidor.dfm</Transaction>
     <Transaction>2025/06/14 09:56:15.000.061,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\Unit1.pas</Transaction>
-    <Transaction>2025/06/14 09:56:43.000.997,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\ClassePessoa.pas=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\Unit1.pas</Transaction>
+    <Transaction>2025/06/14 09:56:43.000.997,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\Unit1.pas=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\ClassePessoa.pas</Transaction>
     <Transaction>2025/06/14 14:46:03.000.381,=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\Unit1.pas</Transaction>
-    <Transaction>2025/06/14 14:46:28.000.106,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\Unit1.pas=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\Negocio.Logica\Classe.Regra.Pessoa.pas</Transaction>
+    <Transaction>2025/06/14 14:46:28.000.106,C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\Negocio.Logica\Classe.Regra.Pessoa.pas=C:\Users\Gustavo Mena Barreto\OneDrive\Área de Trabalho\MultiTier2025\Server\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

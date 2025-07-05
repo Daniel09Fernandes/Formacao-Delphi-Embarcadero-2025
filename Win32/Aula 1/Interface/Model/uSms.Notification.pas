@@ -9,6 +9,8 @@ uses
 type
   TSmsNotification = class(TInterfacedObject, INotificaion {, IExemplo})
     private
+    var
+      Fteste: string;
       class var FInstance: INotificaion;
       constructor Create;
     public
@@ -29,10 +31,11 @@ end;
 
 class function TSmsNotification.New: INotificaion;
 begin
-  if not Assigned(FInstance) then
-    FInstance := TSmsNotification.Create;
+//  if not Assigned(FInstance) then
+//    FInstance := TSmsNotification.Create;
 
-  Result := FInstance;
+//  Result := FInstance;
+  Result :=  TSmsNotification.Create;
 end;
 
 function TSmsNotification.ReciveNotify(const AReciveNotify: string): INotificaion;

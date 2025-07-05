@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{BB55D571-4912-400C-A5C2-45668CE2E786}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Server.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Client\Client.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\IIS\IIS.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\WebBrokerApache\mod_webbroker.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Server">
+        <MSBuild Projects="Server.dproj"/>
+    </Target>
+    <Target Name="Server:Clean">
+        <MSBuild Projects="Server.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Server:Make">
+        <MSBuild Projects="Server.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Client">
+        <MSBuild Projects="..\Client\Client.dproj"/>
+    </Target>
+    <Target Name="Client:Clean">
+        <MSBuild Projects="..\Client\Client.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Client:Make">
+        <MSBuild Projects="..\Client\Client.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="IIS">
+        <MSBuild Projects="..\IIS\IIS.dproj"/>
+    </Target>
+    <Target Name="IIS:Clean">
+        <MSBuild Projects="..\IIS\IIS.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IIS:Make">
+        <MSBuild Projects="..\IIS\IIS.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="mod_webbroker">
+        <MSBuild Projects="..\WebBrokerApache\mod_webbroker.dproj"/>
+    </Target>
+    <Target Name="mod_webbroker:Clean">
+        <MSBuild Projects="..\WebBrokerApache\mod_webbroker.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mod_webbroker:Make">
+        <MSBuild Projects="..\WebBrokerApache\mod_webbroker.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Server;Client;IIS;mod_webbroker"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Server:Clean;Client:Clean;IIS:Clean;mod_webbroker:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Server:Make;Client:Make;IIS:Make;mod_webbroker:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

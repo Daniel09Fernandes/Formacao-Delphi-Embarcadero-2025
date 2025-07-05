@@ -1,0 +1,19 @@
+program Client;
+
+uses
+  Vcl.Forms,
+  FormPrincipalClient in '..\..\..\..\Documentos\Embarcadero\Studio\Projects\FormPrincipalClient.pas' {FormClientPrincipal},
+  ClientClasses in '..\..\..\..\Documentos\Embarcadero\Studio\Projects\ClientClasses.pas',
+  ClientModuleUnit3 in '..\..\..\..\Documentos\Embarcadero\Studio\Projects\ClientModuleUnit3.pas' {ClientModule3: TDataModule},
+  ClasseProduto in '..\Server\ClasseProduto.pas',
+  Classe.BlockChain in '..\..\..\..\Documentos\Embarcadero\Studio\Projects\Classe.BlockChain.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFormClientPrincipal, FormClientPrincipal);
+  Application.CreateForm(TClientModule3, ClientModule3);
+  Application.Run;
+end.

@@ -21,7 +21,7 @@ type
     FCnpj: string;
     function AplicarMascaraNoIdentificador(AValue: string): string; override;
     function GetCNPJ: string;
-    function GetTipo: string;
+
   protected
 
   public
@@ -72,9 +72,6 @@ begin
 end;
 
 
-function TPessoaJuridica.GetTipo: string;
-begin
 
-end;
 
 end.

@@ -4,7 +4,7 @@ interface
 
 type
   INotificaion = interface
-    ['{EE87CA6B-BB0E-4A37-8766-86EB747852FA}']
+    ['{EE87CA6B-BB0E-4A37-8766-86EB747852FA}']  //ALT + SHIT + G
 
     function SendNotify(const ANotify: string): INotificaion;
     function ReciveNotify(const AReciveNotify: string): INotificaion;

@@ -1,0 +1,16 @@
+unit Classe.Regra.Pessoa;
+
+interface
+
+uses
+  ClassePessoa;
+
+type
+  TPessoaRegra = class(TPessoa)
+  public
+    function ValidaCamposObrigatorios: string;
+  end;
+
+implementation
+
+end.

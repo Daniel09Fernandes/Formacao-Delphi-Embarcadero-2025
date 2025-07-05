@@ -1,0 +1,25 @@
+object ServerContainer1: TServerContainer1
+  Height = 407
+  Width = 623
+  PixelsPerInch = 144
+  object DSServer1: TDSServer
+    Left = 144
+    Top = 17
+  end
+  object DSServerGeral: TDSServerClass
+    OnGetClass = DSServerGeralGetClass
+    Server = DSServer1
+    Left = 300
+    Top = 17
+  end
+  object DSServerProduto: TDSServerClass
+    OnGetClass = DSServerProdutoGetClass
+    Server = DSServer1
+    Left = 296
+    Top = 136
+  end
+  object DSServerClass1: TDSServerClass
+    Left = 312
+    Top = 256
+  end
+end

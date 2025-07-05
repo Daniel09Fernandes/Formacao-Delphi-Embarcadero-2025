@@ -1,0 +1,76 @@
+unit ServerMethodsProduto;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Datasnap.DSServer, 
+  Datasnap.DSAuth, Datasnap.DSProviderDataModuleAdapter, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
+  FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
+  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, ClasseProduto, Data.DBXPlatform, SYstem.Json, Rest.Json;
+
+type
+  TSMProduto = class(TDSServerModule)
+    FDConnection1: TFDConnection;
+    qryProduto: TFDQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function GetProdutosDelphi: TListaProdutos;
+    function GetProdutos: Boolean;
+
+  end;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TSMProduto }
+
+function TSMProduto.GetProdutos: Boolean;
+begin
+  var lst: TListaProdutos := GetProdutosDelphi;
+  Result := True;
+
+  GetInvocationMetadata().ResponseContentType := 'application/json';
+  GetInvocationMetadata().ResponseContent := TJson.
+
+end;
+
+function TSMProduto.GetProdutosDelphi: TListaProdutos;
+begin
+  Result := TListaProdutos.Create;
+
+  qryProduto.Close;
+  qryProduto.Open;
+  qryProduto.Fetchall;
+
+  qryProduto.IndexFieldNames := 'NOME';
+
+  //ORM
+
+  qryProduto.First;
+  while not qryProduto.Eof do
+  begin
+    var prod: TProduto := TProduto.Create;
+    prod.ID := qryProduto.FieldByName('ID').AsInteger;
+    prod.Nome := qryProduto.FieldByName('NOME').AsString;
+    prod.Descricao := qryProduto.FieldByName('DESCRICAO').AsString;
+    prod.Preco := qryProduto.FieldByName('PRECO').AsCurrency;
+    prod.Estoque := qryProduto.FieldByName('ESTOQUE').AsInteger;
+    prod.Categoria := qryProduto.FieldByName('CATEGORIA').AsString;
+
+
+    Result.Add(prod);
+    qryProduto.Next;
+  end;
+end;
+
+end.
+

@@ -17,9 +17,10 @@ type
   End;
 
   TForm1 = class(TForm)
+  published
     Button1: TButton;
     MLog: TMemo;
-    // OpenOffice_calc1: TOpenOffice_calc;
+    //OpenOffice_calc1: TOpenOffice_calc;
     DBGrid1: TDBGrid;
     DataSource1: TDataSource;
     ClientDataSet1: TClientDataSet;
@@ -42,8 +43,9 @@ type
     procedure Button7Click(Sender: TObject);
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
+    procedure MeuEventoClique(Sender: TObject);
   private
-    { Private declarations }
+
   public
     { Public declarations }
   end;
@@ -324,6 +326,11 @@ begin
   lRec.FNome := 'Daniel';
   lRec.FIdade := 10;
 
+end;
+
+procedure TForm1.MeuEventoClique(Sender: TObject);
+begin
+  Button9Click(sender);
 end;
 
 end.

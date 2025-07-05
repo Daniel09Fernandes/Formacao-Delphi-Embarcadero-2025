@@ -56,7 +56,7 @@ function TClasseAmiga.GetQuemSouEu: string;
 begin
   var
   lPessoa := TPessoa.Create;
-  // Isso viola o POO  lPessoa.FNome, ssó
+  //{Isso viola o POO}  lPessoa.FEndereco
   Result := 'Oi eu sou a classe ' + FQuemSouEU + lPessoa.Nome +
     ' sua amiguinha';
 end;

@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{E0025D40-950B-41EE-8983-6DCD5D71361A}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="PrjTestComp.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Componentes\Aula1\PanelValidador.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PrjTestComp">
+        <MSBuild Projects="PrjTestComp.dproj"/>
+    </Target>
+    <Target Name="PrjTestComp:Clean">
+        <MSBuild Projects="PrjTestComp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PrjTestComp:Make">
+        <MSBuild Projects="PrjTestComp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PanelValidador">
+        <MSBuild Projects="..\Componentes\Aula1\PanelValidador.dproj"/>
+    </Target>
+    <Target Name="PanelValidador:Clean">
+        <MSBuild Projects="..\Componentes\Aula1\PanelValidador.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PanelValidador:Make">
+        <MSBuild Projects="..\Componentes\Aula1\PanelValidador.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PrjTestComp;PanelValidador"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PrjTestComp:Clean;PanelValidador:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PrjTestComp:Make;PanelValidador:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

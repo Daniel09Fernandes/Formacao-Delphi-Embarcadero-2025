@@ -1,0 +1,24 @@
+unit ClasseProduto;
+
+interface
+
+uses
+  System.Generics.Collections;
+
+type
+  TProduto = class
+  private
+    FID: Integer;
+    FNome: string;
+    FDescricao: string;
+    FPreco: Real;
+    FEstoque: Integer;
+    FCategoria: string;
+  published
+    property ID: Integer read FID write FID;
+  end;
+
+
+implementation
+
+end.

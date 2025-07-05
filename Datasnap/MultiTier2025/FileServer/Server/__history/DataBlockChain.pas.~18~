@@ -1,0 +1,85 @@
+unit DataBlockChain;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, REST.Types, REST.Client,
+  Data.Bind.Components, Data.Bind.ObjectScope, System.SyncObjs,
+  System.Generics.Collections, System.Hash;
+
+type
+  TDataModule1 = class(TDataModule)
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+  private
+    { Private declarations }
+    class var
+      FCriticalSection: TCriticalSection;
+      FBlockData: TDictionary<string, string>;
+  public
+    { Public declarations }
+    class constructor Create;
+    class destructor Destroy;
+    class function GetBlockData: TDictionary<string, string>;
+    class procedure AddBlockData(data: string);
+    function GetBlockChainInfos: string;
+  end;
+
+var
+  DataModule1: TDataModule1;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TDataModule1 }
+
+class procedure TDataModule1.AddBlockData(data: string);
+begin
+  FCriticalSection.Enter;
+  try
+    GetBlockData.Add(THashSHA2.GetHashString(data),data);
+  finally
+    FCriticalSection.Leave;
+  end;
+end;
+
+class constructor TDataModule1.Create;
+begin
+  FCriticalSection := TCriticalSection.Create;
+end;
+
+class destructor TDataModule1.Destroy;
+begin
+  FCriticalSection.Free;
+  FBlockData.Free;
+end;
+
+function TDataModule1.GetBlockChainInfos: string;
+begin
+  if GetBlockData.Count =  0 then
+  begin
+    TThread.CreateAnonymousThread(
+      procedure
+      begin
+        RESTClient1.BaseURL :=
+          'https://blockchain.info/rawblock/0000000000000bae09a7a393a8acded75aa67e46cb81f7acaa5ad94f9eacd103';
+      end
+    )
+  end;
+end;
+
+class function TDataModule1.GetBlockData: TDictionary<string, string>;
+begin
+  If not Assigned(FBlockData) then
+  begin
+    FBlockData := TDictionary<string,string>.Create;
+  end;
+
+  Result := FBlockData;
+end;
+
+end.

@@ -1,0 +1,10 @@
+unit Classe.Regra.Pessoa;
+
+interface
+
+uses
+  ClassePessoa;
+
+implementation
+
+end.

@@ -1,0 +1,62 @@
+unit uMain;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, Data.DB,
+  uOpenOffice, uOpenOffice_calc, Vcl.Grids, Vcl.DBGrids, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  System.ImageList, Vcl.ImgList, Vcl.StdCtrls, uFramePromocoes, Vcl.ExtCtrls, uOpenOffice_writer, Vcl.Mask, Vcl.DBCtrls, Componente.Panel.Validador;
+
+type
+  TForm1 = class(TForm)
+    FDMemTable1: TFDMemTable;
+    DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
+    LblBuscar: TLabel;
+    EdtBuscar: TEdit;
+    BtnBuscar: TButton;
+    ILPesquisa: TImageList;
+    Frame1: TFrPopUp;
+    Timer1: TTimer;
+    Panel1: TPanel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    PanelValidador1: TPanelValidador;
+    procedure Timer1Timer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  published
+    procedure OnCliqueHide(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  Frame1.Label1.OnClick := OnCliqueHide;
+  Frame1.visible := False;
+end;
+
+procedure TForm1.OnCliqueHide(Sender: TObject);
+begin
+   Frame1.visible := False;
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+  Frame1.visible := True;
+end;
+
+end.

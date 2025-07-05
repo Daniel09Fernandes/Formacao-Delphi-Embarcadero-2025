@@ -1,0 +1,41 @@
+unit ClasseHelperZipFile;
+
+interface
+
+uses
+  System.Classes, System.Zip, System.SysUtils;
+
+type
+  TZipFileHelper = class helper for TZipFile
+  public
+    class procedure ZiparArquivos(ArquivoZip: string; ListaArq: TArray<string>);
+    class procedure ExtrairArquivos(ArquivoZip: string; CriarPasta: Boolean);
+
+  end;
+
+implementation
+
+{ TZipFileHelper }
+
+class procedure TZipFileHelper.ExtrairArquivos(ArquivoZip: string;
+  CriarPasta: Boolean);
+begin
+
+end;
+
+class procedure TZipFileHelper.ZiparArquivos(ArquivoZip: string;
+  ListaArq: TArray<string>);
+begin
+  DeleteFile(ArquivoZip);
+
+  var lZip: TZipFile := TZipFile.Create;
+  var lArq: string;
+  try
+
+  finally
+    lZip.Free
+  end;
+
+end;
+
+end.

@@ -1,0 +1,413 @@
+//
+// Created by the DataSnap proxy generator.
+// 14/06/2025 17:31:19
+//
+
+unit ClientClassesUnit1;
+
+interface
+
+uses System.JSON, Datasnap.DSProxyRest, Datasnap.DSClientRest, Data.DBXCommon, Data.DBXClient, Data.DBXDataSnap, Data.DBXJSON, Datasnap.DSProxy, System.Classes, System.SysUtils, Data.DB, Data.SqlExpr, Data.DBXDBReaders, Data.DBXCDSReaders, ClassePessoa, Data.DBXJSONReflect;
+
+type
+
+  IDSRestCachedTPessoa = interface;
+
+  TServerMethods1Client = class(TDSAdminRestClient)
+  private
+    FDSServerModuleCreateCommand: TDSRestCommand;
+    FDSServerModuleDestroyCommand: TDSRestCommand;
+    FEchoStringCommand: TDSRestCommand;
+    FReverseStringCommand: TDSRestCommand;
+    FRetornaPessoaCommand: TDSRestCommand;
+    FRetornaPessoaCommand_Cache: TDSRestCommand;
+    FGetPessoaNativoCommand: TDSRestCommand;
+    FGetPessoaNativoCommand_Cache: TDSRestCommand;
+    FSetPessoaNativoCommand: TDSRestCommand;
+    FGetPessoaNaoNativoCommand: TDSRestCommand;
+    FSetPessoaNaoNativoCommand: TDSRestCommand;
+    FGetPessoaDBCommand: TDSRestCommand;
+    FSetPessoaDBCommand: TDSRestCommand;
+    FGetLogCommand: TDSRestCommand;
+  public
+    constructor Create(ARestConnection: TDSRestConnection); overload;
+    constructor Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean); overload;
+    destructor Destroy; override;
+    procedure DSServerModuleCreate(Sender: TObject);
+    procedure DSServerModuleDestroy(Sender: TObject);
+    function EchoString(Value: string; const ARequestFilter: string = ''): string;
+    function ReverseString(Value: string; const ARequestFilter: string = ''): string;
+    function RetornaPessoa(const ARequestFilter: string = ''): TPessoa;
+    function RetornaPessoa_Cache(const ARequestFilter: string = ''): IDSRestCachedTPessoa;
+    function GetPessoaNativo(const ARequestFilter: string = ''): TPessoa;
+    function GetPessoaNativo_Cache(const ARequestFilter: string = ''): IDSRestCachedTPessoa;
+    function SetPessoaNativo(APesssoa: TPessoa; const ARequestFilter: string = ''): Boolean;
+    function GetPessoaNaoNativo(const ARequestFilter: string = ''): string;
+    function SetPessoaNaoNativo(APessoa: string; const ARequestFilter: string = ''): Boolean;
+    function GetPessoaDB(const ARequestFilter: string = ''): string;
+    function SetPessoaDB(dbPessoas: string; const ARequestFilter: string = ''): Boolean;
+    function GetLog(const ARequestFilter: string = ''): string;
+  end;
+
+  IDSRestCachedTPessoa = interface(IDSRestCachedObject<TPessoa>)
+  end;
+
+  TDSRestCachedTPessoa = class(TDSRestCachedObject<TPessoa>, IDSRestCachedTPessoa, IDSRestCachedCommand)
+  end;
+
+const
+  TServerMethods1_DSServerModuleCreate: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: 'Sender'; Direction: 1; DBXType: 37; TypeName: 'TObject')
+  );
+
+  TServerMethods1_DSServerModuleDestroy: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: 'Sender'; Direction: 1; DBXType: 37; TypeName: 'TObject')
+  );
+
+  TServerMethods1_EchoString: array [0..1] of TDSRestParameterMetaData =
+  (
+    (Name: 'Value'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
+  );
+
+  TServerMethods1_ReverseString: array [0..1] of TDSRestParameterMetaData =
+  (
+    (Name: 'Value'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
+  );
+
+  TServerMethods1_RetornaPessoa: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: ''; Direction: 4; DBXType: 37; TypeName: 'TPessoa')
+  );
+
+  TServerMethods1_RetornaPessoa_Cache: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'String')
+  );
+
+  TServerMethods1_GetPessoaNativo: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: ''; Direction: 4; DBXType: 37; TypeName: 'TPessoa')
+  );
+
+  TServerMethods1_GetPessoaNativo_Cache: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'String')
+  );
+
+  TServerMethods1_SetPessoaNativo: array [0..1] of TDSRestParameterMetaData =
+  (
+    (Name: 'APesssoa'; Direction: 1; DBXType: 37; TypeName: 'TPessoa'),
+    (Name: ''; Direction: 4; DBXType: 4; TypeName: 'Boolean')
+  );
+
+  TServerMethods1_GetPessoaNaoNativo: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
+  );
+
+  TServerMethods1_SetPessoaNaoNativo: array [0..1] of TDSRestParameterMetaData =
+  (
+    (Name: 'APessoa'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: ''; Direction: 4; DBXType: 4; TypeName: 'Boolean')
+  );
+
+  TServerMethods1_GetPessoaDB: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
+  );
+
+  TServerMethods1_SetPessoaDB: array [0..1] of TDSRestParameterMetaData =
+  (
+    (Name: 'dbPessoas'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: ''; Direction: 4; DBXType: 4; TypeName: 'Boolean')
+  );
+
+  TServerMethods1_GetLog: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
+  );
+
+implementation
+
+procedure TServerMethods1Client.DSServerModuleCreate(Sender: TObject);
+begin
+  if FDSServerModuleCreateCommand = nil then
+  begin
+    FDSServerModuleCreateCommand := FConnection.CreateCommand;
+    FDSServerModuleCreateCommand.RequestType := 'POST';
+    FDSServerModuleCreateCommand.Text := 'TServerMethods1."DSServerModuleCreate"';
+    FDSServerModuleCreateCommand.Prepare(TServerMethods1_DSServerModuleCreate);
+  end;
+  if not Assigned(Sender) then
+    FDSServerModuleCreateCommand.Parameters[0].Value.SetNull
+  else
+  begin
+    FMarshal := TDSRestCommand(FDSServerModuleCreateCommand.Parameters[0].ConnectionHandler).GetJSONMarshaler;
+    try
+      FDSServerModuleCreateCommand.Parameters[0].Value.SetJSONValue(FMarshal.Marshal(Sender), True);
+      if FInstanceOwner then
+        Sender.Free
+    finally
+      FreeAndNil(FMarshal)
+    end
+    end;
+  FDSServerModuleCreateCommand.Execute;
+end;
+
+procedure TServerMethods1Client.DSServerModuleDestroy(Sender: TObject);
+begin
+  if FDSServerModuleDestroyCommand = nil then
+  begin
+    FDSServerModuleDestroyCommand := FConnection.CreateCommand;
+    FDSServerModuleDestroyCommand.RequestType := 'POST';
+    FDSServerModuleDestroyCommand.Text := 'TServerMethods1."DSServerModuleDestroy"';
+    FDSServerModuleDestroyCommand.Prepare(TServerMethods1_DSServerModuleDestroy);
+  end;
+  if not Assigned(Sender) then
+    FDSServerModuleDestroyCommand.Parameters[0].Value.SetNull
+  else
+  begin
+    FMarshal := TDSRestCommand(FDSServerModuleDestroyCommand.Parameters[0].ConnectionHandler).GetJSONMarshaler;
+    try
+      FDSServerModuleDestroyCommand.Parameters[0].Value.SetJSONValue(FMarshal.Marshal(Sender), True);
+      if FInstanceOwner then
+        Sender.Free
+    finally
+      FreeAndNil(FMarshal)
+    end
+    end;
+  FDSServerModuleDestroyCommand.Execute;
+end;
+
+function TServerMethods1Client.EchoString(Value: string; const ARequestFilter: string): string;
+begin
+  if FEchoStringCommand = nil then
+  begin
+    FEchoStringCommand := FConnection.CreateCommand;
+    FEchoStringCommand.RequestType := 'GET';
+    FEchoStringCommand.Text := 'TServerMethods1.EchoString';
+    FEchoStringCommand.Prepare(TServerMethods1_EchoString);
+  end;
+  FEchoStringCommand.Parameters[0].Value.SetWideString(Value);
+  FEchoStringCommand.Execute(ARequestFilter);
+  Result := FEchoStringCommand.Parameters[1].Value.GetWideString;
+end;
+
+function TServerMethods1Client.ReverseString(Value: string; const ARequestFilter: string): string;
+begin
+  if FReverseStringCommand = nil then
+  begin
+    FReverseStringCommand := FConnection.CreateCommand;
+    FReverseStringCommand.RequestType := 'GET';
+    FReverseStringCommand.Text := 'TServerMethods1.ReverseString';
+    FReverseStringCommand.Prepare(TServerMethods1_ReverseString);
+  end;
+  FReverseStringCommand.Parameters[0].Value.SetWideString(Value);
+  FReverseStringCommand.Execute(ARequestFilter);
+  Result := FReverseStringCommand.Parameters[1].Value.GetWideString;
+end;
+
+function TServerMethods1Client.RetornaPessoa(const ARequestFilter: string): TPessoa;
+begin
+  if FRetornaPessoaCommand = nil then
+  begin
+    FRetornaPessoaCommand := FConnection.CreateCommand;
+    FRetornaPessoaCommand.RequestType := 'GET';
+    FRetornaPessoaCommand.Text := 'TServerMethods1.RetornaPessoa';
+    FRetornaPessoaCommand.Prepare(TServerMethods1_RetornaPessoa);
+  end;
+  FRetornaPessoaCommand.Execute(ARequestFilter);
+  if not FRetornaPessoaCommand.Parameters[0].Value.IsNull then
+  begin
+    FUnMarshal := TDSRestCommand(FRetornaPessoaCommand.Parameters[0].ConnectionHandler).GetJSONUnMarshaler;
+    try
+      Result := TPessoa(FUnMarshal.UnMarshal(FRetornaPessoaCommand.Parameters[0].Value.GetJSONValue(True)));
+      if FInstanceOwner then
+        FRetornaPessoaCommand.FreeOnExecute(Result);
+    finally
+      FreeAndNil(FUnMarshal)
+    end
+  end
+  else
+    Result := nil;
+end;
+
+function TServerMethods1Client.RetornaPessoa_Cache(const ARequestFilter: string): IDSRestCachedTPessoa;
+begin
+  if FRetornaPessoaCommand_Cache = nil then
+  begin
+    FRetornaPessoaCommand_Cache := FConnection.CreateCommand;
+    FRetornaPessoaCommand_Cache.RequestType := 'GET';
+    FRetornaPessoaCommand_Cache.Text := 'TServerMethods1.RetornaPessoa';
+    FRetornaPessoaCommand_Cache.Prepare(TServerMethods1_RetornaPessoa_Cache);
+  end;
+  FRetornaPessoaCommand_Cache.ExecuteCache(ARequestFilter);
+  Result := TDSRestCachedTPessoa.Create(FRetornaPessoaCommand_Cache.Parameters[0].Value.GetString);
+end;
+
+function TServerMethods1Client.GetPessoaNativo(const ARequestFilter: string): TPessoa;
+begin
+  if FGetPessoaNativoCommand = nil then
+  begin
+    FGetPessoaNativoCommand := FConnection.CreateCommand;
+    FGetPessoaNativoCommand.RequestType := 'GET';
+    FGetPessoaNativoCommand.Text := 'TServerMethods1.GetPessoaNativo';
+    FGetPessoaNativoCommand.Prepare(TServerMethods1_GetPessoaNativo);
+  end;
+  FGetPessoaNativoCommand.Execute(ARequestFilter);
+  if not FGetPessoaNativoCommand.Parameters[0].Value.IsNull then
+  begin
+    FUnMarshal := TDSRestCommand(FGetPessoaNativoCommand.Parameters[0].ConnectionHandler).GetJSONUnMarshaler;
+    try
+      Result := TPessoa(FUnMarshal.UnMarshal(FGetPessoaNativoCommand.Parameters[0].Value.GetJSONValue(True)));
+      if FInstanceOwner then
+        FGetPessoaNativoCommand.FreeOnExecute(Result);
+    finally
+      FreeAndNil(FUnMarshal)
+    end
+  end
+  else
+    Result := nil;
+end;
+
+function TServerMethods1Client.GetPessoaNativo_Cache(const ARequestFilter: string): IDSRestCachedTPessoa;
+begin
+  if FGetPessoaNativoCommand_Cache = nil then
+  begin
+    FGetPessoaNativoCommand_Cache := FConnection.CreateCommand;
+    FGetPessoaNativoCommand_Cache.RequestType := 'GET';
+    FGetPessoaNativoCommand_Cache.Text := 'TServerMethods1.GetPessoaNativo';
+    FGetPessoaNativoCommand_Cache.Prepare(TServerMethods1_GetPessoaNativo_Cache);
+  end;
+  FGetPessoaNativoCommand_Cache.ExecuteCache(ARequestFilter);
+  Result := TDSRestCachedTPessoa.Create(FGetPessoaNativoCommand_Cache.Parameters[0].Value.GetString);
+end;
+
+function TServerMethods1Client.SetPessoaNativo(APesssoa: TPessoa; const ARequestFilter: string): Boolean;
+begin
+  if FSetPessoaNativoCommand = nil then
+  begin
+    FSetPessoaNativoCommand := FConnection.CreateCommand;
+    FSetPessoaNativoCommand.RequestType := 'POST';
+    FSetPessoaNativoCommand.Text := 'TServerMethods1."SetPessoaNativo"';
+    FSetPessoaNativoCommand.Prepare(TServerMethods1_SetPessoaNativo);
+  end;
+  if not Assigned(APesssoa) then
+    FSetPessoaNativoCommand.Parameters[0].Value.SetNull
+  else
+  begin
+    FMarshal := TDSRestCommand(FSetPessoaNativoCommand.Parameters[0].ConnectionHandler).GetJSONMarshaler;
+    try
+      FSetPessoaNativoCommand.Parameters[0].Value.SetJSONValue(FMarshal.Marshal(APesssoa), True);
+      if FInstanceOwner then
+        APesssoa.Free
+    finally
+      FreeAndNil(FMarshal)
+    end
+    end;
+  FSetPessoaNativoCommand.Execute(ARequestFilter);
+  Result := FSetPessoaNativoCommand.Parameters[1].Value.GetBoolean;
+end;
+
+function TServerMethods1Client.GetPessoaNaoNativo(const ARequestFilter: string): string;
+begin
+  if FGetPessoaNaoNativoCommand = nil then
+  begin
+    FGetPessoaNaoNativoCommand := FConnection.CreateCommand;
+    FGetPessoaNaoNativoCommand.RequestType := 'GET';
+    FGetPessoaNaoNativoCommand.Text := 'TServerMethods1.GetPessoaNaoNativo';
+    FGetPessoaNaoNativoCommand.Prepare(TServerMethods1_GetPessoaNaoNativo);
+  end;
+  FGetPessoaNaoNativoCommand.Execute(ARequestFilter);
+  Result := FGetPessoaNaoNativoCommand.Parameters[0].Value.GetWideString;
+end;
+
+function TServerMethods1Client.SetPessoaNaoNativo(APessoa: string; const ARequestFilter: string): Boolean;
+begin
+  if FSetPessoaNaoNativoCommand = nil then
+  begin
+    FSetPessoaNaoNativoCommand := FConnection.CreateCommand;
+    FSetPessoaNaoNativoCommand.RequestType := 'GET';
+    FSetPessoaNaoNativoCommand.Text := 'TServerMethods1.SetPessoaNaoNativo';
+    FSetPessoaNaoNativoCommand.Prepare(TServerMethods1_SetPessoaNaoNativo);
+  end;
+  FSetPessoaNaoNativoCommand.Parameters[0].Value.SetWideString(APessoa);
+  FSetPessoaNaoNativoCommand.Execute(ARequestFilter);
+  Result := FSetPessoaNaoNativoCommand.Parameters[1].Value.GetBoolean;
+end;
+
+function TServerMethods1Client.GetPessoaDB(const ARequestFilter: string): string;
+begin
+  if FGetPessoaDBCommand = nil then
+  begin
+    FGetPessoaDBCommand := FConnection.CreateCommand;
+    FGetPessoaDBCommand.RequestType := 'GET';
+    FGetPessoaDBCommand.Text := 'TServerMethods1.GetPessoaDB';
+    FGetPessoaDBCommand.Prepare(TServerMethods1_GetPessoaDB);
+  end;
+  FGetPessoaDBCommand.Execute(ARequestFilter);
+  Result := FGetPessoaDBCommand.Parameters[0].Value.GetWideString;
+end;
+
+function TServerMethods1Client.SetPessoaDB(dbPessoas: string; const ARequestFilter: string): Boolean;
+begin
+  if FSetPessoaDBCommand = nil then
+  begin
+    FSetPessoaDBCommand := FConnection.CreateCommand;
+    FSetPessoaDBCommand.RequestType := 'GET';
+    FSetPessoaDBCommand.Text := 'TServerMethods1.SetPessoaDB';
+    FSetPessoaDBCommand.Prepare(TServerMethods1_SetPessoaDB);
+  end;
+  FSetPessoaDBCommand.Parameters[0].Value.SetWideString(dbPessoas);
+  FSetPessoaDBCommand.Execute(ARequestFilter);
+  Result := FSetPessoaDBCommand.Parameters[1].Value.GetBoolean;
+end;
+
+function TServerMethods1Client.GetLog(const ARequestFilter: string): string;
+begin
+  if FGetLogCommand = nil then
+  begin
+    FGetLogCommand := FConnection.CreateCommand;
+    FGetLogCommand.RequestType := 'GET';
+    FGetLogCommand.Text := 'TServerMethods1.GetLog';
+    FGetLogCommand.Prepare(TServerMethods1_GetLog);
+  end;
+  FGetLogCommand.Execute(ARequestFilter);
+  Result := FGetLogCommand.Parameters[0].Value.GetWideString;
+end;
+
+constructor TServerMethods1Client.Create(ARestConnection: TDSRestConnection);
+begin
+  inherited Create(ARestConnection);
+end;
+
+constructor TServerMethods1Client.Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean);
+begin
+  inherited Create(ARestConnection, AInstanceOwner);
+end;
+
+destructor TServerMethods1Client.Destroy;
+begin
+  FDSServerModuleCreateCommand.Free;
+  FDSServerModuleDestroyCommand.Free;
+  FEchoStringCommand.Free;
+  FReverseStringCommand.Free;
+  FRetornaPessoaCommand.Free;
+  FRetornaPessoaCommand_Cache.Free;
+  FGetPessoaNativoCommand.Free;
+  FGetPessoaNativoCommand_Cache.Free;
+  FSetPessoaNativoCommand.Free;
+  FGetPessoaNaoNativoCommand.Free;
+  FSetPessoaNaoNativoCommand.Free;
+  FGetPessoaDBCommand.Free;
+  FSetPessoaDBCommand.Free;
+  FGetLogCommand.Free;
+  inherited;
+end;
+
+end.
+

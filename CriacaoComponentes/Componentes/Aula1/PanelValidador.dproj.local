@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/04/15 12:36:55.000.324,=rtl.dcp</Transaction>
+    <Transaction>2025/07/05 11:27:23.267,=rtl.dcp</Transaction>
+    <Transaction>2025/07/05 11:29:20.151,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Componentes\Aula1\PanelValidador.dproj=D:\Fontes\Projects\Package1.dproj</Transaction>
+    <Transaction>2025/07/05 11:36:06.563,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Componentes\Aula1\Unit1.pas</Transaction>
+    <Transaction>2025/07/05 11:36:51.948,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Componentes\Aula1\Componente.Panel.Validador.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Componentes\Aula1\Unit1.pas</Transaction>
+    <Transaction>2025/07/05 14:58:24.706,=vcl.dcp</Transaction>
+    <Transaction>2025/07/05 14:58:24.837,=dbrtl.dcp</Transaction>
+    <Transaction>2025/07/05 14:58:24.991,=vclwinx.dcp</Transaction>
+    <Transaction>2025/07/05 14:58:25.136,=vcldb.dcp</Transaction>
+    <Transaction>2025/07/05 14:59:28.183,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Componentes\Aula1\Unit1.pas</Transaction>
+    <Transaction>2025/07/05 14:59:50.333,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Componentes\Aula1\Register.PanelValidador.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Componentes\Aula1\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

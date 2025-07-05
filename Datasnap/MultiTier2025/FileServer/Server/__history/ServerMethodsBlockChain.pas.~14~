@@ -1,0 +1,55 @@
+unit ServerMethodsBlockChain;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Datasnap.DSServer, 
+  Datasnap.DSAuth, Datasnap.DSProviderDataModuleAdapter, DataBlockChain, Data.DBXPlatform,
+  System.NetEncoding;
+
+type
+  TSMBlockChain = class(TDSServerModule)
+    procedure DSServerModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+    FDMBlockChain:  TdmBlockChain;
+  public
+    { Public declarations }
+    function GetBlockChainInfoDS: string;
+    function GetBlockChainInfo: Boolean;
+    function GetBlockChainInfoDSBase64: string;
+  end;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TSMBlockChain.DSServerModuleCreate(Sender: TObject);
+begin
+  FDMBlockChain := TdmBlockChain.Create(Self);
+end;
+
+function TSMBlockChain.GetBlockChainInfo: Boolean;
+begin
+  Result := True;
+  GetInvocationMetadata().ResponseContentType := 'application/json';
+  GetInvocationMetadata().ResponseContent := FDMBlockChain.GetBlockChainInfos;
+end;
+
+function TSMBlockChain.GetBlockChainInfoDS: string;
+begin
+  Result := FDMBlockChain.GetBlockChainInfos;
+end;
+
+function TSMBlockChain.GetBlockChainInfoDSBase64: string;
+begin
+  Result := True;
+  GetInvocationMetadata().ResponseContentType := 'application/json';
+  GetInvocationMetadata().ResponseContent :=
+    TNetenconding
+
+end;
+
+end.

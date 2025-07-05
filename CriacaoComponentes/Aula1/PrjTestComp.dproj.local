@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2025/07/05 10:37:38.792,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/05 10:39:48.469,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula1\uMain.pas=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/05 10:39:48.469,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula1\uMain.dfm=D:\Fontes\Projects\Unit1.dfm</Transaction>
+    <Transaction>2025/07/05 10:40:04.020,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula1\PrjTestComp.dproj=D:\Fontes\Projects\Project2.dproj</Transaction>
+    <Transaction>2025/07/05 11:08:50.703,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula1\Unit1.pas</Transaction>
+    <Transaction>2025/07/05 11:10:54.789,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula1\uFramePromocoes.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula1\Unit1.pas</Transaction>
+    <Transaction>2025/07/05 11:10:54.789,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula1\uFramePromocoes.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula1\Unit1.dfm</Transaction>
+    <Transaction>2025/07/05 15:07:48.008,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Componentes\Aula1\Componente.Panel.Validador.pas</Transaction>
+  </Transactions>
+</BorlandProject>

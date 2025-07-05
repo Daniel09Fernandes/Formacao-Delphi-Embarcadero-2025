@@ -2,7 +2,13 @@ unit ClassePessoa;
 
 interface
 
+uses
+  System.Generics.Collections;
+
 type
+  TPessoa = class;
+  TListaPessoa = class(TObjectList<TPessoa>);
+
   TPessoa = class(TObject)
   private
     FId: Integer;

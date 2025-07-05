@@ -136,6 +136,7 @@
         <DCCReference Include="..\Server\ClassePessoa.pas"/>
         <DCCReference Include="Pkg.Json.DTO.pas"/>
         <DCCReference Include="RootUnit.pas"/>
+        <DCCReference Include="ClasseHelperZipFile.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

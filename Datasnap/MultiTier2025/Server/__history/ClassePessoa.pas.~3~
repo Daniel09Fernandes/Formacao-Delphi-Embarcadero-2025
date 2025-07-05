@@ -1,0 +1,18 @@
+unit ClassePessoa;
+
+interface
+
+type
+  TPessoa = class(TObject)
+  private
+    FId: Integer;
+    FNome: string;
+    FIdade: Integer;
+  public
+    property Id: Integer read FId write FId; 
+
+  end;
+
+implementation
+
+end.

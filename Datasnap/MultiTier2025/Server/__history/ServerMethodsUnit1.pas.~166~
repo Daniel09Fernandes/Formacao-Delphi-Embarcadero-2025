@@ -1,0 +1,357 @@
+unit ServerMethodsUnit1;
+
+interface
+
+uses System.SysUtils, System.Classes, System.Json, REST.JSON,
+    DataSnap.DSProviderDataModuleAdapter,
+    Datasnap.DSServer, Datasnap.DSAuth, ClassePessoa, System.SyncObjs,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Stan.StorageJSON, Winapi.Windows;
+
+type
+  TPessoaArray = TArray<TPessoa>;
+
+  TServerMethods1 = class(TDSServerModule)
+    memPessoa: TFDMemTable;
+    memPessoaId: TIntegerField;
+    memPessoaNome: TStringField;
+    FDStanStorageJSONLink1: TFDStanStorageJSONLink;
+    procedure DSServerModuleCreate(Sender: TObject);
+    procedure DSServerModuleDestroy(Sender: TObject);
+  private
+    { Private declarations }
+    const
+      DB_PESSOA = 'DB_Pessoa.json';
+    class var
+      FCancelRequested: Boolean;
+      FQtdThreadsAtivas: Integer;
+      FQtdMaxThreads: Integer;
+      FLogStr: string;
+      FCriticalSection: TCriticalSection;
+      class procedure GravaLog(ATexto: string);
+
+  public
+    { Public declarations }
+    class constructor Create;
+    class destructor Destroy;
+    //Sample Methods
+    function EchoString(Value: string): string;
+    function ReverseString(Value: string): string;
+
+    //Pessoa
+    function RetornaPessoa: TPessoa;  //primeiro metodo de exemplo
+    function GetPessoaNativo: TPessoa;
+    function SetPessoaNativo(APesssoa: TPessoa): Boolean;
+    function GetPessoaNaoNativo: string;
+    function SetPessoaNaoNativo(APessoa: string): Boolean;
+    function GetPessoaDB: string;
+    function SetPessoaDB(dbPessoas: string): Boolean;
+
+    //Listas
+    function GetListaPessoa(Count: Integer): TListaPessoa;
+    function GetListaPessoaArray(Count: Integer): TArray<TPessoa>;
+    function GetListaPessoaArray2(Count: Integer): TPessoaArray;
+    function GetListaPessoaJson(Count: Integer): string;
+    function GetListaPessoaSOAP(Count: Integer): string;
+
+    //Threads
+    function GetThreadID: Cardinal;
+    function GetMetodoDemorado(tempoEmMs: Integer): Boolean;
+    function GetThreadsAtivas: Integer;
+    function GetMaxThreads: Integer;
+
+    //Log
+    function GetLog: string;
+
+    //Hash
+    function AutenticarUsuario(senha: string): string;
+
+    //Cancelar processo
+    procedure SetCancelRequested(Value: Boolean);
+    function LongRunningMethod: string;
+
+  end;
+
+implementation
+
+
+{$R *.dfm}
+
+
+uses System.StrUtils, Classe.Regra.Pessoa, Data.DBXPlatform, System.Hash;
+
+function TServerMethods1.AutenticarUsuario(senha: string): string;
+const
+  SENHA_ESTATICA = 'fgt*123' + 'MeuToken';
+begin
+  if CompareStr(senha, THashSHA2.GetHashString(SENHA_ESTATICA)) = 0 then
+  begin
+    Result := 'OK';
+  end
+  else
+  begin
+    Result := 'Senha Invalida';
+  end;
+
+end;
+
+class constructor TServerMethods1.Create;
+begin
+  FCriticalSection := TCriticalSection.Create;
+
+  FCancelRequested := False;
+end;
+
+class destructor TServerMethods1.Destroy;
+begin
+  FCriticalSection.Free;
+end;
+
+procedure TServerMethods1.DSServerModuleCreate(Sender: TObject);
+begin
+  //ThreadSafe
+  InterlockedIncrement(FQtdThreadsAtivas);
+  InterlockedIncrement(FQtdMaxThreads);
+
+  GravaLog('Create Server Methods');
+
+  //  Nao ThreadSafe
+  //  FQtdThreadsAtivas := FQtdThreadsAtivas + 1;
+  //  Inc(FQtdThreadsAtivas);
+end;
+
+procedure TServerMethods1.DSServerModuleDestroy(Sender: TObject);
+begin
+  InterlockedDecrement(FQtdThreadsAtivas);
+  GravaLog('Free Server Methods');
+end;
+
+function TServerMethods1.EchoString(Value: string): string;
+begin
+  Result := Value;
+end;
+
+function TServerMethods1.GetListaPessoa(Count: Integer): TListaPessoa;
+begin
+  Result := TListaPessoa.Create(True);
+  Result.AddRange(GetListaPessoaArray(Count));
+end;
+
+function TServerMethods1.GetListaPessoaArray(Count: Integer): TArray<TPessoa>;
+begin
+  if Count = 0 then
+    Count := 10;
+
+  for var i: Integer := 0 to Count - 1 do
+  begin
+    var pes: TPessoa := TPessoa.Create;
+    pes.Id := TThread.GetTickCount;
+    pes.Nome := 'Teste '+pes.Id.ToString;
+    pes.Idade := Random(1000);
+
+    SetLength(Result, Length(Result)+1);
+    Result[Length(Result)-1] := pes;
+  end;
+end;
+
+function TServerMethods1.GetListaPessoaArray2(Count: Integer): TPessoaArray;
+begin
+  Result := GetListaPessoaArray(Count);
+end;
+
+function TServerMethods1.GetListaPessoaJson(Count: Integer): string;
+begin
+  var lstPes: TListaPessoa := GetListaPessoa(Count);
+  Result := TJson.ObjectToJsonString(lstPes);
+  lstPes.Free;
+end;
+
+function TServerMethods1.GetListaPessoaSOAP(Count: Integer): string;
+begin
+  //uses Data.DBXPlatform
+  GetInvocationMetadata().ResponseContentType := 'application/json';
+  GetInvocationMetadata().ResponseContent := GetListaPessoaJson(Count);
+end;
+
+function TServerMethods1.GetLog: string;
+begin
+  Result := FLogStr;
+end;
+
+function TServerMethods1.GetThreadsAtivas: Integer;
+begin
+  Result := FQtdThreadsAtivas;
+  GravaLog('QtdThreadsAtivas-'+FQtdThreadsAtivas.ToString);
+end;
+
+function TServerMethods1.GetMaxThreads: Integer;
+begin
+  Result := FQtdMaxThreads;
+
+  GravaLog('QtdMaxThreas-'+FQtdMaxThreads.ToString);
+end;
+
+function TServerMethods1.GetMetodoDemorado(tempoEmMs: Integer): Boolean;
+begin
+  GravaLog('INI: Metodo Demorado');
+  Sleep(tempoEmMs);
+  Result := True;
+  GravaLog('FIM: Metodo Demorado');
+end;
+
+function TServerMethods1.GetPessoaDB: string;
+begin
+  if FileExists(DB_PESSOA) then
+  begin
+    memPessoa.LoadFromFile(DB_PESSOA, sfJSON);
+  end;
+
+  var strStm: TStringStream := TStringStream.Create;
+  memPessoa.SaveToStream(strStm, sfJSON);
+  Result := strStm.DataString;
+  strStm.Free;
+end;
+
+function TServerMethods1.GetPessoaNaoNativo: string;
+begin
+  var Pessoa: TPessoa := TPessoa.Create;
+
+  Pessoa.Id := 1234;
+  Pessoa.Nome := 'Juliano';
+  Pessoa.Idade := 45;
+
+  Result := TJson.ObjectToJsonString(Pessoa);
+
+  Pessoa.Free;
+end;
+
+function TServerMethods1.GetPessoaNativo: TPessoa;
+begin
+  Result := TPessoa.Create;
+  Result.Id := 32312;
+  Result.Nome := 'Daniel';
+  Result.Idade := 30;
+end;
+
+function TServerMethods1.GetThreadID: Cardinal;
+begin
+  Result := GetCurrentThreadId; //WinApi.Windows
+end;
+
+class procedure TServerMethods1.GravaLog(ATexto: string);
+begin
+  FCriticalSection.Acquire;
+  try
+    FLogStr :=
+      FLogStr + TimeToStr(Now)
+        + ' - ThreadID Server -  '+GetCurrentThreadID.ToString
+        + ATexto + sLineBreak;
+  finally
+    FCriticalSection.Leave;
+  end;
+end;
+
+function TServerMethods1.LongRunningMethod: string;
+begin
+
+end;
+
+function TServerMethods1.RetornaPessoa: TPessoa;
+begin
+  Result := TPessoa.Create;
+  Result.Id := 1;
+  Result.Nome := 'Gustavo';
+  Result.Idade := 34;
+end;
+
+function TServerMethods1.ReverseString(Value: string): string;
+begin
+  Result := System.StrUtils.ReverseString(Value);
+end;
+
+procedure TServerMethods1.SetCancelRequested(Value: Boolean);
+begin
+  FCriticalSection.Acquire;
+  try
+    FCancelRequested := Value;
+  finally
+    FCriticalSection.Release;
+  end;
+end;
+
+function TServerMethods1.SetPessoaDB(dbPessoas: string): Boolean;
+begin
+  var strStm: TStringStream := TStringStream.Create(dbPessoas);
+  memPessoa.LoadFromStream(strStm, sfJSON);
+
+  memPessoa.SaveToFile(DB_PESSOA, sfJSON);
+  memPessoa.Close;
+  strStm.Free;
+
+  Result := True;
+end;
+
+function TServerMethods1.SetPessoaNaoNativo(APessoa: string): Boolean;
+begin
+  GravaLog('Metodo SetPessoaNaoNativo');
+  var Pessoa: TPessoa := Tjson.JsonToObject<TPessoa>(APessoa);
+
+  //Validacoes
+  //opcao 1: classe herdada
+  var PesRegra1: TPessoaRegra := TJson.JsonToObject<TPessoaRegra>(APessoa);
+  var ValidacaoPessoa: string := PesRegra1.ValidaCamposObrigatorios;
+
+  if ValidacaoPessoa <> '' then
+  begin
+    Result := False;
+    //Evitar raise no server
+    //raise Exception.Create('Erro ao salvar pessoa-'+ValidacaPessoa);
+    GravaLog(ValidacaoPessoa);
+  end;
+
+  //opcao 2: Wrapper
+  var PesRegra2: TPessoaRegra2 := TPessoaRegra2.Create;
+  PesRegra2.Pessoa := TJson.JsonToObject<TPessoa>(APessoa);
+
+  var ValidacaoPessoa2: string := PesRegra2.ValidaCamposObrigatorios;
+
+  if ValidacaoPessoa2 <> '' then
+  begin
+    Result := False;
+
+    //evitar raise direto
+    //pode usar metodo que retorna erro especifico em uma variavel global
+
+    GravaLog(ValidacaoPessoa2);
+  end;
+
+  var JsonObjt: string := TJson.ObjectToJsonString(Pessoa);
+
+  var sl: TStringList := TStringList.Create;
+  sl.Add(JsonObjt);
+  sl.SaveToFile('log_pessoa.json');
+  sl.Free;
+
+  Result := True;
+
+  Pessoa.Free;
+  PesRegra1.Free;
+  PesRegra2.Pessoa.Free;
+  PesRegra2.Free;
+end;
+
+function TServerMethods1.SetPessoaNativo(APesssoa: TPessoa): Boolean;
+begin
+  var JsonObjStr: string := TJson.ObjectToJsonString(APesssoa);
+
+  var sl: TStringList := TStringList.Create;
+  sl.Add(JsonObjStr);
+  sl.SaveToFile('log_pessoa.json');
+  sl.Free;
+
+  Result:= True;
+end;
+
+end.
+

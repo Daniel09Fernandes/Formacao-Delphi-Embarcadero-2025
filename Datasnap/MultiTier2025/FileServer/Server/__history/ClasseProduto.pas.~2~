@@ -1,0 +1,10 @@
+unit ClasseProduto;
+
+interface
+
+uses
+  System.Generics.Collections
+
+implementation
+
+end.

@@ -26,10 +26,9 @@ object FormClient: TFormClient
     Top = 0
     Width = 1118
     Height = 615
-    ActivePage = TabDataSet
+    ActivePage = TabCancelRequest
     Align = alClient
     TabOrder = 1
-    ExplicitTop = -6
     object TabPessoa: TTabSheet
       Caption = 'ClassePessoa'
       object Button1: TButton
@@ -362,7 +361,6 @@ object FormClient: TFormClient
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 1104
       end
       object Panel2: TPanel
         Left = 0
@@ -371,7 +369,6 @@ object FormClient: TFormClient
         Height = 256
         Align = alTop
         TabOrder = 1
-        ExplicitWidth = 1104
         object Panel4: TPanel
           Left = 1
           Top = 1
@@ -464,7 +461,6 @@ object FormClient: TFormClient
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 2
-        ExplicitWidth = 1104
       end
       object Panel6: TPanel
         Left = 0
@@ -473,7 +469,6 @@ object FormClient: TFormClient
         Height = 244
         Align = alLeft
         TabOrder = 3
-        ExplicitHeight = 227
         object Panel7: TPanel
           Left = 1
           Top = 1
@@ -509,7 +504,6 @@ object FormClient: TFormClient
           Lines.Strings = (
             '')
           TabOrder = 1
-          ExplicitHeight = 169
         end
         object MemoNaoNativoEnvia: TMemo
           Left = 1
@@ -524,7 +518,6 @@ object FormClient: TFormClient
             #9'"idade": 0'
             '}')
           TabOrder = 2
-          ExplicitHeight = 169
         end
       end
     end
@@ -545,7 +538,6 @@ object FormClient: TFormClient
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
-        ExplicitTop = -1
         object Panel12: TPanel
           Left = 1
           Top = 1
@@ -650,7 +642,6 @@ object FormClient: TFormClient
           DataSource = dsPessoa
           Align = alTop
           TabOrder = 1
-          ExplicitTop = 43
         end
         object DBGrid2: TDBGrid
           Left = 1
@@ -717,8 +708,6 @@ object FormClient: TFormClient
         Height = 200
         Align = alClient
         TabOrder = 2
-        ExplicitTop = 233
-        ExplicitHeight = 240
         object Panel13: TPanel
           Left = 1
           Top = 1
@@ -740,9 +729,6 @@ object FormClient: TFormClient
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 0
-            ExplicitLeft = 104
-            ExplicitTop = 56
-            ExplicitWidth = 185
           end
           object DBGrid4: TDBGrid
             Left = 1
@@ -780,9 +766,6 @@ object FormClient: TFormClient
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 0
-            ExplicitLeft = 112
-            ExplicitTop = 64
-            ExplicitWidth = 185
           end
           object DBGrid5: TDBGrid
             Left = 1
@@ -806,10 +789,6 @@ object FormClient: TFormClient
           Height = 198
           Align = alClient
           TabOrder = 2
-          ExplicitLeft = 784
-          ExplicitTop = 64
-          ExplicitWidth = 185
-          ExplicitHeight = 41
           object Panel18: TPanel
             Left = 1
             Top = 1
@@ -824,9 +803,6 @@ object FormClient: TFormClient
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 0
-            ExplicitLeft = 72
-            ExplicitTop = 72
-            ExplicitWidth = 185
           end
           object DBGrid6: TDBGrid
             Left = 1
@@ -843,6 +819,338 @@ object FormClient: TFormClient
             TitleFont.Style = []
           end
         end
+      end
+    end
+    object TabListas: TTabSheet
+      Caption = 'Listas'
+      ImageIndex = 5
+      object Panel19: TPanel
+        Left = 0
+        Top = 0
+        Width = 1110
+        Height = 81
+        Align = alTop
+        TabOrder = 0
+        object ButtonListaDataSnap: TButton
+          Left = 8
+          Top = 16
+          Width = 201
+          Height = 57
+          Caption = 'Lista DataSnap'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+          OnClick = ButtonListaDataSnapClick
+        end
+        object ButtonListaRetornoString: TButton
+          Left = 215
+          Top = 16
+          Width = 201
+          Height = 57
+          Caption = 'Lista Retorno String'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 1
+          OnClick = ButtonListaRetornoStringClick
+        end
+        object ButtonResponseSOAP: TButton
+          Left = 422
+          Top = 16
+          Width = 201
+          Height = 57
+          Caption = 'Response SOAP'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 2
+          OnClick = ButtonResponseSOAPClick
+        end
+        object EditQtdPessoas: TEdit
+          Left = 952
+          Top = 16
+          Width = 153
+          Height = 23
+          TabOrder = 3
+          Text = 'Qtd Pessoas'
+        end
+      end
+      object MemoListas: TMemo
+        Left = 0
+        Top = 81
+        Width = 1110
+        Height = 504
+        Align = alClient
+        Lines.Strings = (
+          'MemoListas')
+        TabOrder = 1
+      end
+    end
+    object TabThreads: TTabSheet
+      Caption = 'Threads'
+      ImageIndex = 6
+      object Panel20: TPanel
+        Left = 0
+        Top = 0
+        Width = 1110
+        Height = 89
+        Align = alTop
+        TabOrder = 0
+        object ButtonCurrentThreadID: TButton
+          Left = 0
+          Top = 16
+          Width = 201
+          Height = 65
+          Caption = 'Current Thread ID'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+          OnClick = ButtonCurrentThreadIDClick
+        end
+        object ButtonGetThreadID: TButton
+          Left = 207
+          Top = 16
+          Width = 201
+          Height = 65
+          Caption = 'Get Thread ID'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 1
+          OnClick = ButtonGetThreadIDClick
+        end
+        object ButtonMetodoDemorado: TButton
+          Left = 414
+          Top = 16
+          Width = 201
+          Height = 65
+          Caption = 'Metodo Demorado'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 2
+          OnClick = ButtonMetodoDemoradoClick
+        end
+        object ButtonLogServer: TButton
+          Left = 621
+          Top = 16
+          Width = 201
+          Height = 65
+          Caption = 'Log Server'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 3
+          OnClick = ButtonLogServerClick
+        end
+        object ButtonQtdeThreads: TButton
+          Left = 828
+          Top = 16
+          Width = 201
+          Height = 65
+          Caption = 'QtdeThreads'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 4
+          OnClick = ButtonQtdeThreadsClick
+        end
+      end
+      object MemoThreads: TMemo
+        Left = 0
+        Top = 89
+        Width = 1110
+        Height = 496
+        Align = alClient
+        Lines.Strings = (
+          'MemoThreads')
+        TabOrder = 1
+      end
+    end
+    object TabZip: TTabSheet
+      Caption = 'Zip'
+      ImageIndex = 7
+      object Panel21: TPanel
+        Left = 0
+        Top = 0
+        Width = 1110
+        Height = 97
+        Align = alTop
+        TabOrder = 0
+        object ButtonZipArquivos: TButton
+          Left = 8
+          Top = 9
+          Width = 201
+          Height = 81
+          Caption = 'Zipar Arquivos'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+          OnClick = ButtonZipArquivosClick
+        end
+        object ButtonExtrairArquivos: TButton
+          Left = 215
+          Top = 9
+          Width = 201
+          Height = 81
+          Caption = 'Extrair Arquivos'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 1
+          OnClick = ButtonExtrairArquivosClick
+        end
+      end
+    end
+    object TabHash: TTabSheet
+      Caption = 'Hash'
+      ImageIndex = 8
+      object Panel22: TPanel
+        Left = 0
+        Top = 0
+        Width = 1110
+        Height = 89
+        Align = alTop
+        TabOrder = 0
+        ExplicitWidth = 1104
+        object Label3: TLabel
+          Left = 16
+          Top = 16
+          Width = 53
+          Height = 28
+          Caption = 'Senha'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object EditSenha: TEdit
+          Left = 16
+          Top = 50
+          Width = 145
+          Height = 23
+          TabOrder = 0
+        end
+        object ButtonHash: TButton
+          Left = 167
+          Top = 37
+          Width = 185
+          Height = 40
+          Caption = 'Autenticar'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 1
+          OnClick = ButtonHashClick
+        end
+      end
+      object MemoDados: TMemo
+        Left = 0
+        Top = 89
+        Width = 1110
+        Height = 104
+        Align = alTop
+        Lines.Strings = (
+          '')
+        TabOrder = 1
+        OnChange = MemoDadosChange
+        ExplicitWidth = 1104
+      end
+      object MemoHash: TMemo
+        Left = 0
+        Top = 193
+        Width = 1110
+        Height = 104
+        Align = alTop
+        TabOrder = 2
+        ExplicitWidth = 1104
+      end
+      object MemoRespostaAutenticacaoHash: TMemo
+        Left = 0
+        Top = 297
+        Width = 1110
+        Height = 288
+        Align = alClient
+        Color = clInactiveCaption
+        TabOrder = 3
+        ExplicitWidth = 1104
+        ExplicitHeight = 271
+      end
+    end
+    object TabCancelRequest: TTabSheet
+      Caption = 'Cancel Request'
+      ImageIndex = 9
+      object Panel23: TPanel
+        Left = 0
+        Top = 0
+        Width = 1110
+        Height = 89
+        Align = alTop
+        TabOrder = 0
+        object ButtonCancelRequest: TButton
+          Left = 8
+          Top = 16
+          Width = 185
+          Height = 65
+          Caption = 'Cancel Request'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+          OnClick = ButtonCancelRequestClick
+        end
+      end
+      object MemoRespostaCancelRequest: TMemo
+        Left = 0
+        Top = 89
+        Width = 1110
+        Height = 496
+        Align = alClient
+        Lines.Strings = (
+          'MemoRespostaCancelRequest')
+        TabOrder = 1
+        ExplicitTop = 87
       end
     end
   end
@@ -1076,5 +1384,25 @@ object FormClient: TFormClient
   object FDStanStorageJSONLink1: TFDStanStorageJSONLink
     Left = 804
     Top = 323
+  end
+  object IdHTTP1: TIdHTTP
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 188
+    Top = 234
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 620
+    Top = 226
   end
 end
