@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/07/07 11:38:15.000.505,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/07 11:52:19.000.198,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/12 14:02:19.642,=D:\Fontes\Projects\Unit2.pas</Transaction>
+    <Transaction>2025/07/12 14:05:23.170,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\Mensagens\uView.Mensagens.Main.dfm=D:\Fontes\Projects\Unit2.dfm</Transaction>
+    <Transaction>2025/07/12 14:05:23.170,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\Mensagens\uView.Mensagens.Main.pas=D:\Fontes\Projects\Unit2.pas</Transaction>
+    <Transaction>2025/07/12 14:05:33.846,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\Mensagens\Mensagens.dproj=D:\Fontes\Projects\Project2.dproj</Transaction>
+    <Transaction>2025/07/12 17:14:48.605,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\Mensagens\Unit3.pas</Transaction>
+    <Transaction>2025/07/12 17:15:17.359,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\Mensagens\uView.Destino.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\Mensagens\Unit3.dfm</Transaction>
+    <Transaction>2025/07/12 17:15:17.359,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\Mensagens\uView.Destino.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\Mensagens\Unit3.pas</Transaction>
+  </Transactions>
+</BorlandProject>

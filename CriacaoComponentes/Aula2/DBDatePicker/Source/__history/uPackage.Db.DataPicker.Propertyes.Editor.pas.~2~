@@ -1,0 +1,16 @@
+unit uPackage.Db.DataPicker.Propertyes.Editor;
+
+interface
+
+uses
+  DesignEditors, Vcl.Dialogs;
+
+Type
+  TShowAbout = class(TStringProperty)
+
+  end;
+
+
+implementation
+
+end.

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/04/15 12:36:55.000.324,=rtl.dcp</Transaction>
+    <Transaction>2025/07/12 09:36:16.000.976,=rtl.dcp</Transaction>
+    <Transaction>2025/07/12 09:43:26.000.477,D:\Fontes\Projects\Package1.dproj=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\DbDatePicker.dproj</Transaction>
+    <Transaction>2025/07/12 09:44:04.000.393,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Unit1.pas</Transaction>
+    <Transaction>2025/07/12 09:45:57.000.906,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Source\uPackage.Db.DataPicker.pas</Transaction>
+    <Transaction>2025/07/12 09:46:15.000.899,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\DbDatePicker.dproj=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Package\DbDatePicker.dproj</Transaction>
+    <Transaction>2025/07/12 11:51:01.857,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Source\uPackage.Db.DataPicker.Propertyes.Editor.pas</Transaction>
+    <Transaction>2025/07/12 11:51:01.927,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Source\uPackage.Db.DataPicker.Register.pas</Transaction>
+    <Transaction>2025/07/12 11:59:25.153,=dbrtl.dcp</Transaction>
+    <Transaction>2025/07/12 11:59:25.281,=vcldb.dcp</Transaction>
+    <Transaction>2025/07/12 12:02:49.433,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Package\Unit2.pas</Transaction>
+    <Transaction>2025/07/12 12:03:09.052,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Source\uView.About.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Package\Unit2.dfm</Transaction>
+    <Transaction>2025/07/12 12:03:09.052,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Source\uView.About.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\DBDatePicker\Package\Unit2.pas</Transaction>
+  </Transactions>
+</BorlandProject>

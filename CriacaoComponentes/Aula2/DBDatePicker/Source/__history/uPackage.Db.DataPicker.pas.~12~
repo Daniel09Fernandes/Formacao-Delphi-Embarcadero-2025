@@ -1,0 +1,86 @@
+unit uPackage.Db.DataPicker;
+
+interface
+
+uses
+  Classes, SysUtils,
+  VCL.ComCtrls,
+  VCL.DBCtrls,
+  Data.DB;
+
+type
+  TDBDateTimePicker = class(TDateTimePicker)
+  private
+    FSobre: string;
+    FDataLink: TFieldDataLink;
+    FOnChanged: Boolean;
+
+    function GetDateField: string;
+    procedure SetDateField(const Value: string);
+    function GetDataSource: TDataSource;
+    procedure SetDataSource(const Value: TDataSource);
+
+  protected
+    function IsValidDataLink: Boolean; virtual;
+    procedure CheckValidDate(Date: TDate); override;
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+
+  published
+    property Sobre: string read FSobre write FSobre;
+    property DateField: string read GetDateField write SetDateField;
+    property DataSource: TDataSource read GetDataSource write SetDataSource;
+  end;
+
+implementation
+
+{ TDBDateTimePicker }
+
+procedure TDBDateTimePicker.CheckValidDate(Date: TDate);
+begin
+  inherited;
+  if not (csReading) then
+
+end;
+
+constructor TDBDateTimePicker.Create(AOwner: TComponent);
+begin
+  inherited;
+
+end;
+
+destructor TDBDateTimePicker.Destroy;
+begin
+
+  inherited;
+end;
+
+function TDBDateTimePicker.GetDataSource: TDataSource;
+begin
+  Result := FDataLink.DataSource;
+end;
+
+function TDBDateTimePicker.GetDateField: string;
+begin
+  Result := FDataLink.FieldName;
+end;
+
+function TDBDateTimePicker.IsValidDataLink: Boolean;
+begin
+  Result := Assigned(FDataLink) and
+            Assigned(FDataLink.DataSource) and
+            (Assigned(FDataLink.Field) and (FDataLink.Field.DataType = TFieldType.ftDateTime));
+end;
+
+procedure TDBDateTimePicker.SetDataSource(const Value: TDataSource);
+begin
+  FDataLink.DataSource := Value;
+end;
+
+procedure TDBDateTimePicker.SetDateField(const Value: string);
+begin
+  FDataLink.FieldName := Value;
+end;
+
+end.

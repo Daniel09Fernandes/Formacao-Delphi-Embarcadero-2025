@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/07/07 11:38:15.000.505,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/07 11:52:19.000.198,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/12 11:14:41.535,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/12 11:15:26.197,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\TesteDbDataPicker\uMain.dfm=D:\Fontes\Projects\Unit1.dfm</Transaction>
+    <Transaction>2025/07/12 11:15:26.197,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\TesteDbDataPicker\uMain.pas=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/12 11:15:39.153,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula2\TesteDbDataPicker\TesteComponente.dproj=D:\Fontes\Projects\Project2.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

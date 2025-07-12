@@ -1,0 +1,38 @@
+unit uMain;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.StorageBin, Data.DB, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.ComCtrls,
+  uPackage.Db.DataPicker, Vcl.Buttons;
+
+type
+  TForm1 = class(TForm)
+    DataSource1: TDataSource;
+    FDMemTable1: TFDMemTable;
+    DBGrid1: TDBGrid;
+    FDMemTable1ID: TIntegerField;
+    FDMemTable1Nome: TStringField;
+    FDMemTable1Data: TDateTimeField;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    DBNavigator1: TDBNavigator;
+    DBDateTimePicker1: TDBDateTimePicker;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+end.

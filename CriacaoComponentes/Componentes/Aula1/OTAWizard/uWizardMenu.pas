@@ -3,7 +3,7 @@ unit uWizardMenu;
 interface
 
 uses
-  VCL.Menus, ToolsAPI, uMain.View;
+  VCL.Menus, ToolsAPI, uMain.View, classes;
 
 type
   TOTAMenuWizar = class(TNotifierObject, IOTAWizard)
@@ -12,7 +12,6 @@ type
    FMenuItem: TMenuItem;
    FMenuTextInteraction: TMenuItem;
    procedure OnMenuItemClick(Sender: TObject);
-    procedure AttachFormToIDE;
   public
     constructor Create;
     destructor Destroy; override;
@@ -44,7 +43,7 @@ begin
 
   if not Assigned(MenuDelphi) then
     Exit;
-//
+
   FMenuItem := TMenuItem.Create(nil);
   IndexMenuPersonalizado := -1;
 
@@ -80,13 +79,12 @@ end;
 
 procedure TOTAMenuWizar.Execute;
 begin
-   //ShowMessage('Olá Mundo');
-   TFrTextInteraction.New(Nil);
+  TFrTextInteraction.New;
 end;
 
 function TOTAMenuWizar.GetIDString: string;
 begin
-  Result := 'Aquasoft.WizardMenu';
+  Result := 'Dinos.WizardMenu';
 end;
 
 function TOTAMenuWizar.GetName: string;
@@ -102,29 +100,6 @@ end;
 procedure TOTAMenuWizar.OnMenuItemClick(Sender: TObject);
 begin
   Execute;
-end;
-
-procedure TOTAMenuWizar.AttachFormToIDE;
-var
-  NTAServices: INTAServices;
-  Module: IOTAModule;
-  FormEditor: IOTAFormEditor;
-begin
-//  NTAServices := BorlandIDEServices as INTAServices;
-//  if Assigned(NTAServices) then
-//  begin
-//    Module := (BorlandIDEServices as IOTAModuleServices)
-//	                  .CreateModule(nil, 'Form1', 'Form', 0);
-//    if Assigned(Module) then
-//    begin
-//      FormEditor := (BorlandIDEServices as IOTAFormEditor)
-//	                         .GetFormEditorForModule(Module, False);
-//      if Assigned(FormEditor) then
-//      begin
-//        (BorlandIDEServices as IOTAFormEditor).ShowFormEditor(FormEditor);
-//      end;
-//    end;
-//  end;
 end;
 
 initialization

@@ -1,0 +1,36 @@
+unit uPackage.Db.DataPicker.Propertyes.Editor;
+
+interface
+
+uses
+  DesignEditors, Vcl.Dialogs, DesignIntf, uView.About;
+
+Type
+  TShowAbout = class(TStringProperty)
+     function GetAttributes: TPropertyAttributes; override;
+     procedure Edit; override;
+  end;
+
+
+implementation
+
+{ TShowAbout }
+
+procedure TShowAbout.Edit;
+begin
+  inherited;
+
+  FrSobre := TFrSobre.Create(nil);
+  try
+    FrSobre.ShowModal;
+  finally
+    FrSobre.Free;
+  end;
+end;
+
+function TShowAbout.GetAttributes: TPropertyAttributes;
+begin
+  Result := [paDialog]
+end;
+
+end.

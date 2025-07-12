@@ -1,0 +1,17 @@
+unit uPackage.Db.DataPicker.Register;
+
+interface
+
+procedure register;
+
+implementation
+
+uses
+  Classes, uPackage.Db.DataPicker;
+
+procedure register;
+begin
+  RegisterComponents('Meu Componente', [TDBDateTimePicker]);
+end;
+
+end.

@@ -6,10 +6,19 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   Vcl.Controls, Vcl.ExtCtrls, SyntaxHighlighter,
-  Dinos.Bridge.GPT.Open.IA, Vcl.ComCtrls;
+  Dinos.Bridge.GPT.Open.IA, Vcl.ComCtrls, ToolsAPI, DockForm,
+  DesignIntf,
+  Vcl.ActnList, Vcl.ImgList, VCL.Menus, system.IniFiles, Data.DB, Datasnap.DBClient, Vcl.Mask, Vcl.DBCtrls;
 
 type
-  TFrTextInteraction = class(TForm)
+  // Interface para o formulário dockável
+  ITextInteractionForm = interface
+    ['{12345678-1234-1234-1234-123456789012}']
+    procedure Show;
+    procedure Close;
+  end;
+
+  TFrTextInteraction = class(TDockableForm, ITextInteractionForm, INTACustomDockableForm)
     Panel2: TPanel;
     Panel3: TPanel;
     Label1: TLabel;
@@ -21,15 +30,35 @@ type
     procedure TextMeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
+    const
+      PROMPT_DEFAULT = 'Leve sempre em consideração que estou em um ambiente Delphi versão %s : ';
+    procedure SetPromptDefault;
+  var
     FDinosGPT: TDinosChatGPT;
     FSyntaxHighlighter: TDelphiSyntaxHighlighter;
     FHistorico: string;
+  protected
+    // INTACustomDockableForm
+    function GetCaption: string;
+    function GetIdentifier: string;
+    function GetFrameClass: TCustomFrameClass;
+    procedure FrameCreated(AFrame: TCustomFrame);
+    function GetMenuActionList: TCustomActionList;
+    function GetMenuImageList: TCustomImageList;
+    procedure CustomizePopupMenu(PopupMenu: TPopupMenu);
+    function GetToolBarActionList: TCustomActionList;
+    function GetToolBarImageList: TCustomImageList;
+    procedure CustomizeToolBar(ToolBar: TToolBar);
+    procedure SaveWindowState(Desktop: TCustomIniFile; const Section: string; IsProject: Boolean);
+    procedure LoadWindowState(Desktop: TCustomIniFile; const Section: string);
+    function GetEditState: TEditState;
+    function EditAction(Action: TEditAction): Boolean;
   public
-
-    class procedure New(AOwner: TComponent);
+    class function CreateDocked(const Identifier: string): TFrTextInteraction;
+    class procedure New;
     class procedure FreeMemory;
-
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   end;
@@ -41,35 +70,25 @@ implementation
 
 {$R *.dfm}
 
-procedure TFrTextInteraction.Button1Click(Sender: TObject);
-begin
-  Close;
-end;
+uses
+  strUtils;
 
-procedure TFrTextInteraction.Button2Click(Sender: TObject);
-begin
-  MmoGPT.Lines.Clear;
-  FHistorico := '';
-end;
-
-procedure TFrTextInteraction.Button3Click(Sender: TObject);
-begin
-  TextMe.Lines.Clear;
-end;
+{ TFrTextInteraction }
 
 constructor TFrTextInteraction.Create(AOwner: TComponent);
 begin
-  inherited;
+  inherited Create(AOwner);
+  SetPromptDefault;
   FDinosGPT := TDinosChatGPT.Create;
   FSyntaxHighlighter := TDelphiSyntaxHighlighter.Create(MmoGPT);
 
   // Personalizar as cores antes de usar
-  FSyntaxHighlighter.KeywordColor := clBlue; // Palavras-chave
-  FSyntaxHighlighter.StringColor := clMaroon; // Strings
-  FSyntaxHighlighter.CommentColor := clGreen; // Comentários
-  FSyntaxHighlighter.NumberColor := clNavy; // Números
-  FSyntaxHighlighter.OperatorColor := clPurple; // Operadores
-  FSyntaxHighlighter.IdentifierColor := clBlack; // Identificadores
+  FSyntaxHighlighter.KeywordColor := clFuchsia;
+  FSyntaxHighlighter.StringColor := clWebYellow;
+  FSyntaxHighlighter.CommentColor := clGrayText;
+  FSyntaxHighlighter.NumberColor := clPurple;
+  FSyntaxHighlighter.OperatorColor := clWhite;
+  FSyntaxHighlighter.IdentifierColor := clWhite;
 end;
 
 destructor TFrTextInteraction.Destroy;
@@ -79,23 +98,154 @@ begin
   inherited;
 end;
 
-procedure TFrTextInteraction.FormClose(Sender: TObject;
-  var Action: TCloseAction);
+procedure TFrTextInteraction.FormCreate(Sender: TObject);
 begin
-  Action := caFree;
+  // Configurações específicas para docking
+  DockSite := False;
+  AutoScroll := True;
+end;
+
+procedure TFrTextInteraction.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := TCloseAction.caFree; // Apenas esconder ao invés de destruir
+end;
+
+// Implementações da interface INTACustomDockableForm
+
+function TFrTextInteraction.GetCaption: string;
+begin
+  Result := 'Dinos GPT Assistant';
+end;
+
+function TFrTextInteraction.GetIdentifier: string;
+begin
+  Result := 'DinosGPTAssistant';
+end;
+
+function TFrTextInteraction.GetFrameClass: TCustomFrameClass;
+begin
+  Result := nil; // Não usar frame separado
+end;
+
+procedure TFrTextInteraction.FrameCreated(AFrame: TCustomFrame);
+begin
+  // Não implementado pois não usamos frame
+end;
+
+function TFrTextInteraction.GetMenuActionList: TCustomActionList;
+begin
+  Result := nil;
+end;
+
+function TFrTextInteraction.GetMenuImageList: TCustomImageList;
+begin
+  Result := nil;
+end;
+
+procedure TFrTextInteraction.CustomizePopupMenu(PopupMenu: TPopupMenu);
+begin
+  // Customizar menu popup se necessário
+end;
+
+function TFrTextInteraction.GetToolBarActionList: TCustomActionList;
+begin
+  Result := nil;
+end;
+
+function TFrTextInteraction.GetToolBarImageList: TCustomImageList;
+begin
+  Result := nil;
+end;
+
+procedure TFrTextInteraction.CustomizeToolBar(ToolBar: TToolBar);
+begin
+  // Customizar toolbar se necessário
+end;
+
+procedure TFrTextInteraction.SaveWindowState(Desktop: TCustomIniFile; const Section: string; IsProject: Boolean);
+begin
+  // Salvar estado da janela
+end;
+
+procedure TFrTextInteraction.LoadWindowState(Desktop: TCustomIniFile; const Section: string);
+begin
+  // Carregar estado da janela
+end;
+
+function TFrTextInteraction.GetEditState: TEditState;
+begin
+  Result := [];
+end;
+
+function TFrTextInteraction.EditAction(Action: TEditAction): Boolean;
+begin
+  Result := False;
+end;
+
+// Métodos de classe para gerenciar o formulário dockado
+
+class function TFrTextInteraction.CreateDocked(const Identifier: string): TFrTextInteraction;
+//var
+//  INTAServices: INTAServices;
+begin
+  var INTAServices := (BorlandIDEServices as INTAServices);
+  Result := TFrTextInteraction.Create(nil);
+
+  if Assigned(INTAServices) then
+  begin
+    // Registrar o formulário como dockável
+    INTAServices.RegisterDockableForm(Result);
+  end;
+end;
+
+class procedure TFrTextInteraction.New;
+begin
+  if not Assigned(FrTextInteraction) then
+  begin
+    FrTextInteraction := CreateDocked('DinosGPTAssistant');
+    FrTextInteraction.Show;
+    FrTextInteraction.BringToFront;
+  end
+  else
+  begin
+    FrTextInteraction.Show;
+    FrTextInteraction.BringToFront;
+  end;
 end;
 
 class procedure TFrTextInteraction.FreeMemory;
 begin
   if Assigned(FrTextInteraction) then
+  begin
+    var INTAServices := BorlandIDEServices as INTAServices;
+    if Assigned(INTAServices) then
+    begin
+      INTAServices.UnRegisterDockableForm(FrTextInteraction);
+    end;
     FreeAndNil(FrTextInteraction);
+  end;
 end;
 
-class procedure TFrTextInteraction.New(AOwner: TComponent);
+// Implementações dos eventos
+procedure TFrTextInteraction.Button1Click(Sender: TObject);
 begin
-  FrTextInteraction := TFrTextInteraction.Create(AOwner);
-  FrTextInteraction.Parent := TWinControl(AOwner);
-  FrTextInteraction.Show;
+  Hide; // Esconder ao invés de fechar
+end;
+
+procedure TFrTextInteraction.Button2Click(Sender: TObject);
+begin
+  MmoGPT.Lines.Clear;
+  SetPromptDefault;
+end;
+
+procedure TFrTextInteraction.Button3Click(Sender: TObject);
+begin
+  TextMe.Lines.Clear;
+end;
+
+procedure TFrTextInteraction.SetPromptDefault;
+begin
+  FHistorico := Format(PROMPT_DEFAULT, [CompilerVersion.ToString]);
 end;
 
 procedure TFrTextInteraction.TextMeKeyDown(Sender: TObject; var Key: Word;
@@ -105,12 +255,183 @@ begin
   begin
     MmoGPT.Lines.add('');
     FHistorico := FHistorico + TextMe.Lines.text;
-
     MmoGPT.text := (FDinosGPT.SendMessage(FHistorico + TextMe.Lines.text));
-
     FSyntaxHighlighter.HighlightAll;
     TextMe.Lines.Clear;
   end;
+end;
+
+end.
+
+// Agora modifique o uWizardMenu.pas
+
+unit uWizardMenu;
+
+interface
+
+uses
+  VCL.Menus, ToolsAPI, uMain.View, classes;
+
+type
+  TOTAMenuWizar = class(TNotifierObject, IOTAWizard)
+  private
+    FMenuItem: TMenuItem;
+    FMenuTextInteraction: TMenuItem;
+    procedure OnMenuItemClick(Sender: TObject);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    function GetIDString: string;
+    function GetName: string;
+    function GetState: TWizardState;
+    procedure Execute;
+  end;
+
+implementation
+
+uses
+  SysUtils, VCL.Dialogs, Vcl.Forms;
+
+constructor TOTAMenuWizar.Create;
+const
+  MENU_PERSONALIZADO = 'DinosTools';
+var
+  MenuDelphi: TMainMenu;
+  ToolsMenuDelphi: TMenuItem;
+  IndexMenuPersonalizado: Integer;
+begin
+  inherited Create;
+
+  MenuDelphi := (BorlandIDEServices as INTAServices).MainMenu;
+  if not Assigned(MenuDelphi) then
+    Exit;
+
+  FMenuItem := TMenuItem.Create(nil);
+  IndexMenuPersonalizado := -1;
+
+  if Assigned(MenuDelphi.Items.Find(MENU_PERSONALIZADO)) then
+    IndexMenuPersonalizado := MenuDelphi.Items.Find(MENU_PERSONALIZADO).MenuIndex;
+
+  if IndexMenuPersonalizado < 0 then
+  begin
+    FMenuItem.Caption := MENU_PERSONALIZADO;
+    MenuDelphi.Items.Add(FMenuItem);
+  end;
+
+  ToolsMenuDelphi := MenuDelphi.Items.Find(MENU_PERSONALIZADO);
+  if Assigned(ToolsMenuDelphi) then
+  begin
+    FMenuTextInteraction := TMenuItem.Create(nil);
+    FMenuTextInteraction.Caption := 'GPT Assistant (Docked)';
+    FMenuTextInteraction.OnClick := OnMenuItemClick;
+    ToolsMenuDelphi.Add(FMenuTextInteraction);
+  end;
+end;
+
+destructor TOTAMenuWizar.Destroy;
+begin
+  FreeAndNil(FMenuTextInteraction);
+  FreeAndNil(FMenuItem);
+  TFrTextInteraction.FreeMemory;
+  inherited Destroy;
+end;
+
+procedure TOTAMenuWizar.Execute;
+begin
+  // Mostrar o formulário dockado ao invés de modal
+  TFrTextInteraction.ShowDocked;
+end;
+
+function TOTAMenuWizar.GetIDString: string;
+begin
+  Result := 'Dinos.WizardMenu';
+end;
+
+function TOTAMenuWizar.GetName: string;
+begin
+  Result := 'OTA Menu Wizard';
+end;
+
+function TOTAMenuWizar.GetState: TWizardState;
+begin
+  Result := [wsEnabled];
+end;
+
+procedure TOTAMenuWizar.OnMenuItemClick(Sender: TObject);
+begin
+  Execute;
+end;
+
+initialization
+  RegisterPackageWizard(TOTAMenuWizar.Create);
+
+end.
+
+// Arquivo adicional: DockedFormHelper.pas (opcional, para funcionalidades extras)
+
+unit DockedFormHelper;
+
+interface
+
+uses
+  ToolsAPI, Forms, Classes, Controls;
+
+type
+  TDockedFormHelper = class
+  public
+    class procedure RegisterDockedForm(AForm: TCustomForm; const AIdentifier: string);
+    class procedure UnregisterDockedForm(AForm: TCustomForm);
+    class procedure ShowDockedForm(AForm: TCustomForm);
+    class procedure HideDockedForm(AForm: TCustomForm);
+    class function IsFormDocked(AForm: TCustomForm): Boolean;
+  end;
+
+implementation
+
+uses
+  SysUtils;
+
+{ TDockedFormHelper }
+
+class procedure TDockedFormHelper.RegisterDockedForm(AForm: TCustomForm; const AIdentifier: string);
+var
+  INTAServices: INTAServices;
+begin
+  if Supports(BorlandIDEServices, INTAServices) then
+  begin
+    INTAServices.RegisterDockableForm(AForm, AForm, AIdentifier);
+  end;
+end;
+
+class procedure TDockedFormHelper.UnregisterDockedForm(AForm: TCustomForm);
+var
+  INTAServices: INTAServices;
+begin
+  if Supports(BorlandIDEServices, INTAServices) then
+  begin
+    INTAServices.UnRegisterDockableForm(AForm);
+  end;
+end;
+
+class procedure TDockedFormHelper.ShowDockedForm(AForm: TCustomForm);
+var
+  INTAServices: INTAServices;
+begin
+  if Supports(BorlandIDEServices, INTAServices) then
+  begin
+    INTAServices.ShowDockableForm(AForm);
+  end;
+end;
+
+class procedure TDockedFormHelper.HideDockedForm(AForm: TCustomForm);
+begin
+  if Assigned(AForm) then
+    AForm.Hide;
+end;
+
+class function TDockedFormHelper.IsFormDocked(AForm: TCustomForm): Boolean;
+begin
+  Result := Assigned(AForm) and (AForm.HostDockSite <> nil);
 end;
 
 end.

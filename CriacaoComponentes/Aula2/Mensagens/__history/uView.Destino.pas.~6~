@@ -1,0 +1,46 @@
+unit uView.Destino;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls;
+
+type
+  TFrmDestino = class(TForm)
+    PanelMov: TPanel;
+    PanelSize: TPanel;
+    procedure PanelMovMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure PanelSizeMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmDestino: TFrmDestino;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmDestino.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := TCloseAction.caFree;
+end;
+
+procedure TFrmDestino.PanelMovMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  ReleaseCapture;
+  PostMessage(PanelMov.Handle, WM_COMMAND, $F012, 0);
+end;
+
+procedure TFrmDestino.PanelSizeMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  ReleaseCapture;
+  PostMessage(PanelMov.Handle, WM_COMMAND, $F001, 0);
+end;
+
+end.
