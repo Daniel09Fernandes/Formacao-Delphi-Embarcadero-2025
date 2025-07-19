@@ -1,0 +1,17 @@
+unit uRegister.Card.Viewer;
+
+interface
+
+procedure register;
+
+implementation
+
+uses
+  System.Classes, uCard.Image.Viewer;
+
+procedure register;
+begin
+  RegisterComponents('Meu Componente', [TCardImageViwer]);
+end;
+
+end.

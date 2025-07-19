@@ -1,0 +1,39 @@
+unit uRegister.Editor.Menu;
+
+interface
+
+uses
+  DesignEditors, DesignIntf, VCL.Dialogs, SysUtils;
+
+type
+  TEditorMenu = class(TComponentEditor)
+  public
+    procedure ExecuteVerb(index: Integer) override;
+    function GetVerb(index: Integer): integer; override;
+    function GetVerbCount: integer; override;
+  end;
+
+
+implementation
+
+{ TEditorMenu }
+
+procedure TEditorMenu.ExecuteVerb(index: Integer);
+begin
+  inherited;
+
+end;
+
+procedure TEditorMenu.GetVerb(index: Integer);
+begin
+  inherited;
+
+end;
+
+function TEditorMenu.GetVerbCount: integer;
+begin
+  inherited;
+  Result := 1;
+end;
+
+end.

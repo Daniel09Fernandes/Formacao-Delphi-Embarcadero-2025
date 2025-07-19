@@ -1,0 +1,35 @@
+unit uMainView;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, uCard.Image.Viewer, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    CardImageViwer1: TCardImageViwer;
+    StaticText1: TStaticText;
+    Timer1: TTimer;
+    procedure Timer1Timer(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+  Timer1.Enabled := False;
+  CardImageViwer1.Align := alClient;
+  CardImageViwer1.ImagePath := 'D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\imagens';
+end;
+
+end.

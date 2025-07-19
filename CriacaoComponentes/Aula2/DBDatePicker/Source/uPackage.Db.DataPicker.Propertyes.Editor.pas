@@ -28,7 +28,6 @@ implementation
 procedure TShowAbout.Edit;
 begin
   inherited;
-
   FrSobre := TFrSobre.Create(nil);
   try
     FrSobre.ShowModal;

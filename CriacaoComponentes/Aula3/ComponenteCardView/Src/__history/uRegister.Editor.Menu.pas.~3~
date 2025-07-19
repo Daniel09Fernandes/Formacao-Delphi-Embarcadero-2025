@@ -1,0 +1,16 @@
+unit uRegister.Editor.Menu;
+
+interface
+
+uses
+  DesignEditors, DesignIntf, VCL.Dialogs, SysUtils;
+
+type
+  TEditorMenu = class(TComponentEditor)
+
+  end;
+
+
+implementation
+
+end.

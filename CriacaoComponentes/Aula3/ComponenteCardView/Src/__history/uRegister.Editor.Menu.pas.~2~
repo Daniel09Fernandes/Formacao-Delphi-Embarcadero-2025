@@ -1,0 +1,10 @@
+unit uRegister.Editor.Menu;
+
+interface
+
+uses
+  DesignEditor, DesignIntef, VCL.Dialogs, SysUtils;
+
+implementation
+
+end.

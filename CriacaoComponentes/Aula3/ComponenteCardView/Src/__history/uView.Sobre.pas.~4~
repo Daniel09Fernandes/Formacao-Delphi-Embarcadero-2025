@@ -1,0 +1,35 @@
+unit uView.Sobre;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.ExtCtrls;
+
+type
+  TForm2 = class(TForm)
+    Panel1: TPanel;
+    RichEdit1: TRichEdit;
+  private
+    { Private declarations }
+  public
+   class procedure ShowForm;
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+{ TForm2 }
+
+class procedure TForm2.ShowForm;
+begin
+  var lfrm := TForm2.Create(nil);
+  lfrm.ShowModal;
+  lfrm.free;
+end;
+
+end.

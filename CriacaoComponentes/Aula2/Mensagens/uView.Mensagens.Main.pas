@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.ComCtrls, System.Generics.Collections, System.ImageList, Vcl.ImgList;
+  Vcl.ComCtrls, System.Generics.Collections, System.ImageList, Vcl.ImgList, Vcl.Imaging.pngimage;
 
 type
   TForm2 = class(TForm)
@@ -29,6 +29,7 @@ type
     ShowForm: TButton;
     Button5: TButton;
     ImageList1: TImageList;
+    Image1: TImage;
     procedure BtnProccessClick(Sender: TObject);
     procedure BtnFreezeClick(Sender: TObject);
     procedure BtnFormWinClick(Sender: TObject);
@@ -43,6 +44,7 @@ type
     procedure Button4Click(Sender: TObject);
     procedure ShowFormClick(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
   private
     FListaWnds: TDictionary<string, THandle>;
     function GetHandleDestino: Integer;
@@ -244,6 +246,11 @@ end;
 function TForm2.GetHandleDestino: Integer;
 begin
   Result := StrToIntdef(EdtHWNDDestino.text,0);
+end;
+
+procedure TForm2.Image1Click(Sender: TObject);
+begin
+  Button5.Click;
 end;
 
 procedure TForm2.ChkAtivaBuscaClick(Sender: TObject);

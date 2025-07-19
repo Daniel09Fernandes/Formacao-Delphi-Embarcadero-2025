@@ -1,0 +1,331 @@
+unit uView.Mensagens.Main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.ComCtrls, System.Generics.Collections, System.ImageList, Vcl.ImgList, Vcl.Imaging.pngimage;
+
+type
+  TForm2 = class(TForm)
+    Panel1: TPanel;
+    BtnProccess: TButton;
+    ProgressBar1: TProgressBar;
+    EdtTextoAlterado: TEdit;
+    EdtHWND: TEdit;
+    BtnFreeze: TButton;
+    BtnFormWin: TButton;
+    TimerBusca: TTimer;
+    Panel2: TPanel;
+    ListBoxHandles: TListBox;
+    ChkAtivaBusca: TCheckBox;
+    Panel3: TPanel;
+    EdtHWNDDestino: TEdit;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    ShowForm: TButton;
+    Button5: TButton;
+    ImageList1: TImageList;
+    Image1: TImage;
+    procedure BtnProccessClick(Sender: TObject);
+    procedure BtnFreezeClick(Sender: TObject);
+    procedure BtnFormWinClick(Sender: TObject);
+    procedure ChkAtivaBuscaClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure TimerBuscaTimer(Sender: TObject);
+    procedure ListBoxHandlesClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure ShowFormClick(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+  private
+    FListaWnds: TDictionary<string, THandle>;
+    function GetHandleDestino: Integer;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+  WinForm: TWndClass;
+  lFormWinMSG: HWND;
+  lEdtHandle: HWND;
+  lBtnHandle: HWND;
+
+
+implementation
+
+{$R *.dfm}
+
+uses
+  uView.Destino;
+
+
+procedure ClickButtonWin;
+var
+  lText: array[0..255] of char;
+begin
+  GetWindowText(lEdtHandle, lText, Length(ltext));
+  MessageBox(lFormWinMSG, PChar('Voce Digitou: "'+lText+ '"' ), 'AVISO',
+    MB_APPLMODAL or MB_ICONINFORMATION + MB_OK);
+end;
+
+
+procedure CriarControlesWin;
+begin
+  lEdtHandle := CreateWindowEx(
+    WS_EX_CLIENTEDGE,
+    'EDIT',
+    '',
+    WS_CHILD or WS_VISIBLE or ES_AUTOVSCROLL or ES_NOHIDESEL,
+    8, 16, 160, 21,
+    lFormWinMSG,
+    0 ,
+    HInstance,
+    Nil);
+
+ lBtnHandle := CreateWindow(
+    'BUTTON',
+    'Exibe Texto',
+    WS_CHILD or WS_VISIBLE or BS_PUSHBUTTON or BS_TEXT,
+    8, 40, 96, 25,
+    lFormWinMSG,
+    0 ,
+    HInstance, 0);
+end;
+
+function WinFormWndProc(pHandle: HWND; uMsg: Uint;
+   pWParam: WPARAM; pLParam: LParam ): LRESULT; stdcall;
+begin
+  Result := 0;
+
+  case uMsg of
+     WM_DESTROY: PostQuitMessage(0);
+     WM_ACTIVATE: Winapi.Windows.SetFocus(lEdtHandle);
+
+     WM_COMMAND:
+       begin
+         if pLparam = lBtnHandle then
+         begin
+           case pWParam of
+             BN_CLICKED: ClickButtonWin;
+           end;
+         end;
+       end
+       else
+         Result := DefWindowProc(pHandle, uMsg, pWParam, pLParam);
+  end;
+end;
+
+procedure TForm2.BtnFormWinClick(Sender: TObject);
+begin
+  WinForm.style := 0;
+  WinForm.lpfnWndProc := @WinFormWndProc;
+  WinForm.cbClsExtra := 0;
+  WinForm.cbWndExtra :=0;
+  WinForm.hInstance := HInstance;
+  WinForm.hIcon := 0;
+  WinForm.hCursor := LoadCursor(0, IDC_ARROW);
+  WinForm.hbrBackground := COLOR_WINDOW;
+  WinForm.lpszMenuName := nil;
+  WinForm.lpszClassName := 'TMyWinForm';
+
+  Winapi.Windows.RegisterClass(WinForm);
+
+  lFormWinMSG := CreateWindow('TMyWinForm',
+    'Criação de componente 2025',
+    WS_OVERLAPPED,
+    Integer(CW_USEDEFAULT),
+    Integer(CW_USEDEFAULT),
+    320, 320
+    ,0,0,
+    HInstance, nil);
+
+   CriarControlesWin;
+
+   ShowWindow(lFormWinMSG, SW_SHOWNORMAL);
+end;
+
+procedure TForm2.BtnFreezeClick(Sender: TObject);
+begin
+  Sleep(1000);
+end;
+
+procedure TForm2.BtnProccessClick(Sender: TObject);
+begin
+  ProgressBar1.Position := 0;
+  while True do
+  begin
+    Application.ProcessMessages;
+    Caption := Self.Caption;
+    Sleep(600);
+    ProgressBar1.Position := ProgressBar1.Position +1;
+
+    if ProgressBar1.Position = ProgressBar1.Max then
+      Break;
+
+    Application.ProcessMessages;
+  end;
+end;
+
+procedure TForm2.Button1Click(Sender: TObject);
+begin
+  if EdtHWNDDestino.text = '' then
+    Exit;
+
+  var lHwnd := GetHandleDestino;
+
+  SendMessage(lHwnd, WM_LBUTTONDOWN, 0,0);
+  Sleep(100);
+  SendMessage(lHwnd, WM_LBUTTONUP, 0,0);
+end;
+
+procedure TForm2.Button2Click(Sender: TObject);
+begin
+  SetWindowText(GetHandleDestino, PChar(EdtTextoAlterado.Text));
+end;
+
+procedure TForm2.Button3Click(Sender: TObject);
+begin
+  SendMessage(GetHandleDestino,  WM_CLOSE, 0,0 );
+end;
+
+procedure TForm2.Button4Click(Sender: TObject);
+ procedure WindowShake(wHandle: THandle);
+ const
+   MAXDELTA = 4;
+   SHAKETIMES = 500;
+ VAR
+   wRect, oRect: TRect;
+   deltax, deltay: integer;
+ begin
+   GetWindowRect(wHandle, wRect);
+   oRect := wRect;
+   Randomize;
+
+   for var I := 0 to SHAKETIMES do
+   begin
+     deltax := round(Random(MAXDELTA));
+     deltay := round(Random(MAXDELTA));
+
+     var dx := round(1+ Random(2));
+     if dx = 2 then
+       dx := -1;
+
+     var dy := round(1+ Random(2));
+     if dy = 2 then
+       dy := -1;
+
+     OffsetRect(wRect, dx* deltax, dy * deltay);
+     MoveWindow(wHandle, wRect.Left, wRect.Top,
+       wRect.Right - wRect.Left, wRect.Bottom - wRect.Top, true);
+   end;
+   MoveWindow(wHandle, oRect.Left, oRect.Top,
+       oRect.Right - oRect.Left, oRect.Bottom - oRect.Top, true);
+ end;
+begin
+  WindowShake(GetHandleDestino);
+end;
+
+procedure TForm2.Button5Click(Sender: TObject);
+begin
+  if not Assigned(FrmDestino) then
+    FrmDestino := TFrmDestino.Create(self);
+
+  Winapi.Windows.SetParent(GetHandleDestino, FrmDestino.Handle);
+  FrmDestino.Show;
+end;
+
+function TForm2.GetHandleDestino: Integer;
+begin
+  Result := StrToIntdef(EdtHWNDDestino.text,0);
+end;
+
+procedure TForm2.ChkAtivaBuscaClick(Sender: TObject);
+begin
+  TimerBusca.Enabled := ChkAtivaBusca.Checked;
+end;
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+  FListaWnds := TDictionary<string, THandle>.Create;
+end;
+
+procedure TForm2.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(FListaWnds);
+end;
+
+procedure TForm2.ListBoxHandlesClick(Sender: TObject);
+begin
+  if (FListaWnds.Count > 0)
+    and (FListaWnds.ContainsKey(ListBoxHandles.Items[ ListBoxHandles.ItemIndex])) then
+  begin
+    EdtHWNDDestino.Text := IntToStr(FListaWnds[
+      ListBoxHandles.Items[ListBoxHandles.ItemIndex]]);
+  end;
+end;
+
+procedure TForm2.ShowFormClick(Sender: TObject);
+begin
+  TFrmDestino.Create(Self).Show;
+end;
+
+procedure TForm2.TimerBuscaTimer(Sender: TObject);
+var
+  lPoint: TPoint;
+  lHandle: HWND;
+  lArrCaption: array [0..255] of char;
+  lCaption: string;
+  lClassName: string;
+begin
+  GetCursorPos(lPoint);
+  lHandle := WindowFromPoint(lPoint);
+
+  GetWindowText(lHandle, @lArrCaption, Length(lArrCaption));
+  lCaption := string(lArrCaption);
+
+  Winapi.Windows.GetClassName(lHandle, @lArrCaption, Length(lArrCaption));
+  lClassName := string(lArrCaption);;
+
+  if not FListaWnds.ContainsKey(lCaption + ' - '+ lClassName) then
+  begin
+    if not FListaWnds.ContainsKey(lClassName) then
+    begin
+      if not FListaWnds.ContainsKey(IntToStr(lHandle)) then
+      begin
+        if not lCaption.Trim.IsEmpty  then
+        begin
+          ListBoxHandles.Items.Add(lCaption + ' - ' + lClassName);
+          FListaWnds.Add(lCaption + ' - ' + lClassName, lHandle);
+        end
+        else
+          if not lClassName.trim.IsEmpty then
+          begin
+            ListBoxHandles.Items.Add(lClassName);
+            FListaWnds.Add(lClassName, lHandle);
+          end
+          else
+          begin
+            ListBoxHandles.Items.Add(lClassName);
+            FListaWnds.Add(IntToStr(lHandle), lHandle);
+          end;
+      end
+      else
+        ListBoxHandles.ItemIndex := ListBoxHandles.Items.IndexOf(IntToStr(lHandle));
+    end
+    else
+      ListBoxHandles.ItemIndex := ListBoxHandles.Items.IndexOf(lClassName);
+  end
+  else
+    ListBoxHandles.ItemIndex := ListBoxHandles.Items.IndexOf(lCaption + ' - ' + lClassName);
+
+end;
+
+end.

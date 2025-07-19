@@ -1,0 +1,41 @@
+unit uRegister.Editor.Menu;
+
+interface
+
+uses
+  DesignEditors, DesignIntf, VCL.Dialogs, SysUtils, uView.Sobre;
+
+type
+  TEditorMenu = class(TComponentEditor)
+  public
+    procedure ExecuteVerb(index: Integer); override;
+    function GetVerb(index: Integer): string; override;
+    function GetVerbCount: integer; override;
+  end;
+
+
+implementation
+
+{ TEditorMenu }
+
+procedure TEditorMenu.ExecuteVerb(index: Integer);
+begin
+  inherited;
+  TFrAbout.ShowForm;
+end;
+
+function TEditorMenu.GetVerb(index: Integer): string;
+begin
+  case Index of
+    0: Result := 'Sobre o CardView';
+  end;
+
+end;
+
+function TEditorMenu.GetVerbCount: integer;
+begin
+  inherited;
+  Result := 1;
+end;
+
+end.

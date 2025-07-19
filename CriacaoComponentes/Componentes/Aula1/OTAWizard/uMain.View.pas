@@ -25,7 +25,6 @@ type
     TextMe: TRichEdit;
     Label2: TLabel;
     MmoGPT: TRichEdit;
-    procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure TextMeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Button2Click(Sender: TObject);
@@ -227,11 +226,6 @@ begin
 end;
 
 // Implementações dos eventos
-procedure TFrTextInteraction.Button1Click(Sender: TObject);
-begin
-  Hide; // Esconder ao invés de fechar
-end;
-
 procedure TFrTextInteraction.Button2Click(Sender: TObject);
 begin
   MmoGPT.Lines.Clear;

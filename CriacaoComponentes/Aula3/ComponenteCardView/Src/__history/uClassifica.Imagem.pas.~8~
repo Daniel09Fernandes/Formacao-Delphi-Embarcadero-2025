@@ -1,0 +1,112 @@
+unit uClassifica.Imagem;
+
+interface
+
+uses
+  Classes, SysUtils, Vcl.Graphics, Vcl.Imaging.GIFImg, Vcl.Imaging.pngimage,
+  Vcl.Imaging.jpeg;
+
+type
+  TClassificarImage = class
+  private
+    class function FindImages(const Buffer; const BufferSize: Int64; out Graphic: TGraphicClass): Boolean; overload;
+    class function FindImages(const AStream: TStream; out Graphic: TGraphicClass): Boolean; overload;
+  public
+
+    class function GetImage(AStream: TStream): TGraphic; overload;
+    class function GetImage(AFile: string): TGraphic; overload;
+  end;
+
+implementation
+
+{ TClassificarImage }
+
+const
+  MIM_SIZE = 44;
+  I_BITMAP = $4D42;
+  I_JPEG = $D8FF;
+  I_TIFF_1 = $4949;
+  I_TIFF_2 = $4D4D;
+  I_PNG =  $A1A0A0D474E5089;
+  I_METAFILE_POS_0 = $9AC6CDD7;
+  I_METAFILE_POS_10 = $464D4520;
+  I_GIF = 'GIF';
+  I_ICON = 1;
+
+
+class function TClassificarImage.FindImages(const Buffer; const BufferSize: Int64; out Graphic: TGraphicClass): Boolean;
+var
+  LongWords: array[Byte] of Longword absolute Buffer;
+  Words: array[Byte] of Word absolute Buffer;
+begin
+  Graphic := nil;
+  Result := False;
+
+  if BufferSize < MIM_SIZE then
+    Exit(False);
+
+  case Words[0] of
+    I_BITMAP: Graphic := TBitmap;
+    I_JPEG: Graphic := TJPEGImage;
+    I_TIFF_1: Graphic := TWICImage;
+    I_TIFF_2: Graphic := TWICImage;
+    else
+      if Int64(Buffer) = I_PNG then
+        Graphic := TPngImage
+      else
+        if (LongWords[0] = I_METAFILE_POS_0) or
+           ((LongWords[0] = 1) and (LongWords[10] = I_METAFILE_POS_10))
+        then
+          Graphic := TMetafile
+        else
+          if StrLComp(PAnsiChar(@Buffer), I_GIF, 3) = 0 then
+            Graphic := TGIFImage
+          else
+            if Words[1] = I_ICON then
+              Graphic := TIcon;
+  end;
+end;
+
+class function TClassificarImage.FindImages(const AStream: TStream; out Graphic: TGraphicClass): Boolean;
+var
+  lBuffer: PByte;
+  lPos: Int64;
+begin
+  if AStream is TCustomMemoryStream then
+  begin
+    lBuffer := TCustomMemoryStream(AStream).Memory;
+    lPos := AStream.Position;
+    inc(lBuffer, lPos);
+    Exit(FindImages(lBuffer^, AStream.Size - lPos, Graphic));
+  end;
+
+  GetMem(lBuffer, MIM_SIZE);
+  try
+    var ByteRead := AStream.Read(lBuffer^, MIM_SIZE);
+    AStream.Seek(-ByteRead, soCurrent);
+    Result := FindImages(lBuffer^, ByteRead, Graphic)
+  finally
+    FreeMem(lBuffer);
+  end;
+end;
+
+class function TClassificarImage.GetImage(AFile: string): TGraphic;
+begin
+
+end;
+
+class function TClassificarImage.GetImage(AStream: TStream): TGraphic;
+var
+  lGraphic: TGraphicClass;
+begin
+  Result := nil;
+  AStream.Position := 0;
+
+  if FindImages(AStream, lGraphic) then
+  begin
+    Result := lGraphic.Create;
+    Result.LoadFromStream(AStream);
+  end;
+end;
+
+end.
