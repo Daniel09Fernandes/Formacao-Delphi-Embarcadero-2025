@@ -4,8 +4,22 @@
     <Transaction>2025/07/07 11:38:15.000.505,=D:\Fontes\Projects\Unit1.pas</Transaction>
     <Transaction>2025/07/07 11:52:19.000.198,=D:\Fontes\Projects\Unit1.pas</Transaction>
     <Transaction>2025/07/19 10:08:29.638,=D:\Fontes\Projects\Unit1.pas</Transaction>
-    <Transaction>2025/07/19 10:09:24.108,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\CardViewTeste\uMainView.dfm=D:\Fontes\Projects\Unit1.dfm</Transaction>
     <Transaction>2025/07/19 10:09:24.108,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\CardViewTeste\uMainView.pas=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/19 10:09:24.108,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\CardViewTeste\uMainView.dfm=D:\Fontes\Projects\Unit1.dfm</Transaction>
     <Transaction>2025/07/19 10:09:48.566,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\CardViewTeste\CardViewTeste.dproj=D:\Fontes\Projects\Project2.dproj</Transaction>
+    <Transaction>2025/07/19 14:56:21.602,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uView.Card.Viewer.pas</Transaction>
+    <Transaction>2025/07/19 14:56:21.698,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uRegister.Card.Viewer.pas</Transaction>
+    <Transaction>2025/07/19 14:56:22.708,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uClassifica.Imagem.pas</Transaction>
+    <Transaction>2025/07/19 14:56:22.793,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uCard.Viwer.pas</Transaction>
+    <Transaction>2025/07/19 14:56:22.903,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uCard.Image.Viewer.pas</Transaction>
+    <Transaction>2025/07/19 18:11:39.425,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uView.Sobre.pas</Transaction>
+    <Transaction>2025/07/19 18:11:39.680,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uRegister.Editor.Menu.pas</Transaction>
+    <Transaction>2025/07/19 18:12:40.550,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uCard.Image.Viewer.pas=</Transaction>
+    <Transaction>2025/07/19 18:12:40.690,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uCard.Viwer.pas=</Transaction>
+    <Transaction>2025/07/19 18:12:40.873,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uClassifica.Imagem.pas=</Transaction>
+    <Transaction>2025/07/19 18:12:40.927,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uRegister.Card.Viewer.pas=</Transaction>
+    <Transaction>2025/07/19 18:12:41.510,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uRegister.Editor.Menu.pas=</Transaction>
+    <Transaction>2025/07/19 18:12:42.053,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uView.Card.Viewer.pas=</Transaction>
+    <Transaction>2025/07/19 18:12:42.105,D:\Fontes\Formacao-Delphi-Embarcadero-2025\CriacaoComponentes\Aula3\ComponenteCardView\Src\uView.Sobre.pas=</Transaction>
   </Transactions>
 </BorlandProject>

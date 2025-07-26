@@ -1,0 +1,39 @@
+unit uView.Relatorios.Listas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ExtCtrls, Vcl.CategoryButtons, System.ImageList, Vcl.ImgList,
+  Data.Relatorios;
+
+type
+  TFrmListas = class(TForm)
+    PnlHeader: TPanel;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    GridCountry: TDBGrid;
+    CategoryButtons1: TCategoryButtons;
+    ImageList1: TImageList;
+    DSCountry: TDataSource;
+    Panel3: TPanel;
+    GridCustumer: TDBGrid;
+    DSCustumer: TDataSource;
+    procedure CategoryButtons1Categories0Items0Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmListas.CategoryButtons1Categories0Items0Click(Sender: TObject);
+begin
+  DmRelatorios.frxReportListaSimplesCountrys.ShowReport;
+end;
+
+end.

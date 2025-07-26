@@ -1,0 +1,40 @@
+unit Data.Relatorios;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, frxSmartMemo, frCoreClasses, frxClass, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Stan.StorageBin, frxDBSet;
+
+type
+  TDmRelatorios = class(TDataModule)
+    frxReportPrimeiroRelatorio: TfrxReport;
+    MemCountrys: TFDMemTable;
+    frxReportListaSimplesCountrys: TfrxReport;
+    frxDBDatasetCountry: TfrxDBDataset;
+    MemCustumer: TFDMemTable;
+    DsMainContry: TDataSource;
+    frxReportClientPorPais: TfrxReport;
+    frxDBDatasetCustumer: TfrxDBDataset;
+    MemOrderIndexado: TFDMemTable;
+    frxDBDatasetOrderIndexado: TfrxDBDataset;
+    frxReportGrupoSimples: TfrxReport;
+    MemClientesIMG: TFDMemTable;
+    frxDBDatasetClientesIMG: TfrxDBDataset;
+    frxReportClienteImages: TfrxReport;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmRelatorios: TDmRelatorios;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

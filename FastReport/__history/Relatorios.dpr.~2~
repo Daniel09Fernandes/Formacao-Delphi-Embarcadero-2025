@@ -1,0 +1,19 @@
+program Relatorios;
+
+uses
+  Vcl.Forms,
+  uView.Main in 'uView.Main.pas' {Form1},
+  Vcl.Themes,
+  Vcl.Styles,
+  Data.Relatorios in 'Data.Relatorios.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Windows10 SlateGray');
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.
