@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXCtrls, Vcl.CategoryButtons, System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList, frxClass,
-  frxExportBaseDialog, frxExportImage;
+  frxExportBaseDialog, frxExportImage, uView.Main.Detalhes.Niveis;
 
 type
   TFrMain = class(TForm)
@@ -18,10 +18,12 @@ type
     frxPNGExport1: TfrxPNGExport;
     ActPreview: TAction;
     ActAbrirFormListas: TAction;
+    FrMainDetailsNiveis1: TFrMainDetailsNiveis;
     procedure ActAbrirRelatorioSimplesExecute(Sender: TObject);
     procedure ActPreviewExecute(Sender: TObject);
     procedure ActAbrirFormListasExecute(Sender: TObject);
     procedure CategoryButtons1SelectedItemChange(Sender: TObject; const Button: TButtonItem);
+    procedure CategoryButtons1Categories0Items3Click(Sender: TObject);
   private
     procedure SetCapaRelatorioImg(AReport: TfrxReport);
     { Private declarations }
@@ -56,6 +58,11 @@ end;
 procedure TFrMain.ActPreviewExecute(Sender: TObject);
 begin
   SetCapaRelatorioImg(DmRelatorios.frxReportPrimeiroRelatorio);
+end;
+
+procedure TFrMain.CategoryButtons1Categories0Items3Click(Sender: TObject);
+begin
+  FrMainDetailsNiveis1.Visible := not FrMainDetailsNiveis1.Visible;
 end;
 
 procedure TFrMain.CategoryButtons1SelectedItemChange(Sender: TObject; const Button: TButtonItem);

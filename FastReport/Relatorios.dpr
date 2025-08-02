@@ -6,7 +6,8 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   Data.Relatorios in 'Data.Relatorios.pas' {DmRelatorios: TDataModule},
-  uView.Relatorios.Listas in 'uView.Relatorios.Listas.pas' {FrmListas};
+  uView.Relatorios.Listas in 'uView.Relatorios.Listas.pas' {FrmListas},
+  uView.Main.Detalhes.Niveis in 'uView.Main.Detalhes.Niveis.pas' {FrMainDetailsNiveis: TFrame};
 
 {$R *.res}
 

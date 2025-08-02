@@ -4,15 +4,19 @@
     <Transaction>2025/07/07 11:38:15.000.505,=D:\Fontes\Projects\Unit1.pas</Transaction>
     <Transaction>2025/07/07 11:52:19.000.198,=D:\Fontes\Projects\Unit1.pas</Transaction>
     <Transaction>2025/07/25 20:01:32.000.649,=D:\Fontes\Projects\Unit1.pas</Transaction>
-    <Transaction>2025/07/26 09:21:15.070,=D:\Fontes\Projects\Unit1.pas</Transaction>
-    <Transaction>2025/07/26 09:28:46.256,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\uView.Main.dfm=D:\Fontes\Projects\Unit1.dfm</Transaction>
-    <Transaction>2025/07/26 09:28:46.256,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\uView.Main.pas=D:\Fontes\Projects\Unit1.pas</Transaction>
-    <Transaction>2025/07/26 09:40:18.885,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Relatorios.dproj=D:\Fontes\Projects\Project2.dproj</Transaction>
-    <Transaction>2025/07/26 09:40:49.507,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit1.pas</Transaction>
-    <Transaction>2025/07/26 09:41:12.793,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Data.Relatorios.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit1.pas</Transaction>
-    <Transaction>2025/07/26 09:41:12.794,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Data.Relatorios.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit1.dfm</Transaction>
-    <Transaction>2025/07/26 11:32:17.408,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit2.pas</Transaction>
-    <Transaction>2025/07/26 11:32:42.501,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\uView.Relatorios.Listas.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit2.dfm</Transaction>
-    <Transaction>2025/07/26 11:32:42.501,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\uView.Relatorios.Listas.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit2.pas</Transaction>
+    <Transaction>2025/07/26 09:21:15.000.070,=D:\Fontes\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/26 09:28:46.000.256,D:\Fontes\Projects\Unit1.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\uView.Main.dfm</Transaction>
+    <Transaction>2025/07/26 09:28:46.000.256,D:\Fontes\Projects\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\uView.Main.pas</Transaction>
+    <Transaction>2025/07/26 09:40:18.000.885,D:\Fontes\Projects\Project2.dproj=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Relatorios.dproj</Transaction>
+    <Transaction>2025/07/26 09:40:49.000.507,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit1.pas</Transaction>
+    <Transaction>2025/07/26 09:41:12.000.794,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit1.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Data.Relatorios.dfm</Transaction>
+    <Transaction>2025/07/26 09:41:12.000.793,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit1.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Data.Relatorios.pas</Transaction>
+    <Transaction>2025/07/26 11:32:17.000.408,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit2.pas</Transaction>
+    <Transaction>2025/07/26 11:32:42.000.501,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit2.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\uView.Relatorios.Listas.dfm</Transaction>
+    <Transaction>2025/07/26 11:32:42.000.501,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit2.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\uView.Relatorios.Listas.pas</Transaction>
+    <Transaction>2025/08/02 12:25:46.618,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit1.pas</Transaction>
+    <Transaction>2025/08/02 16:19:56.171,=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit1.pas</Transaction>
+    <Transaction>2025/08/02 16:20:25.000,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\uView.Main.Detalhes.Niveis.pas=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit1.pas</Transaction>
+    <Transaction>2025/08/02 16:20:25.000,D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\uView.Main.Detalhes.Niveis.dfm=D:\Fontes\Formacao-Delphi-Embarcadero-2025\FastReport\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>
